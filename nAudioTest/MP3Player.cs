@@ -6,9 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.CoreAudioApi;
 using NAudio.Dmo;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using NAudio.CoreAudioApi;
+using NAudio.CoreAudioApi.Interfaces;
 
 namespace nAudioTest
 {
@@ -16,8 +19,9 @@ namespace nAudioTest
     {
         public WaveOutEvent outputDevice = new WaveOutEvent();
         public AudioFileReader audioFile;
+        public PanningSampleProvider panner;
         public int nDeviceNum = 0;
-        public int nDeviceVolume = 50;
+        public int nDeviceVolume = 10;
         public void PlayMp3(String filename)
         {
             try
@@ -60,18 +64,24 @@ namespace nAudioTest
             {
                 outputDevice.Stop();
                 outputDevice.Dispose();
-                outputDevice = new WaveOutEvent();
             }
-                PlayAudio(filename);
+            outputDevice.DeviceNumber = nDeviceNum;
+            PlayAudio(filename);
         }
+
         private void PlayAudio(string filePath)
         {
             if (File.Exists(filePath))
             {
                 Console.WriteLine($"Playing: {Path.GetFileName(filePath)}");
-                using (var waveFileReader = new WaveFileReader(filePath))
+                using (var _audioFile = new AudioFileReader(filePath))
                 {
-                    outputDevice.Init(waveFileReader);
+                    _audioFile.Volume = nDeviceVolume / 100f;
+                    var monofile = new StereoToMonoSampleProvider(_audioFile);
+                    panner = new PanningSampleProvider(monofile);
+                    panner.PanStrategy = new SquareRootPanStrategy();
+                    //panner.Pan = 0.0f; // pan fully left
+                    outputDevice.Init(panner);
                     outputDevice.Play();
                     while (outputDevice.PlaybackState == PlaybackState.Playing)
                     {
