@@ -21,9 +21,9 @@ namespace nAudioTest
         String[] strStimulDir = 
         {
             @"C:/Users/김병준/Desktop/test.wav",
-            @"C:/Users/김병준/Desktop/beep.wav",
-            @"C:/Users/김병준/Desktop/beep.wav",
-            @"C:/Users/김병준/Desktop/beep.wav"
+            @"C:/Users/김병준/Desktop/beep1.wav",
+            @"C:/Users/김병준/Desktop/beep2.wav",
+            @"C:/Users/김병준/Desktop/beep3.wav"
         };
         public Form1()
         {
@@ -36,7 +36,7 @@ namespace nAudioTest
                 {
                     int localI = i;
                     int localJ = j;
-                    Stimul[i, j] = new Mp3Player(j, 0, 0);
+                    Stimul[i, j] = new Mp3Player(j, 0, 50);
                     ThreadStimul[i, j] = new Thread(() => Stimul[localI, localJ].StopAndPlay(strStimulDir[localI]));
                     foreach (Control cb in _groupBoxes[localI].Controls.OfType<CheckBox>())
                     {
@@ -85,13 +85,15 @@ namespace nAudioTest
         private void cbEventHandler(object sender, EventArgs e, int nGroup, int nCH)
         {
             CheckBox cbTemp = (CheckBox)sender;
+            int ch = Int32.Parse(cbTemp.Text.Substring(2));
+            
             if (cbTemp.Checked)
-            {
-                Stimul[nGroup, nCH].outputDevice.Volume = 0.5f;
+            { 
+                Stimul[nGroup, ch-1]._audioFile.Volume = 0.5f;
             }
             else
             {
-                Stimul[nGroup, nCH].outputDevice.Volume = 0.0f;
+                Stimul[nGroup, ch-1]._audioFile.Volume = 0.0f;
             }
         }
     }

@@ -17,7 +17,7 @@ namespace nAudioTest
         public AudioFileReader _audioFile;
         public PanningSampleProvider panner;
         public int nDeviceNum = 0;
-        public int nDeviceVolume = 10;
+        public int nDeviceVolume = 0;
         public float nPannerValue = 0.0f;
         public Mp3Player(int nCH, int nDeviceNum,  int nOutputVolume)   //출력 장치 번호, 플레이어 볼륨, 출력 볼륨
         {
@@ -26,7 +26,7 @@ namespace nAudioTest
             //else { _audioFile.Volume = 100 / 100f; }
             if (nCH %2 == 0)
             {
-                nPannerValue = 0.0f; // pan fully left
+                nPannerValue = -1.0f; // pan fully left
             }
             else
             {
