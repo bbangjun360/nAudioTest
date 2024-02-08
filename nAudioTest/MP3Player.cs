@@ -4,14 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAudio.CoreAudioApi;
-using NAudio.Dmo;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
-using NAudio.CoreAudioApi;
-using NAudio.CoreAudioApi.Interfaces;
 
 namespace nAudioTest
 {
@@ -19,9 +14,28 @@ namespace nAudioTest
     {
         public WaveOutEvent outputDevice = new WaveOutEvent();
         public AudioFileReader audioFile;
+        public AudioFileReader _audioFile;
         public PanningSampleProvider panner;
         public int nDeviceNum = 0;
         public int nDeviceVolume = 10;
+        public float nPannerValue = 0.0f;
+        public Mp3Player(int nCH, int nDeviceNum,  int nOutputVolume)   //출력 장치 번호, 플레이어 볼륨, 출력 볼륨
+        {
+            this.nDeviceNum = nDeviceNum;
+            //if (nInputVolume < 100) { _audioFile.Volume = nInputVolume / 100f; }
+            //else { _audioFile.Volume = 100 / 100f; }
+            if (nCH %2 == 0)
+            {
+                nPannerValue = 0.0f; // pan fully left
+            }
+            else
+            {
+                nPannerValue = 1.0f; // pan fully right
+            }
+            if (nOutputVolume < 100) { outputDevice.Volume = nOutputVolume / 100f; }
+                else { outputDevice.Volume = 100 / 100f; }
+            
+        }
         public void PlayMp3(String filename)
         {
             try
@@ -73,14 +87,14 @@ namespace nAudioTest
         {
             if (File.Exists(filePath))
             {
-                Console.WriteLine($"Playing: {Path.GetFileName(filePath)}");
-                using (var _audioFile = new AudioFileReader(filePath))
+                //Console.WriteLine($"Playing: {Path.GetFileName(filePath)}");
+                using (_audioFile = new AudioFileReader(filePath))
                 {
                     _audioFile.Volume = nDeviceVolume / 100f;
                     var monofile = new StereoToMonoSampleProvider(_audioFile);
                     panner = new PanningSampleProvider(monofile);
                     panner.PanStrategy = new SquareRootPanStrategy();
-                    //panner.Pan = 0.0f; // pan fully left
+                    panner.Pan = nPannerValue; // pan fully left
                     outputDevice.Init(panner);
                     outputDevice.Play();
                     while (outputDevice.PlaybackState == PlaybackState.Playing)
