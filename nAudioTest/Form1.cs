@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Net;
+using NAudio.Wave;
 
 namespace nAudioTest
 {
@@ -20,14 +22,29 @@ namespace nAudioTest
 
         String[] strStimulDir = 
         {
-            @"C:/Users/김병준/Desktop/test.wav",
-            @"C:/Users/김병준/Desktop/beep1.wav",
-            @"C:/Users/김병준/Desktop/beep2.wav",
-            @"C:/Users/김병준/Desktop/beep3.wav"
+            "Noise.mp3",
+            "StimulA.wav",
+            "StimulB.mp3",
+            "StimulC.mp3"
         };
         public Form1()
         {
             InitializeComponent();
+            for (int n = -1; n < WaveOut.DeviceCount; n++)
+            {
+                var caps = WaveOut.GetCapabilities(n);
+                Console.WriteLine($"{n}: {caps.ProductName}");
+            }
+            int nLocalDirIndex = System.Windows.Forms.Application.StartupPath.IndexOf("bin");
+            Console.WriteLine(nLocalDirIndex);
+            string strLocalDir = System.Windows.Forms.Application.StartupPath.Substring(0,nLocalDirIndex) + @"bin\music\";
+            for (int i = 0; i < strStimulDir.Length; i++)
+            {
+                strStimulDir[i] = strLocalDir + strStimulDir[i];
+                Console.WriteLine(strStimulDir[i]);
+            }
+
+
             _groupBoxes = new GroupBox[4] { gbNoise, gbStimulA, gbStimulB, gbStimulC};
 
             for (int i = 0; i < Stimul.GetLength(0); i++)

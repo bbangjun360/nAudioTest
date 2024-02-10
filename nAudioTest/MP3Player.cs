@@ -13,17 +13,16 @@ namespace nAudioTest
     public class Mp3Player
     {
         public WaveOutEvent outputDevice = new WaveOutEvent();
-        public AudioFileReader audioFile;
         public AudioFileReader _audioFile;
         public PanningSampleProvider panner;
-        public int nDeviceNum = 0;
-        public int nDeviceVolume = 0;
-        public float nPannerValue = 0.0f;
+
+        public int nDeviceNum = 0;          //재생장치 선택 변수
+        public int nAudioFileVol = 0;       //플레이어 볼륨
+        public int nOutputDeviceVol = 0;    //출력 볼륨
+        public float nPannerValue = 0.0f;        //패닝값 저장용 L/R (-1.0f ~ 1.0f) 
         public Mp3Player(int nCH, int nDeviceNum,  int nOutputVolume)   //출력 장치 번호, 플레이어 볼륨, 출력 볼륨
         {
             this.nDeviceNum = nDeviceNum;
-            //if (nInputVolume < 100) { _audioFile.Volume = nInputVolume / 100f; }
-            //else { _audioFile.Volume = 100 / 100f; }
             if (nCH %2 == 0)
             {
                 nPannerValue = -1.0f; // pan fully left
@@ -36,51 +35,26 @@ namespace nAudioTest
                 else { outputDevice.Volume = 100 / 100f; }
             
         }
-        public void PlayMp3(String filename)
+        
+        public void StopAndPlay(String filename)
         {
             try
             {
-                if (outputDevice != null)
-                {
-                    outputDevice.Stop();
-                    Thread.Sleep(150);
-                }
-                if (outputDevice == null)
-                {
-                    outputDevice = new WaveOutEvent()
-                    {
-                        DeviceNumber = nDeviceNum
-                    };
-                    outputDevice.PlaybackStopped += OnPlaybackStopped;
-                }
-                if (audioFile == null)
-                {
-                    //String strTemp = "C:\\Users\\user\\Downloads\\" + filename + ".wav";
-                    Console.WriteLine(filename);
-                    audioFile = new AudioFileReader(@filename);
-                    outputDevice.Init(audioFile);
-                    audioFile.Volume = nDeviceVolume / 100f;
-                    outputDevice.Play();
-                    while (outputDevice.PlaybackState == PlaybackState.Playing)
-                    {
-                        System.Threading.Thread.Sleep(100);
-                    }
-                }
+                StopAudio();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message + "\twhile stoppint audio, error Occure");
+            }
+            try
+            {
+                outputDevice.DeviceNumber = nDeviceNum;
+                PlayAudio(filename);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"An error occured while trying to stop the MP3: {e.Message}");
+                Console.WriteLine(e.Message + "\twhile stoppint audio, error Occure");
             }
-        }
-        public void StopAndPlay(String filename)
-        {
-            if (outputDevice.PlaybackState == PlaybackState.Playing)
-            {
-                outputDevice.Stop();
-                outputDevice.Dispose();
-            }
-            outputDevice.DeviceNumber = nDeviceNum;
-            PlayAudio(filename);
         }
 
         private void PlayAudio(string filePath)
@@ -90,7 +64,7 @@ namespace nAudioTest
                 //Console.WriteLine($"Playing: {Path.GetFileName(filePath)}");
                 using (_audioFile = new AudioFileReader(filePath))
                 {
-                    _audioFile.Volume = nDeviceVolume / 100f;
+                    _audioFile.Volume = nAudioFileVol / 100f;
                     var monofile = new StereoToMonoSampleProvider(_audioFile);
                     panner = new PanningSampleProvider(monofile);
                     panner.PanStrategy = new SquareRootPanStrategy();
@@ -109,22 +83,18 @@ namespace nAudioTest
                 Console.WriteLine("File not found.");
             }
         }
-        public void StopMp3()
+        public void StopAudio()
         {
-            outputDevice.Stop();
-        }
-        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
-        {
-            try
+            if (outputDevice.PlaybackState == PlaybackState.Playing)    //재생중인 출력 있으면 멈추고 Dispose
             {
+                outputDevice.Stop();
                 outputDevice.Dispose();
                 outputDevice = null;
-                audioFile.Dispose();
-                audioFile = null;
             }
-            catch (Exception e)
+            if (_audioFile.CanRead) // 읽어져있는 audiofile 있으면 삭제
             {
-                Console.WriteLine($"An error occured while trying to stop the MP3: {e.Message}");
+                _audioFile.Dispose();
+                _audioFile = null;
             }
         }
     }
