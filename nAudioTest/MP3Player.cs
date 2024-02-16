@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using NAudio.CoreAudioApi;
+using NAudio.Gui;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 
@@ -16,10 +18,11 @@ namespace nAudioTest
         public AudioFileReader _audioFile;
         public PanningSampleProvider panner;
 
-        public int nDeviceNum = 0;          //재생장치 선택 변수
-        public int nAudioFileVol = 0;       //플레이어 볼륨
+        public int nDeviceNum = -1;          //재생장치 선택 변수
+        public float nAudioFileVol = 0;       //플레이어 볼륨
         public int nOutputDeviceVol = 0;    //출력 볼륨
         public float nPannerValue = 0.0f;        //패닝값 저장용 L/R (-1.0f ~ 1.0f) 
+        public float nMeterVol = 0.0f;
         public Mp3Player(int nCH, int nDeviceNum,  int nOutputVolume)   //출력 장치 번호, 플레이어 볼륨, 출력 볼륨
         {
             this.nDeviceNum = nDeviceNum;
@@ -64,12 +67,13 @@ namespace nAudioTest
                 //Console.WriteLine($"Playing: {Path.GetFileName(filePath)}");
                 using (_audioFile = new AudioFileReader(filePath))
                 {
-                    _audioFile.Volume = nAudioFileVol / 100f;
+                    _audioFile.Volume = nAudioFileVol;
                     var monofile = new StereoToMonoSampleProvider(_audioFile);
                     panner = new PanningSampleProvider(monofile);
                     panner.PanStrategy = new SquareRootPanStrategy();
                     panner.Pan = nPannerValue; // pan fully left
                     outputDevice.Init(panner);
+                    //metering = new MeteringSampleProvider(panner);
                     outputDevice.Play();
                     while (outputDevice.PlaybackState == PlaybackState.Playing)
                     {
@@ -91,11 +95,11 @@ namespace nAudioTest
                 outputDevice.Dispose();
                 outputDevice = null;
             }
-            if (_audioFile.CanRead) // 읽어져있는 audiofile 있으면 삭제
-            {
-                _audioFile.Dispose();
-                _audioFile = null;
-            }
+            //if(_audioFile.CanRead) // 읽어져있는 audiofile 있으면 삭제
+            //{
+            //    _audioFile.Dispose();
+            //    _audioFile = null;
+            //}
         }
     }
 }
