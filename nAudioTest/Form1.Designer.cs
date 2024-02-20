@@ -86,29 +86,29 @@ namespace nAudioTest
             this.volumeSlider2 = new NAudio.Gui.VolumeSlider();
             this.volumeSlider3 = new NAudio.Gui.VolumeSlider();
             this.volumeSlider4 = new NAudio.Gui.VolumeSlider();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.progressBar5 = new System.Windows.Forms.ProgressBar();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.progressBar6 = new System.Windows.Forms.ProgressBar();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.progressBar7 = new System.Windows.Forms.ProgressBar();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.progressBar8 = new System.Windows.Forms.ProgressBar();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.gbNoise.SuspendLayout();
             this.gbStimulA.SuspendLayout();
             this.gbStimulB.SuspendLayout();
             this.gbStimulC.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(18, 271);
+            this.button1.Location = new System.Drawing.Point(6, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(163, 38);
             this.button1.TabIndex = 0;
@@ -118,7 +118,7 @@ namespace nAudioTest
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(187, 271);
+            this.button2.Location = new System.Drawing.Point(6, 114);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 38);
             this.button2.TabIndex = 19;
@@ -136,7 +136,7 @@ namespace nAudioTest
             this.gbNoise.Controls.Add(this.checkBox3);
             this.gbNoise.Controls.Add(this.checkBox5);
             this.gbNoise.Controls.Add(this.checkBox4);
-            this.gbNoise.Location = new System.Drawing.Point(12, 64);
+            this.gbNoise.Location = new System.Drawing.Point(12, 12);
             this.gbNoise.Name = "gbNoise";
             this.gbNoise.Size = new System.Drawing.Size(907, 47);
             this.gbNoise.TabIndex = 9;
@@ -233,7 +233,7 @@ namespace nAudioTest
             this.gbStimulA.Controls.Add(this.checkBox14);
             this.gbStimulA.Controls.Add(this.checkBox15);
             this.gbStimulA.Controls.Add(this.checkBox16);
-            this.gbStimulA.Location = new System.Drawing.Point(13, 117);
+            this.gbStimulA.Location = new System.Drawing.Point(13, 65);
             this.gbStimulA.Name = "gbStimulA";
             this.gbStimulA.Size = new System.Drawing.Size(906, 47);
             this.gbStimulA.TabIndex = 10;
@@ -330,7 +330,7 @@ namespace nAudioTest
             this.gbStimulB.Controls.Add(this.checkBox22);
             this.gbStimulB.Controls.Add(this.checkBox23);
             this.gbStimulB.Controls.Add(this.checkBox24);
-            this.gbStimulB.Location = new System.Drawing.Point(13, 170);
+            this.gbStimulB.Location = new System.Drawing.Point(13, 118);
             this.gbStimulB.Name = "gbStimulB";
             this.gbStimulB.Size = new System.Drawing.Size(906, 47);
             this.gbStimulB.TabIndex = 11;
@@ -427,7 +427,7 @@ namespace nAudioTest
             this.gbStimulC.Controls.Add(this.checkBox32);
             this.gbStimulC.Controls.Add(this.checkBox29);
             this.gbStimulC.Controls.Add(this.checkBox30);
-            this.gbStimulC.Location = new System.Drawing.Point(12, 223);
+            this.gbStimulC.Location = new System.Drawing.Point(12, 171);
             this.gbStimulC.Name = "gbStimulC";
             this.gbStimulC.Size = new System.Drawing.Size(907, 47);
             this.gbStimulC.TabIndex = 11;
@@ -516,7 +516,7 @@ namespace nAudioTest
             // 
             // volumeSlider1
             // 
-            this.volumeSlider1.Location = new System.Drawing.Point(925, 84);
+            this.volumeSlider1.Location = new System.Drawing.Point(353, 48);
             this.volumeSlider1.Name = "volumeSlider1";
             this.volumeSlider1.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider1.TabIndex = 20;
@@ -528,176 +528,173 @@ namespace nAudioTest
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(18, 35);
+            this.progressBar1.Location = new System.Drawing.Point(176, 41);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(111, 23);
+            this.progressBar1.Size = new System.Drawing.Size(171, 23);
             this.progressBar1.TabIndex = 22;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(18, 9);
+            this.comboBox1.Location = new System.Drawing.Point(6, 44);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(111, 20);
+            this.comboBox1.Size = new System.Drawing.Size(153, 20);
             this.comboBox1.TabIndex = 23;
             // 
             // volumeSlider2
             // 
-            this.volumeSlider2.Location = new System.Drawing.Point(925, 137);
+            this.volumeSlider2.Location = new System.Drawing.Point(353, 77);
             this.volumeSlider2.Name = "volumeSlider2";
             this.volumeSlider2.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider2.TabIndex = 24;
             // 
             // volumeSlider3
             // 
-            this.volumeSlider3.Location = new System.Drawing.Point(925, 190);
+            this.volumeSlider3.Location = new System.Drawing.Point(353, 106);
             this.volumeSlider3.Name = "volumeSlider3";
             this.volumeSlider3.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider3.TabIndex = 25;
             // 
             // volumeSlider4
             // 
-            this.volumeSlider4.Location = new System.Drawing.Point(925, 243);
+            this.volumeSlider4.Location = new System.Drawing.Point(353, 135);
             this.volumeSlider4.Name = "volumeSlider4";
             this.volumeSlider4.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider4.TabIndex = 26;
             // 
-            // comboBox2
+            // label1
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(140, 9);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(111, 20);
-            this.comboBox2.TabIndex = 28;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 12);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "출력장치 선택";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.volumeSlider4);
+            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.volumeSlider3);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.progressBar4);
+            this.groupBox1.Controls.Add(this.progressBar3);
+            this.groupBox1.Controls.Add(this.volumeSlider2);
+            this.groupBox1.Controls.Add(this.progressBar2);
+            this.groupBox1.Controls.Add(this.volumeSlider1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.progressBar1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 224);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(907, 161);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "설정";
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(140, 35);
+            this.progressBar2.Location = new System.Drawing.Point(176, 70);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(111, 23);
-            this.progressBar2.TabIndex = 27;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(261, 9);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(111, 20);
-            this.comboBox3.TabIndex = 30;
+            this.progressBar2.Size = new System.Drawing.Size(171, 23);
+            this.progressBar2.TabIndex = 28;
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(261, 35);
+            this.progressBar3.Location = new System.Drawing.Point(176, 99);
             this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(111, 23);
+            this.progressBar3.Size = new System.Drawing.Size(171, 23);
             this.progressBar3.TabIndex = 29;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(382, 9);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(111, 20);
-            this.comboBox4.TabIndex = 32;
             // 
             // progressBar4
             // 
-            this.progressBar4.Location = new System.Drawing.Point(382, 35);
+            this.progressBar4.Location = new System.Drawing.Point(176, 128);
             this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(111, 23);
-            this.progressBar4.TabIndex = 31;
+            this.progressBar4.Size = new System.Drawing.Size(171, 23);
+            this.progressBar4.TabIndex = 30;
             // 
-            // comboBox5
+            // button3
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(503, 9);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(111, 20);
-            this.comboBox5.TabIndex = 34;
+            this.button3.Location = new System.Drawing.Point(826, 41);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 31;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // progressBar5
+            // button4
             // 
-            this.progressBar5.Location = new System.Drawing.Point(503, 35);
-            this.progressBar5.Name = "progressBar5";
-            this.progressBar5.Size = new System.Drawing.Size(111, 23);
-            this.progressBar5.TabIndex = 33;
+            this.button4.Location = new System.Drawing.Point(826, 70);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 32;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // comboBox6
+            // button5
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(623, 9);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(111, 20);
-            this.comboBox6.TabIndex = 36;
+            this.button5.Location = new System.Drawing.Point(826, 99);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 33;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
             // 
-            // progressBar6
+            // button6
             // 
-            this.progressBar6.Location = new System.Drawing.Point(623, 35);
-            this.progressBar6.Name = "progressBar6";
-            this.progressBar6.Size = new System.Drawing.Size(111, 23);
-            this.progressBar6.TabIndex = 35;
+            this.button6.Location = new System.Drawing.Point(826, 128);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 34;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
             // 
-            // comboBox7
+            // textBox1
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(744, 9);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(111, 20);
-            this.comboBox7.TabIndex = 38;
+            this.textBox1.Location = new System.Drawing.Point(455, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(365, 21);
+            this.textBox1.TabIndex = 35;
             // 
-            // progressBar7
+            // textBox2
             // 
-            this.progressBar7.Location = new System.Drawing.Point(744, 35);
-            this.progressBar7.Name = "progressBar7";
-            this.progressBar7.Size = new System.Drawing.Size(111, 23);
-            this.progressBar7.TabIndex = 37;
+            this.textBox2.Location = new System.Drawing.Point(455, 72);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(365, 21);
+            this.textBox2.TabIndex = 36;
             // 
-            // comboBox8
+            // textBox3
             // 
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(866, 9);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(111, 20);
-            this.comboBox8.TabIndex = 40;
+            this.textBox3.Location = new System.Drawing.Point(455, 101);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(365, 21);
+            this.textBox3.TabIndex = 37;
             // 
-            // progressBar8
+            // textBox4
             // 
-            this.progressBar8.Location = new System.Drawing.Point(866, 35);
-            this.progressBar8.Name = "progressBar8";
-            this.progressBar8.Size = new System.Drawing.Size(111, 23);
-            this.progressBar8.TabIndex = 39;
+            this.textBox4.Location = new System.Drawing.Point(455, 130);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(365, 21);
+            this.textBox4.TabIndex = 38;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1033, 321);
-            this.Controls.Add(this.comboBox8);
-            this.Controls.Add(this.progressBar8);
-            this.Controls.Add(this.comboBox7);
-            this.Controls.Add(this.progressBar7);
-            this.Controls.Add(this.comboBox6);
-            this.Controls.Add(this.progressBar6);
-            this.Controls.Add(this.comboBox5);
-            this.Controls.Add(this.progressBar5);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.progressBar4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.progressBar3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.volumeSlider4);
-            this.Controls.Add(this.volumeSlider3);
-            this.Controls.Add(this.volumeSlider2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.volumeSlider1);
+            this.ClientSize = new System.Drawing.Size(933, 395);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbStimulB);
             this.Controls.Add(this.gbStimulC);
             this.Controls.Add(this.gbStimulA);
             this.Controls.Add(this.gbNoise);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "4input-8output test";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -709,6 +706,8 @@ namespace nAudioTest
             this.gbStimulB.PerformLayout();
             this.gbStimulC.ResumeLayout(false);
             this.gbStimulC.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -760,20 +759,19 @@ namespace nAudioTest
         private NAudio.Gui.VolumeSlider volumeSlider2;
         private NAudio.Gui.VolumeSlider volumeSlider3;
         private NAudio.Gui.VolumeSlider volumeSlider4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        public System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        public System.Windows.Forms.ProgressBar progressBar3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
         public System.Windows.Forms.ProgressBar progressBar4;
-        private System.Windows.Forms.ComboBox comboBox5;
-        public System.Windows.Forms.ProgressBar progressBar5;
-        private System.Windows.Forms.ComboBox comboBox6;
-        public System.Windows.Forms.ProgressBar progressBar6;
-        private System.Windows.Forms.ComboBox comboBox7;
-        public System.Windows.Forms.ProgressBar progressBar7;
-        private System.Windows.Forms.ComboBox comboBox8;
-        public System.Windows.Forms.ProgressBar progressBar8;
+        public System.Windows.Forms.ProgressBar progressBar3;
+        public System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 

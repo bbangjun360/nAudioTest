@@ -33,15 +33,9 @@ namespace nAudioTest
         public Form1()
         {
             InitializeComponent();
-            var devices = enumerator.EnumerateAudioEndPoints(DataFlow.All, DeviceState.Active);
-            comboBox1.Items.AddRange(devices.ToArray());
-            comboBox2.Items.AddRange(devices.ToArray());
-            comboBox3.Items.AddRange(devices.ToArray());
-            comboBox4.Items.AddRange(devices.ToArray());
-            comboBox5.Items.AddRange(devices.ToArray());
-            comboBox6.Items.AddRange(devices.ToArray());
-            comboBox7.Items.AddRange(devices.ToArray());
-            comboBox8.Items.AddRange(devices.ToArray());
+            var asioDriverNames = AsioOut.GetDriverNames();
+            comboBox1.Items.AddRange(asioDriverNames.ToArray());
+            
             // ProgressBar를 생성합니다
 
             for (int n = -1; n < WaveOut.DeviceCount; n++)
@@ -163,22 +157,8 @@ namespace nAudioTest
             {
                 MMDevice[] device = new MMDevice[8]; 
                 device[0] = (MMDevice)comboBox1.SelectedItem;
-                device[1] = (MMDevice)comboBox2.SelectedItem;
-                device[2] = (MMDevice)comboBox3.SelectedItem;
-                device[3] = (MMDevice)comboBox4.SelectedItem;
-                device[4] = (MMDevice)comboBox5.SelectedItem;
-                device[5] = (MMDevice)comboBox6.SelectedItem;
-                device[6] = (MMDevice)comboBox7.SelectedItem;
-                device[7] = (MMDevice)comboBox8.SelectedItem;
-
                 progressBar1.Value = (int)(Math.Round(device[0].AudioMeterInformation.MasterPeakValue * 100));
-                progressBar2.Value = (int)(Math.Round(device[1].AudioMeterInformation.MasterPeakValue * 100));
-                progressBar3.Value = (int)(Math.Round(device[2].AudioMeterInformation.MasterPeakValue * 100));
-                progressBar4.Value = (int)(Math.Round(device[3].AudioMeterInformation.MasterPeakValue * 100));
-                progressBar5.Value = (int)(Math.Round(device[4].AudioMeterInformation.MasterPeakValue * 100));
-                progressBar6.Value = (int)(Math.Round(device[5].AudioMeterInformation.MasterPeakValue * 100));
-                progressBar7.Value = (int)(Math.Round(device[6].AudioMeterInformation.MasterPeakValue * 100));
-                progressBar8.Value = (int)(Math.Round(device[7].AudioMeterInformation.MasterPeakValue * 100));
+                
 
             }
         }
