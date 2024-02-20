@@ -25,21 +25,18 @@ namespace nAudioTest
         GroupBox[] _groupBoxes;
         TextBox[] textBoxes;
         VolumeSlider[] volumesliders;
-        AudioFileReader[] audioFileReaders;
-        AudioFileReader[] audioFileReaderMixers;
-        MultiplexingSampleProvider[] mixer;
-        StereoToMonoSampleProvider[] monofiles;
+        AudioFileReader[,] audioFileReaderMixers;
+        MultiplexingSampleProvider mixer;
         StereoToMonoSampleProvider[] mixedmonofiles;
         VolumeSampleProvider[] volumeSampleProviders1;
-        VolumeSampleProvider[] volumeSampleProviders2;
         AsioOut asioOut;
-        AsioOut asioOut2;
+        MixingSampleProvider[] mixingSampleProviders = new MixingSampleProvider[8];
         String[] strStimulDir = 
         {
             "Noise.mp3",
-            "StimulA.wav",
-            "StimulB.mp3",
-            "StimulC.mp3"
+            "B.mp3",
+            "C.mp3",
+            "D.mp3"
         };
         public Form1()
         {
@@ -54,11 +51,9 @@ namespace nAudioTest
                    
             textBoxes = new TextBox[4] { textBox1, textBox2, textBox3, textBox4 };
             volumesliders = new VolumeSlider[4] {volumeSlider1, volumeSlider2, volumeSlider3, volumeSlider4 };
-            audioFileReaders = new AudioFileReader[4];
-            audioFileReaderMixers = new AudioFileReader[4];
-            mixer = new MultiplexingSampleProvider[2];
-            monofiles = new StereoToMonoSampleProvider[4];
-            mixedmonofiles = new StereoToMonoSampleProvider[4];
+            
+            audioFileReaderMixers = new AudioFileReader[8,4];
+            mixedmonofiles = new StereoToMonoSampleProvider[8];
 
             // ASIO 드라이버  확인용
             var asioDriverNames = AsioOut.GetDriverNames();
@@ -73,69 +68,45 @@ namespace nAudioTest
                 strStimulDir[i] = strLocalDir + strStimulDir[i];
                 textBoxes[i].Text = strStimulDir[i];
 
-                audioFileReaders[i] = new AudioFileReader(strStimulDir[i]);
-                audioFileReaderMixers[i] = new AudioFileReader(strStimulDir[i]);
-
-                audioFileReaders[i].Volume = 0.5f;
-                audioFileReaderMixers[i].Volume = 0.5f;
-                volumesliders[i].Volume = 0.5f;
-                volumesliders[i].VolumeChanged += (sender, e) => { vsEventHandler(sender, e); };
-            }
-            for(int i = 0; i< 4; i++)
-            {
-                monofiles[i] = new StereoToMonoSampleProvider(audioFileReaders[i]);
-            }
-            var mix1 = new MixingSampleProvider(new[] { audioFileReaderMixers[0], audioFileReaderMixers[1] });
-            mixedmonofiles[0] = new StereoToMonoSampleProvider(mix1);
-            var mix2 = new MixingSampleProvider(new[] { audioFileReaderMixers[2], audioFileReaderMixers[3] });
-            mixedmonofiles[1] = new StereoToMonoSampleProvider(mix2);
-
-            mixer[0] = new MultiplexingSampleProvider(new[] { monofiles[0], monofiles[1], mixedmonofiles[0] }, 8);
-            mixer[1] = new MultiplexingSampleProvider(new[] { monofiles[2], monofiles[3], mixedmonofiles[1] }, 8);
-            foreach (var selectedMixer in mixer)
-            {
-                for(int i = 0;i< 8;i++)
+                for(int j = 0; j < 8; j++)
                 {
-                    selectedMixer.ConnectInputToOutput(0, i);
+                    audioFileReaderMixers[j,i] = new AudioFileReader(strStimulDir[i]);
+                    audioFileReaderMixers[j,i].Volume = 0.0f;
                 }
+                
+                //volumesliders[i].VolumeChanged += (sender, e) => { vsEventHandler(sender, e); };
             }
-            volumeSampleProviders1 = new VolumeSampleProvider[mixer[0].WaveFormat.Channels];
-            volumeSampleProviders2 = new VolumeSampleProvider[mixer[1].WaveFormat.Channels];
+            for(int i = 0; i < 8; i++)
+            {
+                mixingSampleProviders[i] = new MixingSampleProvider(new[] { audioFileReaderMixers[i,0], audioFileReaderMixers[i,1], audioFileReaderMixers[i, 2], audioFileReaderMixers[i, 3] });
+                mixedmonofiles[i] = new StereoToMonoSampleProvider(mixingSampleProviders[i]);
+            }
+
+            mixer = new MultiplexingSampleProvider(mixedmonofiles, 8);
+            for(int i = 0;i< 8;i++)
+            {
+                mixer.ConnectInputToOutput(i, i);
+            }
+            
+            volumeSampleProviders1 = new VolumeSampleProvider[mixer.WaveFormat.Channels];
             for (int i = 0; i < volumeSampleProviders1.Length; i++)
             {
-                volumeSampleProviders1[i] = new VolumeSampleProvider(mixer[0], mixer[0].WaveFormat.Channels);
-            }
-            for (int i = 0; i < volumeSampleProviders2.Length; i++)
-            {
-                volumeSampleProviders2[i] = new VolumeSampleProvider(mixer[1], mixer[1].WaveFormat.Channels);
+                volumeSampleProviders1[i] = new VolumeSampleProvider(mixer, mixer.WaveFormat.Channels);
             }
             for (int i = 0; i < 8; i++)
             {
-                volumeSampleProviders1[0][i] = 0.0f;
-                volumeSampleProviders2[0][i] = 0.0f;
+                volumeSampleProviders1[0][i] = 0.5f;
             }
             asioOut = new AsioOut();
             asioOut.Init(volumeSampleProviders1[0]);
-
-            //asioOut2 = new AsioOut();
-            //asioOut2.Init(volumeSampleProviders2[0]);
             // 체크박스 이벤트 핸들러 세팅용
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
                     int localI = i;
                     int localJ = j;
                      _checkboxes[localI, localJ].CheckedChanged += (sender, e) => { cbEventHandler(sender, e, localI, localJ); };
-                }
-            }
-            for (int i = 2; i < 4; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    int localI = i;
-                    int localJ = j;
-                    _checkboxes[localI, localJ].CheckedChanged += (sender, e) => { cbEventHandler2(sender, e, localI, localJ); };
                 }
             }
         }
@@ -159,66 +130,29 @@ namespace nAudioTest
         {
             CheckBox cbTemp = (CheckBox)sender;
             int ch = Int32.Parse(cbTemp.Text.Substring(2)) - 1;
-            Console.WriteLine(cbTemp.Text);
-            Console.WriteLine(_checkboxes[0, ch].Name+"->" +_checkboxes[0, ch].Checked);
-            Console.WriteLine(_checkboxes[1, ch].Name + "->" + _checkboxes[1, ch].Checked);
-            if (_checkboxes[0,ch].Checked && _checkboxes[1, ch].Checked)
+            for(int i = 0; i < 4; i++)
             {
-                volumeSampleProviders1[0][ch] = 0.5f;
-                mixer[0].ConnectInputToOutput(2, ch);
+                if (_checkboxes[i, ch].Checked)
+                {
+                    Console.WriteLine(_checkboxes[i, ch].Name + "-> TRUE");
+                    audioFileReaderMixers[ch, i].Volume = 0.7f;
+                }
+                else
+                {
+                    Console.WriteLine(_checkboxes[i, ch].Name + "-> FALSE");
+                    audioFileReaderMixers[ch, i].Volume = 0.0f;
+                }
             }
-            else if (_checkboxes[0, ch].Checked && !(_checkboxes[1, ch].Checked))
-            {
-                volumeSampleProviders1[0][ch] = 0.5f;
-                mixer[0].ConnectInputToOutput(0, ch);
-            }
-            else if (!(_checkboxes[0, ch].Checked) && _checkboxes[1, ch].Checked)
-            {
-                volumeSampleProviders1[0][ch] = 0.5f;
-                mixer[0].ConnectInputToOutput(1, ch);
-            }
-            else
-            {
-                volumeSampleProviders1[0][ch] = 0.0f;
-            }
+
 
         }
-        private void cbEventHandler2(object sender, EventArgs e, int nGroup, int nCH)
-        {
-            CheckBox cbTemp = (CheckBox)sender;
-            int ch = Int32.Parse(cbTemp.Text.Substring(2)) - 1;
-            Console.WriteLine(cbTemp.Text);
-            Console.WriteLine(_checkboxes[2, ch].Name + "->" + _checkboxes[2, ch].Checked);
-            Console.WriteLine(_checkboxes[3, ch].Name + "->" + _checkboxes[3, ch].Checked);
-            if (_checkboxes[2, ch].Checked && _checkboxes[3, ch].Checked)
-            {
-                volumeSampleProviders1[0][ch] = 0.5f;
-                mixer[0].ConnectInputToOutput(2, ch);
-            }
-            else if (_checkboxes[2, ch].Checked && !(_checkboxes[3, ch].Checked))
-            {
-                volumeSampleProviders1[0][ch] = 0.5f;
-                mixer[0].ConnectInputToOutput(0, ch);
-            }
-            else if (!(_checkboxes[2, ch].Checked) && _checkboxes[3, ch].Checked)
-            {
-                volumeSampleProviders1[0][ch] = 0.5f;
-                mixer[0].ConnectInputToOutput(1, ch);
-            }
-            else
-            {
-                volumeSampleProviders1[0][ch] = 0.0f;
-            }
-
-        }
-
         private void vsEventHandler(object sender, EventArgs e)
         {
             VolumeSlider volumeSlider = (VolumeSlider)sender;
             //Console.WriteLine(volumeSlider.Name.Replace("volumeSlider", ""));
             int n = Int32.Parse(volumeSlider.Name.Replace("volumeSlider", "")) - 1;
-            audioFileReaders[n].Volume = volumesliders[n].Volume;
-            audioFileReaderMixers[n].Volume = volumesliders[n].Volume; ;
+            //audioFileReaders[n].Volume = volumesliders[n].Volume;
+            //audioFileReaderMixers[n].Volume = volumesliders[n].Volume; ;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
