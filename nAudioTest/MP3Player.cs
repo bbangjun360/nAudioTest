@@ -36,6 +36,7 @@ namespace nAudioTest
             }
             if (nOutputVolume < 100) { outputDevice.Volume = nOutputVolume / 100f; }
                 else { outputDevice.Volume = 100 / 100f; }
+
             
         }
         

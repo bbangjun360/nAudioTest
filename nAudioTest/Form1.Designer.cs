@@ -91,14 +91,18 @@ namespace nAudioTest
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnSel1 = new System.Windows.Forms.Button();
+            this.btnSel2 = new System.Windows.Forms.Button();
+            this.btnSel3 = new System.Windows.Forms.Button();
+            this.btnSel4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.gbNoise.SuspendLayout();
             this.gbStimulA.SuspendLayout();
             this.gbStimulB.SuspendLayout();
@@ -520,7 +524,6 @@ namespace nAudioTest
             this.volumeSlider1.Name = "volumeSlider1";
             this.volumeSlider1.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider1.TabIndex = 20;
-            this.volumeSlider1.VolumeChanged += new System.EventHandler(this.volumeSlider1_VolumeChanged);
             // 
             // timer1
             // 
@@ -538,7 +541,7 @@ namespace nAudioTest
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(6, 44);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(153, 20);
+            this.comboBox1.Size = new System.Drawing.Size(163, 20);
             this.comboBox1.TabIndex = 23;
             // 
             // volumeSlider2
@@ -573,16 +576,20 @@ namespace nAudioTest
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.volumeSlider4);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.btnSel4);
+            this.groupBox1.Controls.Add(this.btnSel3);
+            this.groupBox1.Controls.Add(this.btnSel2);
             this.groupBox1.Controls.Add(this.volumeSlider3);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.btnSel1);
             this.groupBox1.Controls.Add(this.progressBar4);
             this.groupBox1.Controls.Add(this.progressBar3);
             this.groupBox1.Controls.Add(this.volumeSlider2);
@@ -621,41 +628,41 @@ namespace nAudioTest
             this.progressBar4.Size = new System.Drawing.Size(171, 23);
             this.progressBar4.TabIndex = 30;
             // 
-            // button3
+            // btnSel1
             // 
-            this.button3.Location = new System.Drawing.Point(826, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 31;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSel1.Location = new System.Drawing.Point(826, 41);
+            this.btnSel1.Name = "btnSel1";
+            this.btnSel1.Size = new System.Drawing.Size(75, 23);
+            this.btnSel1.TabIndex = 31;
+            this.btnSel1.Text = "열기";
+            this.btnSel1.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnSel2
             // 
-            this.button4.Location = new System.Drawing.Point(826, 70);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnSel2.Location = new System.Drawing.Point(826, 70);
+            this.btnSel2.Name = "btnSel2";
+            this.btnSel2.Size = new System.Drawing.Size(75, 23);
+            this.btnSel2.TabIndex = 32;
+            this.btnSel2.Text = "열기";
+            this.btnSel2.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnSel3
             // 
-            this.button5.Location = new System.Drawing.Point(826, 99);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 33;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnSel3.Location = new System.Drawing.Point(826, 99);
+            this.btnSel3.Name = "btnSel3";
+            this.btnSel3.Size = new System.Drawing.Size(75, 23);
+            this.btnSel3.TabIndex = 33;
+            this.btnSel3.Text = "열기";
+            this.btnSel3.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnSel4
             // 
-            this.button6.Location = new System.Drawing.Point(826, 128);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 34;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSel4.Location = new System.Drawing.Point(826, 128);
+            this.btnSel4.Name = "btnSel4";
+            this.btnSel4.Size = new System.Drawing.Size(75, 23);
+            this.btnSel4.TabIndex = 34;
+            this.btnSel4.Text = "열기";
+            this.btnSel4.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -684,6 +691,51 @@ namespace nAudioTest
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(365, 21);
             this.textBox4.TabIndex = 38;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(455, 21);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(75, 16);
+            this.radioButton1.TabIndex = 39;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "프리셋 #1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(536, 21);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(75, 16);
+            this.radioButton2.TabIndex = 40;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "프리셋 #2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(617, 21);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(75, 16);
+            this.radioButton3.TabIndex = 41;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "프리셋 #3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(698, 21);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(75, 16);
+            this.radioButton4.TabIndex = 42;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "프리셋 #4";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -763,15 +815,19 @@ namespace nAudioTest
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSel4;
+        private System.Windows.Forms.Button btnSel3;
+        private System.Windows.Forms.Button btnSel2;
+        private System.Windows.Forms.Button btnSel1;
         public System.Windows.Forms.ProgressBar progressBar4;
         public System.Windows.Forms.ProgressBar progressBar3;
         public System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 
