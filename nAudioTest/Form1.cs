@@ -13,6 +13,7 @@ using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using NAudio.CoreAudioApi;
 using NAudio.Gui;
+using System.Windows.Forms.VisualStyles;
 
 namespace nAudioTest
 {
@@ -21,9 +22,10 @@ namespace nAudioTest
         public MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
 
         CheckBox[,] _checkboxes;
-
+        Button[] buttons;
         GroupBox[] _groupBoxes;
         TextBox[] textBoxes;
+        String[] strDir = new String[4];
         VolumeSlider[] volumesliders;
         AudioFileReader[,] audioFileReaderMixers;
         MultiplexingSampleProvider mixer;
@@ -31,6 +33,7 @@ namespace nAudioTest
         VolumeSampleProvider[] volumeSampleProviders1;
         AsioOut asioOut;
         MixingSampleProvider[] mixingSampleProviders = new MixingSampleProvider[8];
+        float[] fVolume = new float[4] { 0.5f, 0.5f, 0.5f, 0.5f };
         String[] strStimulDir = 
         {
             "Noise.mp3",
@@ -48,7 +51,7 @@ namespace nAudioTest
                 {checkBox9, checkBox10, checkBox11, checkBox12, checkBox13, checkBox14, checkBox15, checkBox16 },
                 {checkBox17, checkBox18, checkBox19, checkBox20, checkBox21, checkBox22, checkBox23, checkBox24 },
                 {checkBox25, checkBox26, checkBox27, checkBox28, checkBox29, checkBox30, checkBox31,checkBox32 } };
-                   
+            buttons = new Button[4] { btnSel1, btnSel2, btnSel3, btnSel4 };
             textBoxes = new TextBox[4] { textBox1, textBox2, textBox3, textBox4 };
             volumesliders = new VolumeSlider[4] {volumeSlider1, volumeSlider2, volumeSlider3, volumeSlider4 };
             
@@ -61,45 +64,23 @@ namespace nAudioTest
             comboBox1.SelectedIndex = 0;
 
             // mp3 파일 불러오는용
-            int nLocalDirIndex = System.Windows.Forms.Application.StartupPath.IndexOf("bin");
-            string strLocalDir = System.Windows.Forms.Application.StartupPath.Substring(0,nLocalDirIndex) + @"bin\music\";
+            //int nLocalDirIndex = System.Windows.Forms.Application.StartupPath.IndexOf("bin");
+            //string strLocalDir = System.Windows.Forms.Application.StartupPath.Substring(0, nLocalDirIndex) + @"bin\music\";
+            strDir[0] = Properties.Settings.Default.path1;
+            strDir[1] = Properties.Settings.Default.path2;
+            strDir[2] = Properties.Settings.Default.path3;
+            strDir[3] = Properties.Settings.Default.path4;
+            textBoxes[0].Text = strDir[0].Split('\\')[strDir[0].Split('\\').Length - 1];
+            textBoxes[1].Text = strDir[1].Split('\\')[strDir[1].Split('\\').Length - 1];
+            textBoxes[2].Text = strDir[2].Split('\\')[strDir[2].Split('\\').Length - 1];
+            textBoxes[3].Text = strDir[3].Split('\\')[strDir[3].Split('\\').Length - 1];
+
             for (int i = 0; i < strStimulDir.Length; i++)
             {
-                strStimulDir[i] = strLocalDir + strStimulDir[i];
-                textBoxes[i].Text = strStimulDir[i];
-
-                for(int j = 0; j < 8; j++)
-                {
-                    audioFileReaderMixers[j,i] = new AudioFileReader(strStimulDir[i]);
-                    audioFileReaderMixers[j,i].Volume = 0.0f;
-                }
-                
-                //volumesliders[i].VolumeChanged += (sender, e) => { vsEventHandler(sender, e); };
+                //strDir[i] = strLocalDir + strStimulDir[i];
+                //textBoxes[i].Text = strDir[i].Split('\\')[strDir[i].Split('\\').Length - 1];
             }
-            for(int i = 0; i < 8; i++)
-            {
-                mixingSampleProviders[i] = new MixingSampleProvider(new[] { audioFileReaderMixers[i,0], audioFileReaderMixers[i,1], audioFileReaderMixers[i, 2], audioFileReaderMixers[i, 3] });
-                mixedmonofiles[i] = new StereoToMonoSampleProvider(mixingSampleProviders[i]);
-            }
-
-            mixer = new MultiplexingSampleProvider(mixedmonofiles, 8);
-            for(int i = 0;i< 8;i++)
-            {
-                mixer.ConnectInputToOutput(i, i);
-            }
-            
-            volumeSampleProviders1 = new VolumeSampleProvider[mixer.WaveFormat.Channels];
-            for (int i = 0; i < volumeSampleProviders1.Length; i++)
-            {
-                volumeSampleProviders1[i] = new VolumeSampleProvider(mixer, mixer.WaveFormat.Channels);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                volumeSampleProviders1[0][i] = 0.5f;
-            }
-            asioOut = new AsioOut();
-            asioOut.Init(volumeSampleProviders1[0]);
-            // 체크박스 이벤트 핸들러 세팅용
+                // 체크박스 이벤트 핸들러 세팅용
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -109,23 +90,78 @@ namespace nAudioTest
                      _checkboxes[localI, localJ].CheckedChanged += (sender, e) => { cbEventHandler(sender, e, localI, localJ); };
                 }
             }
-        }
+            for(int i = 0; i <4; i++)
+            {
+                volumesliders[i].Volume = fVolume[i];
+                volumesliders[i].VolumeChanged += (sender, e) => { vsEventHandler(sender, e); };
+            }
+            foreach(Button button in buttons)
+            {
+                button.Click += (sender, e) => { btnEventHandler(sender, e); };
+            }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            asioOut.Play();
-            //asioOut2.Play();
-            timer1.Start();
+            //audioMaker();
+            
         }
-        private void button2_Click(object sender, EventArgs e)  
+        private void audioMaker()
         {
-            asioOut.Stop(); //asioOut2.Stop();
+            
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    audioFileReaderMixers[j, i] = new AudioFileReader(strDir[i]);
+                    audioFileReaderMixers[j, i].Volume = 0.0f;
+                }
+                Console.WriteLine("audio #" + i + ": " + audioFileReaderMixers[0, i].WaveFormat);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                if(mixingSampleProviders[i] != null)
+                {
+                    mixingSampleProviders[i].RemoveAllMixerInputs();
+                }
+                mixedmonofiles[i] = null;
+                mixingSampleProviders[i] = new MixingSampleProvider(new[] { audioFileReaderMixers[i, 0], audioFileReaderMixers[i, 1], audioFileReaderMixers[i, 2], audioFileReaderMixers[i, 3] });
+                mixedmonofiles[i] = new StereoToMonoSampleProvider(mixingSampleProviders[i]);
+            }
+            mixer = null;
+            mixer = new MultiplexingSampleProvider(mixedmonofiles, 8);
+            for (int i = 0; i < 8; i++)
+            {
+                mixer.ConnectInputToOutput(i, i);
+            }
+            volumeSampleProviders1 = null;
+            volumeSampleProviders1 = new VolumeSampleProvider[mixer.WaveFormat.Channels];
+            Console.WriteLine("mixer: "+mixer.WaveFormat.ToString());
+            for (int i = 0; i < volumeSampleProviders1.Length; i++)
+            {
+                volumeSampleProviders1[i] = null;
+                volumeSampleProviders1[i] = new VolumeSampleProvider(mixer, mixer.WaveFormat.Channels);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                volumeSampleProviders1[0][i] = 0.5f;
+            }
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-
+        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
+        {
+            asioOut.Dispose();
+            asioOut = null;
+            for(int i = 0; i < 8; i++)
+                {
+                for (int j = 0; j < 4; j++)
+                {
+                    audioFileReaderMixers[i, j].Dispose();
+                    audioFileReaderMixers[i, j] = null;
+                }
+            }
+        }
         private void cbEventHandler(object sender, EventArgs e, int nGroup, int nCH)
         {
             CheckBox cbTemp = (CheckBox)sender;
@@ -135,7 +171,7 @@ namespace nAudioTest
                 if (_checkboxes[i, ch].Checked)
                 {
                     Console.WriteLine(_checkboxes[i, ch].Name + "-> TRUE");
-                    audioFileReaderMixers[ch, i].Volume = 0.7f;
+                    audioFileReaderMixers[ch, i].Volume = fVolume[i];
                 }
                 else
                 {
@@ -143,18 +179,36 @@ namespace nAudioTest
                     audioFileReaderMixers[ch, i].Volume = 0.0f;
                 }
             }
-
-
         }
         private void vsEventHandler(object sender, EventArgs e)
         {
             VolumeSlider volumeSlider = (VolumeSlider)sender;
-            //Console.WriteLine(volumeSlider.Name.Replace("volumeSlider", ""));
             int n = Int32.Parse(volumeSlider.Name.Replace("volumeSlider", "")) - 1;
-            //audioFileReaders[n].Volume = volumesliders[n].Volume;
-            //audioFileReaderMixers[n].Volume = volumesliders[n].Volume; ;
+            fVolume[n] = volumesliders[n].Volume;
+            for(int i =0; i < 8; i++)
+            {
+                if (_checkboxes[n, i].Checked)
+                {
+                    audioFileReaderMixers[i, n].Volume = fVolume[n];
+                }
+            }
         }
 
+        private void btnEventHandler(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            int n = Int32.Parse(button.Name.Replace("btnSel", ""))-1;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "이미지 파일|*.mp3";
+
+            // 사용자가 파일을 선택 할 경우
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 선택된 파일의 경로와 이름 저장
+                strDir[n] = openFileDialog.FileName;
+                textBoxes[n].Text = strDir[n].Split('\\')[strDir[n].Split('\\').Length-1];
+            }
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             if(comboBox1.SelectedItem != null) 
@@ -162,9 +216,52 @@ namespace nAudioTest
                 //MMDevice[] device = new MMDevice[8]; 
                 //device[0] = (MMDevice)comboBox1.SelectedItem;
                 //progressBar1.Value = (int)(Math.Round(device[0].AudioMeterInformation.MasterPeakValue * 100));
-                
-
             }
+        }
+
+        private void checkBox33_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox33.Checked)
+            {
+                checkBox33.Text = "STOP";
+                if (asioOut == null)
+                {
+                    asioOut = new AsioOut(comboBox1.SelectedIndex);
+                    asioOut.PlaybackStopped += OnPlaybackStopped;
+                    
+                }
+                if (audioFileReaderMixers[0,0] == null)
+                {
+                    audioMaker();
+                    for(int i = 0; i<4; i++)
+                    {
+                        for(int j = 0; j<8; j++)
+                        {
+                            if (_checkboxes[i, j].Checked)
+                            {
+                                audioFileReaderMixers[j,i].Volume = fVolume[i];
+                            }
+                        }
+                    }
+                }
+                asioOut.Init(volumeSampleProviders1[0]);
+                asioOut.Play();
+            }
+            else
+            {
+                checkBox33.Text = "PLAY";
+                asioOut?.Stop();
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.path1 = strDir[0];
+            Properties.Settings.Default.path2 = strDir[1];
+            Properties.Settings.Default.path3 = strDir[2];
+            Properties.Settings.Default.path4 = strDir[3];
+            Properties.Settings.Default.Save();
+
         }
     }
 

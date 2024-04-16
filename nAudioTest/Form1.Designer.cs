@@ -41,8 +41,6 @@ namespace nAudioTest
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.gbNoise = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
@@ -88,47 +86,28 @@ namespace nAudioTest
             this.volumeSlider4 = new NAudio.Gui.VolumeSlider();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
-            this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.btnSel1 = new System.Windows.Forms.Button();
-            this.btnSel2 = new System.Windows.Forms.Button();
-            this.btnSel3 = new System.Windows.Forms.Button();
-            this.btnSel4 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.checkBox33 = new System.Windows.Forms.CheckBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnSel4 = new System.Windows.Forms.Button();
+            this.btnSel3 = new System.Windows.Forms.Button();
+            this.btnSel2 = new System.Windows.Forms.Button();
+            this.btnSel1 = new System.Windows.Forms.Button();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.gbNoise.SuspendLayout();
             this.gbStimulA.SuspendLayout();
             this.gbStimulB.SuspendLayout();
             this.gbStimulC.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 70);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 38);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "PLAY";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(6, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 38);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "STOP";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // gbNoise
             // 
@@ -576,6 +555,7 @@ namespace nAudioTest
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox33);
             this.groupBox1.Controls.Add(this.radioButton4);
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
@@ -596,9 +576,7 @@ namespace nAudioTest
             this.groupBox1.Controls.Add(this.progressBar2);
             this.groupBox1.Controls.Add(this.volumeSlider1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Location = new System.Drawing.Point(12, 224);
             this.groupBox1.Name = "groupBox1";
@@ -607,90 +585,51 @@ namespace nAudioTest
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "설정";
             // 
-            // progressBar2
+            // checkBox33
             // 
-            this.progressBar2.Location = new System.Drawing.Point(176, 70);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(171, 23);
-            this.progressBar2.TabIndex = 28;
+            this.checkBox33.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox33.Font = new System.Drawing.Font("MS PGothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox33.Location = new System.Drawing.Point(6, 70);
+            this.checkBox33.Name = "checkBox33";
+            this.checkBox33.Size = new System.Drawing.Size(163, 81);
+            this.checkBox33.TabIndex = 43;
+            this.checkBox33.Text = "PLAY";
+            this.checkBox33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox33.UseVisualStyleBackColor = true;
+            this.checkBox33.CheckedChanged += new System.EventHandler(this.checkBox33_CheckedChanged);
             // 
-            // progressBar3
+            // radioButton4
             // 
-            this.progressBar3.Location = new System.Drawing.Point(176, 99);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(171, 23);
-            this.progressBar3.TabIndex = 29;
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(698, 21);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(75, 16);
+            this.radioButton4.TabIndex = 42;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "프리셋 #4";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // progressBar4
+            // radioButton3
             // 
-            this.progressBar4.Location = new System.Drawing.Point(176, 128);
-            this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(171, 23);
-            this.progressBar4.TabIndex = 30;
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(617, 21);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(75, 16);
+            this.radioButton3.TabIndex = 41;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "프리셋 #3";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // btnSel1
+            // radioButton2
             // 
-            this.btnSel1.Location = new System.Drawing.Point(826, 41);
-            this.btnSel1.Name = "btnSel1";
-            this.btnSel1.Size = new System.Drawing.Size(75, 23);
-            this.btnSel1.TabIndex = 31;
-            this.btnSel1.Text = "열기";
-            this.btnSel1.UseVisualStyleBackColor = true;
-            // 
-            // btnSel2
-            // 
-            this.btnSel2.Location = new System.Drawing.Point(826, 70);
-            this.btnSel2.Name = "btnSel2";
-            this.btnSel2.Size = new System.Drawing.Size(75, 23);
-            this.btnSel2.TabIndex = 32;
-            this.btnSel2.Text = "열기";
-            this.btnSel2.UseVisualStyleBackColor = true;
-            // 
-            // btnSel3
-            // 
-            this.btnSel3.Location = new System.Drawing.Point(826, 99);
-            this.btnSel3.Name = "btnSel3";
-            this.btnSel3.Size = new System.Drawing.Size(75, 23);
-            this.btnSel3.TabIndex = 33;
-            this.btnSel3.Text = "열기";
-            this.btnSel3.UseVisualStyleBackColor = true;
-            // 
-            // btnSel4
-            // 
-            this.btnSel4.Location = new System.Drawing.Point(826, 128);
-            this.btnSel4.Name = "btnSel4";
-            this.btnSel4.Size = new System.Drawing.Size(75, 23);
-            this.btnSel4.TabIndex = 34;
-            this.btnSel4.Text = "열기";
-            this.btnSel4.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(455, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(365, 21);
-            this.textBox1.TabIndex = 35;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(455, 72);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(365, 21);
-            this.textBox2.TabIndex = 36;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(455, 101);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(365, 21);
-            this.textBox3.TabIndex = 37;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(455, 130);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(365, 21);
-            this.textBox4.TabIndex = 38;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(536, 21);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(75, 16);
+            this.radioButton2.TabIndex = 40;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "프리셋 #2";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -704,38 +643,90 @@ namespace nAudioTest
             this.radioButton1.Text = "프리셋 #1";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // textBox4
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(536, 21);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(75, 16);
-            this.radioButton2.TabIndex = 40;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "프리셋 #2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.textBox4.Location = new System.Drawing.Point(455, 130);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(365, 21);
+            this.textBox4.TabIndex = 38;
             // 
-            // radioButton3
+            // textBox3
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(617, 21);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(75, 16);
-            this.radioButton3.TabIndex = 41;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "프리셋 #3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.textBox3.Location = new System.Drawing.Point(455, 101);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(365, 21);
+            this.textBox3.TabIndex = 37;
             // 
-            // radioButton4
+            // textBox2
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(698, 21);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(75, 16);
-            this.radioButton4.TabIndex = 42;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "프리셋 #4";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.textBox2.Location = new System.Drawing.Point(455, 72);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(365, 21);
+            this.textBox2.TabIndex = 36;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(455, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(365, 21);
+            this.textBox1.TabIndex = 35;
+            // 
+            // btnSel4
+            // 
+            this.btnSel4.Location = new System.Drawing.Point(826, 128);
+            this.btnSel4.Name = "btnSel4";
+            this.btnSel4.Size = new System.Drawing.Size(75, 23);
+            this.btnSel4.TabIndex = 34;
+            this.btnSel4.Text = "열기";
+            this.btnSel4.UseVisualStyleBackColor = true;
+            // 
+            // btnSel3
+            // 
+            this.btnSel3.Location = new System.Drawing.Point(826, 99);
+            this.btnSel3.Name = "btnSel3";
+            this.btnSel3.Size = new System.Drawing.Size(75, 23);
+            this.btnSel3.TabIndex = 33;
+            this.btnSel3.Text = "열기";
+            this.btnSel3.UseVisualStyleBackColor = true;
+            // 
+            // btnSel2
+            // 
+            this.btnSel2.Location = new System.Drawing.Point(826, 70);
+            this.btnSel2.Name = "btnSel2";
+            this.btnSel2.Size = new System.Drawing.Size(75, 23);
+            this.btnSel2.TabIndex = 32;
+            this.btnSel2.Text = "열기";
+            this.btnSel2.UseVisualStyleBackColor = true;
+            // 
+            // btnSel1
+            // 
+            this.btnSel1.Location = new System.Drawing.Point(826, 41);
+            this.btnSel1.Name = "btnSel1";
+            this.btnSel1.Size = new System.Drawing.Size(75, 23);
+            this.btnSel1.TabIndex = 31;
+            this.btnSel1.Text = "열기";
+            this.btnSel1.UseVisualStyleBackColor = true;
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.Location = new System.Drawing.Point(176, 128);
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(171, 23);
+            this.progressBar4.TabIndex = 30;
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.Location = new System.Drawing.Point(176, 99);
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(171, 23);
+            this.progressBar3.TabIndex = 29;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(176, 70);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(171, 23);
+            this.progressBar2.TabIndex = 28;
             // 
             // Form1
             // 
@@ -749,6 +740,7 @@ namespace nAudioTest
             this.Controls.Add(this.gbNoise);
             this.Name = "Form1";
             this.Text = "4input-8output test";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbNoise.ResumeLayout(false);
             this.gbNoise.PerformLayout();
@@ -765,9 +757,6 @@ namespace nAudioTest
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox gbNoise;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox7;
@@ -828,6 +817,7 @@ namespace nAudioTest
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.CheckBox checkBox33;
     }
 }
 
