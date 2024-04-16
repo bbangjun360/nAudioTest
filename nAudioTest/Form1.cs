@@ -23,7 +23,7 @@ namespace nAudioTest
 
         CheckBox[,] _checkboxes;
         Button[] buttons;
-        //GroupBox[] _groupBoxes;
+        GroupBox[] _groupBoxes;
         TextBox[] textBoxes;
         String[] strDir = new String[4];
         VolumeSlider[] volumesliders;
@@ -46,7 +46,7 @@ namespace nAudioTest
             InitializeComponent();
 
             // 컨트롤들 배열로 묶기
-            //_groupBoxes = new GroupBox[4] { gbNoise, gbStimulA, gbStimulB, gbStimulC };
+            _groupBoxes = new GroupBox[8] { groupBox3, groupBox4, groupBox5, groupBox6, groupBox7, groupBox8, groupBox9, groupBox10 };
             _checkboxes = new CheckBox[4, 8] { {checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7,checkBox8},
                 {checkBox9, checkBox10, checkBox11, checkBox12, checkBox13, checkBox14, checkBox15, checkBox16 },
                 {checkBox17, checkBox18, checkBox19, checkBox20, checkBox21, checkBox22, checkBox23, checkBox24 },
@@ -87,7 +87,7 @@ namespace nAudioTest
                 {
                     int localI = i;
                     int localJ = j;
-                     _checkboxes[localI, localJ].CheckedChanged += (sender, e) => { cbEventHandler(sender, e, localI, localJ); };
+                     _checkboxes[localI, localJ].CheckedChanged += (sender, e) => { cbEventHandler(sender, e); };
                 }
             }
             for(int i = 0; i <4; i++)
@@ -162,10 +162,11 @@ namespace nAudioTest
                 }
             }
         }
-        private void cbEventHandler(object sender, EventArgs e, int nGroup, int nCH)
+        private void cbEventHandler(object sender, EventArgs e)
         {
             CheckBox cbTemp = (CheckBox)sender;
-            int ch = Int32.Parse(cbTemp.Text.Substring(2)) - 1;
+            int num = Int32.Parse(cbTemp.Name.Substring(8));
+            int ch = (num - 1)%8;
             for(int i = 0; i < 4; i++)
             {
                 if (_checkboxes[i, ch].Checked)
@@ -179,17 +180,17 @@ namespace nAudioTest
                     audioFileReaderMixers[ch, i].Volume = 0.0f;
                 }
             }
-           /* if (nGroup == 0)
+            if (num <= 8)
             {
-                if (_checkboxes[nGroup, nCH].Checked)
+                if (_checkboxes[0, ch].Checked)
                 {
-                    _checkboxes[nGroup, nCH].BackgroundImage = Properties.Resources.spkOn;
+                    _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOn;
                 }
                 else
                 {
-                    _checkboxes[nGroup, nCH].BackgroundImage = Properties.Resources.spkOff;
+                    _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOff;
                 }
-            }*/
+            }
         }
         private void vsEventHandler(object sender, EventArgs e)
         {
@@ -222,12 +223,13 @@ namespace nAudioTest
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedItem != null) 
+         /*   if(comboBox1.SelectedItem != null) 
             {
-                //MMDevice[] device = new MMDevice[8]; 
-                //device[0] = (MMDevice)comboBox1.SelectedItem;
-                //progressBar1.Value = (int)(Math.Round(device[0].AudioMeterInformation.MasterPeakValue * 100));
-            }
+                MMDevice[] device = new MMDevice[8]; 
+                device[0] = (AsioOut)comboBox1.SelectedItem;
+                progressBar1.Value = (int)(Math.Round(device[0].AudioMeterInformation.MasterPeakValue * 100));
+                asioOut.MasterPeakValue
+            }*/
         }
 
         private void checkBox33_CheckedChanged(object sender, EventArgs e)
@@ -257,11 +259,13 @@ namespace nAudioTest
                 }
                 asioOut.Init(volumeSampleProviders1[0]);
                 asioOut.Play();
+                //timer1.Start();
             }
             else
             {
                 checkBox33.Text = "PLAY";
                 asioOut?.Stop();
+                //timer1.Stop();
             }
         }
 
@@ -272,6 +276,36 @@ namespace nAudioTest
             Properties.Settings.Default.path3 = strDir[2];
             Properties.Settings.Default.path4 = strDir[3];
             Properties.Settings.Default.Save();
+
+        }
+
+        private void setup_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox1.Visible = !comboBox1.Visible;
+        }
+
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox21_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox13_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox29_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
     }
