@@ -23,7 +23,7 @@ namespace nAudioTest
 
         CheckBox[,] _checkboxes;
         Button[] buttons;
-        GroupBox[] _groupBoxes;
+        //GroupBox[] _groupBoxes;
         TextBox[] textBoxes;
         String[] strDir = new String[4];
         VolumeSlider[] volumesliders;
@@ -46,7 +46,7 @@ namespace nAudioTest
             InitializeComponent();
 
             // 컨트롤들 배열로 묶기
-            _groupBoxes = new GroupBox[4] { gbNoise, gbStimulA, gbStimulB, gbStimulC };
+            //_groupBoxes = new GroupBox[4] { gbNoise, gbStimulA, gbStimulB, gbStimulC };
             _checkboxes = new CheckBox[4, 8] { {checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7,checkBox8},
                 {checkBox9, checkBox10, checkBox11, checkBox12, checkBox13, checkBox14, checkBox15, checkBox16 },
                 {checkBox17, checkBox18, checkBox19, checkBox20, checkBox21, checkBox22, checkBox23, checkBox24 },
@@ -179,6 +179,17 @@ namespace nAudioTest
                     audioFileReaderMixers[ch, i].Volume = 0.0f;
                 }
             }
+           /* if (nGroup == 0)
+            {
+                if (_checkboxes[nGroup, nCH].Checked)
+                {
+                    _checkboxes[nGroup, nCH].BackgroundImage = Properties.Resources.spkOn;
+                }
+                else
+                {
+                    _checkboxes[nGroup, nCH].BackgroundImage = Properties.Resources.spkOff;
+                }
+            }*/
         }
         private void vsEventHandler(object sender, EventArgs e)
         {
