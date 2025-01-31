@@ -14,12 +14,17 @@ using NAudio.Wave.SampleProviders;
 using NAudio.CoreAudioApi;
 using NAudio.Gui;
 using System.Windows.Forms.VisualStyles;
+using System.Runtime;
 
 namespace nAudioTest
 {
     public partial class Form1 : Form
     {
         public MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
+
+        WaveInEvent waveSource;
+        WaveOutEvent waveOut;
+        BufferedWaveProvider bufferedWaveProvider;
 
         CheckBox[,] _checkboxes;
         Button[] buttons;
@@ -147,7 +152,11 @@ namespace nAudioTest
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            waveSource = new WaveInEvent { WaveFormat = new WaveFormat(44100, 1) };
+            waveSource.DeviceNumber = 0;
+            bufferedWaveProvider = new BufferedWaveProvider(waveSource.WaveFormat);
+            // 마이크 데이터 처리 이벤트 등록
+            waveSource.DataAvailable += OnDataAvailable;
         }
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
         {
@@ -232,39 +241,52 @@ namespace nAudioTest
             }*/
         }
 
-        private void checkBox33_CheckedChanged(object sender, EventArgs e)
+        private void cbStart_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox33.Checked)
+            if (cbStart.Checked)
             {
-                checkBox33.Text = "STOP";
+                cbStart.Text = "STOP";
+                cbStart.BackColor = Color.Red;
                 if (asioOut == null)
                 {
                     asioOut = new AsioOut(comboBox1.SelectedIndex);
                     asioOut.PlaybackStopped += OnPlaybackStopped;
-                    
                 }
-                if (audioFileReaderMixers[0,0] == null)
+                if (audioFileReaderMixers[0, 0] == null)
                 {
-                    audioMaker();
-                    for(int i = 0; i<4; i++)
+                    if (rbSource.Checked)
                     {
-                        for(int j = 0; j<8; j++)
+                        audioMaker();
+                        for (int i = 0; i < 4; i++)
                         {
-                            if (_checkboxes[i, j].Checked)
+                            for (int j = 0; j < 8; j++)
                             {
-                                audioFileReaderMixers[j,i].Volume = fVolume[i];
+                                if (_checkboxes[i, j].Checked)
+                                {
+                                    audioFileReaderMixers[j, i].Volume = fVolume[i];
+                                }
                             }
                         }
+                        asioOut.Init(volumeSampleProviders1[0]);
+                        asioOut.Play();
+                    }
+                    if (rbMic.Checked)
+                    {
+                        waveSource.StartRecording(); // 마이크 입력 시작
+                        audioMakerForMicInput();
+                        asioOut.Init(mixer); // 부동 소수점 데이터를 가져오는 믹서 초기화
+                        asioOut.Play();
                     }
                 }
-                asioOut.Init(volumeSampleProviders1[0]);
-                asioOut.Play();
                 //timer1.Start();
             }
             else
             {
-                checkBox33.Text = "PLAY";
+                cbStart.Text = "PLAY";
+                cbStart.BackColor = Color.PaleGreen;
                 asioOut?.Stop();
+                waveSource?.StopRecording(); // 마이크 입력 중지
+
                 //timer1.Stop();
             }
         }
@@ -281,33 +303,51 @@ namespace nAudioTest
 
         private void setup_CheckedChanged(object sender, EventArgs e)
         {
-            comboBox1.Visible = !comboBox1.Visible;
+            gbSetting.Enabled = !gbSetting.Enabled;
         }
 
-        private void groupBox6_Enter(object sender, EventArgs e)
+        private void rbSource_CheckedChanged(object sender, EventArgs e)
         {
-
+            groupBox2.Enabled = true;
         }
 
-        private void checkBox21_CheckedChanged(object sender, EventArgs e)
+        private void rbMic_CheckedChanged_1(object sender, EventArgs e)
         {
-
+            groupBox2.Enabled = false;
         }
-
-        private void checkBox13_CheckedChanged(object sender, EventArgs e)
+        private void OnDataAvailable(object sender, WaveInEventArgs e)
         {
-
+            // 수신된 오디오 데이터를 버퍼에 추가
+            bufferedWaveProvider.AddSamples(e.Buffer, 0, e.BytesRecorded);
         }
 
-        private void checkBox29_CheckedChanged(object sender, EventArgs e)
+        private void audioMakerForMicInput()
         {
+            // 버퍼링된 데이터를 샘플 포맷으로 변환
+            var waveToSampleProvider = new WaveToSampleProvider(bufferedWaveProvider);
 
+            // 8개의 독립된 스테레오 출력을 생성
+            var providers = Enumerable.Range(0, 8).Select(_ => (ISampleProvider)new StereoToMonoSampleProvider(waveToSampleProvider)).ToArray();
+
+            // 8채널 멀티플렉싱 프로바이더 생성
+            mixer = new MultiplexingSampleProvider(providers, 8);
+
+            // 모든 입력 채널을 모든 출력 채널에 연결
+            for (int i = 0; i < 8; i++)
+            {
+                mixer.ConnectInputToOutput(0, i); // 단일 입력을 다중 출력에 연결
+            }
+
+            // 각 채널의 볼륨 설정
+            volumeSampleProviders1 = new VolumeSampleProvider[8];
+            for (int i = 0; i < 8; i++)
+            {
+                volumeSampleProviders1[i] = new VolumeSampleProvider(mixer);
+            }
         }
 
-        private void checkBox5_CheckedChanged(object sender, EventArgs e)
-        {
 
-        }
+        // cbStart_CheckedChanged 이벤트 핸들러는 동일하게 유지하고 마이크 관련 초기화만 추가
     }
 
     class VolumeSampleProvider : ISampleProvider
@@ -372,4 +412,5 @@ namespace nAudioTest
             return bytesRead;
         }
     }
+
 }
