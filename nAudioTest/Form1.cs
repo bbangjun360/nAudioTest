@@ -24,7 +24,8 @@ namespace nAudioTest
 
         WaveInEvent waveSource;
         WaveOutEvent waveOut;
-        BufferedWaveProvider bufferedWaveProvider;
+        BufferedWaveProvider[] bufferedWaveProvider;
+        private VolumeSampleProvider[] volumeSampleProviders;
 
         CheckBox[,] _checkboxes;
         Button[] buttons;
@@ -38,7 +39,9 @@ namespace nAudioTest
         VolumeSampleProvider[] volumeSampleProviders1;
         AsioOut asioOut;
         MixingSampleProvider[] mixingSampleProviders = new MixingSampleProvider[8];
-        float[] fVolume = new float[4] { 0.5f, 0.5f, 0.5f, 0.5f };
+        private WaveInEvent waveIn;
+        float[] fVolume = new float[4] { 0.3f, 0.3f, 0.3f, 0.3f };
+
         String[] strStimulDir = 
         {
             "Noise.mp3",
@@ -49,7 +52,11 @@ namespace nAudioTest
         public Form1()
         {
             InitializeComponent();
-
+            waveIn = new WaveInEvent
+            {
+                WaveFormat = new WaveFormat(44100, 16, 1) // 44.1kHz, 16-bit, mono
+            };
+            
             // 컨트롤들 배열로 묶기
             _groupBoxes = new GroupBox[8] { groupBox3, groupBox4, groupBox5, groupBox6, groupBox7, groupBox8, groupBox9, groupBox10 };
             _checkboxes = new CheckBox[4, 8] { {checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7,checkBox8},
@@ -150,13 +157,16 @@ namespace nAudioTest
             }
 
         }
+        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             waveSource = new WaveInEvent { WaveFormat = new WaveFormat(44100, 1) };
             waveSource.DeviceNumber = 0;
-            bufferedWaveProvider = new BufferedWaveProvider(waveSource.WaveFormat);
+            
             // 마이크 데이터 처리 이벤트 등록
             waveSource.DataAvailable += OnDataAvailable;
+
         }
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
         {
@@ -249,8 +259,8 @@ namespace nAudioTest
                 cbStart.BackColor = Color.Red;
                 if (asioOut == null)
                 {
-                    asioOut = new AsioOut(comboBox1.SelectedIndex);
-                    asioOut.PlaybackStopped += OnPlaybackStopped;
+                    asioOut = new AsioOut(comboBox1.SelectedIndex); // ASIO 출력 장치 선택
+                    asioOut.PlaybackStopped += OnPlaybackStopped; // 현재 재생중이면 정지
                 }
                 if (audioFileReaderMixers[0, 0] == null)
                 {
@@ -261,9 +271,9 @@ namespace nAudioTest
                         {
                             for (int j = 0; j < 8; j++)
                             {
-                                if (_checkboxes[i, j].Checked)
+                                if (_checkboxes[i, j].Checked) // 만약에 사전에 체크되어 있다면 해당 채널 볼륨up
                                 {
-                                    audioFileReaderMixers[j, i].Volume = fVolume[i];
+                                    audioFileReaderMixers[j, i].Volume = fVolume[i];  // 해당 채널 저장되어있는 값으로 볼륨up
                                 }
                             }
                         }
@@ -272,8 +282,8 @@ namespace nAudioTest
                     }
                     if (rbMic.Checked)
                     {
-                        waveSource.StartRecording(); // 마이크 입력 시작
                         audioMakerForMicInput();
+                        waveSource.StartRecording(); // 마이크 입력 시작
                         asioOut.Init(mixer); // 부동 소수점 데이터를 가져오는 믹서 초기화
                         asioOut.Play();
                     }
@@ -318,31 +328,42 @@ namespace nAudioTest
         private void OnDataAvailable(object sender, WaveInEventArgs e)
         {
             // 수신된 오디오 데이터를 버퍼에 추가
-            bufferedWaveProvider.AddSamples(e.Buffer, 0, e.BytesRecorded);
+            foreach (var provider in bufferedWaveProvider)
+            {
+                provider.AddSamples(e.Buffer, 0, e.BytesRecorded);
+            }
         }
 
         private void audioMakerForMicInput()
         {
-            // 버퍼링된 데이터를 샘플 포맷으로 변환
-            var waveToSampleProvider = new WaveToSampleProvider(bufferedWaveProvider);
-
-            // 8개의 독립된 스테레오 출력을 생성
-            var providers = Enumerable.Range(0, 8).Select(_ => (ISampleProvider)new StereoToMonoSampleProvider(waveToSampleProvider)).ToArray();
-
+            bufferedWaveProvider = new BufferedWaveProvider[8];  //들어올 mic 파일을 8개로 분할 저장하기 위한 변수
+            volumeSampleProviders = new VolumeSampleProvider[8];
+            for (int i = 0; i < 8; i++)
+            {
+                bufferedWaveProvider[i] = new BufferedWaveProvider(waveIn.WaveFormat);// waveSource의 WaveFormat을 사용하여 각 Buffer를 초기화
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                var waveToSampleProvider = new WaveToSampleProvider(bufferedWaveProvider[i]);
+                volumeSampleProviders[i] = new VolumeSampleProvider(waveToSampleProvider, 8)
+                {
+                    // Volume = 0.5f // Set initial volume
+                };
+            }
             // 8채널 멀티플렉싱 프로바이더 생성
-            mixer = new MultiplexingSampleProvider(providers, 8);
+            mixer = new MultiplexingSampleProvider(volumeSampleProviders, volumeSampleProviders.Length);
 
             // 모든 입력 채널을 모든 출력 채널에 연결
             for (int i = 0; i < 8; i++)
             {
-                mixer.ConnectInputToOutput(0, i); // 단일 입력을 다중 출력에 연결
+                mixer.ConnectInputToOutput(i, i); // 단일 입력을 다중 출력에 연결
             }
 
             // 각 채널의 볼륨 설정
             volumeSampleProviders1 = new VolumeSampleProvider[8];
             for (int i = 0; i < 8; i++)
             {
-                volumeSampleProviders1[i] = new VolumeSampleProvider(mixer);
+                volumeSampleProviders1[i] = new VolumeSampleProvider(mixer, mixer.WaveFormat.Channels);
             }
         }
 
