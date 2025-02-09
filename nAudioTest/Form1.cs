@@ -213,15 +213,22 @@ namespace nAudioTest
                 {
                     Console.WriteLine(_checkboxes[i, ch].Name + "-> TRUE");
                     if(!rbMic.Checked) audioFileReaderMixers[ch, i].Volume = fVolume[i];
-                    if (i == 0) stereoToMono[ch].LeftVolume = fVolume[i];
-                    if (i == 1) stereoToMono[ch].RightVolume = fVolume[i];
+                    if (rbMic.Checked)
+                    {
+                        if (i == 0) stereoToMono[ch].LeftVolume = fVolume[i];
+                        if (i == 1) stereoToMono[ch].RightVolume = fVolume[i];
+                    }
                 }
                 else
                 {
                     Console.WriteLine(_checkboxes[i, ch].Name + "-> FALSE");
                     if (!rbMic.Checked) audioFileReaderMixers[ch, i].Volume = 0.0f;
-                    if (i == 0) stereoToMono[ch].LeftVolume = 0.0f;
-                    if (i == 1) stereoToMono[ch].RightVolume = 0.0f;
+                    if (rbMic.Checked)
+                    {
+                        if (i == 0) stereoToMono[ch].LeftVolume = 0.0f;
+                        if (i == 1) stereoToMono[ch].RightVolume = 0.0f;
+                    }
+                       
                 }
             }
             if (num <= 8)
@@ -353,35 +360,7 @@ namespace nAudioTest
         }
         private void OnDataAvailable(object sender, WaveInEventArgs e)
         {
-            //bufferedWaveProvider.AddSamples(e.Buffer, 0, e.BytesRecorded);
-            // 데이터 분리 및 BufferedWaveProvider에 저장
-            /*byte[] leftBuffer = new byte[e.BytesRecorded / 2];
-            byte[] rightBuffer = new byte[e.BytesRecorded / 2];
-
-            int leftIndex = 0;
-            int rightIndex = 0;
-
-            for (int i = 0; i < e.BytesRecorded; i += 4)
-            {
-                // Left Channel (0, 4, 8, ...)
-                leftBuffer[leftIndex++] = e.Buffer[i];
-                leftBuffer[leftIndex++] = e.Buffer[i + 1];
-
-                // Right Channel (2, 6, 10, ...)
-                rightBuffer[rightIndex++] = e.Buffer[i + 2];
-                rightBuffer[rightIndex++] = e.Buffer[i + 3];
-            }*/
-
-            /*
-                        bufferedWaveProvider[0].AddSamples(leftBuffer, 0, leftBuffer.Length);
-                        bufferedWaveProvider[1].AddSamples(rightBuffer, 0, rightBuffer.Length);
-                        bufferedWaveProvider[2].AddSamples(leftBuffer, 0, leftBuffer.Length);
-                        bufferedWaveProvider[3].AddSamples(rightBuffer, 0, rightBuffer.Length);
-                        bufferedWaveProvider[4].AddSamples(leftBuffer, 0, leftBuffer.Length);
-                        bufferedWaveProvider[5].AddSamples(rightBuffer, 0, rightBuffer.Length);
-                        bufferedWaveProvider[6].AddSamples(leftBuffer, 0, leftBuffer.Length);
-                        bufferedWaveProvider[7].AddSamples(rightBuffer, 0, rightBuffer.Length);*/
-
+            
             // 수신된 오디오 데이터를 버퍼에 추가
              foreach (var provider in bufferedWaveProviders)
              {
@@ -391,32 +370,6 @@ namespace nAudioTest
 
         private void audioMakerForMicInput()
         {
-            /*
-            bufferedWaveProviders = new BufferedWaveProvider[8];  //들어올 mic 파일을 8개로 분할 저장하기 위한 변수
-            volumeSampleProviders = new VolumeSampleProvider[8];
-            for (int i = 0; i < 8; i++)
-            {
-                bufferedWaveProviders[i] = new BufferedWaveProvider(new WaveFormat(44100, 16, 1));// waveSource의 WaveFormat을 사용하여 각 Buffer를 초기화
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                //var waveToSampleProvider = new WaveToSampleProvider(bufferedWaveProvider[i]);
-                ISampleProvider waveToSampleProvider = bufferedWaveProviders[i].ToSampleProvider();
-                volumeSampleProviders[i] = new VolumeSampleProvider(waveToSampleProvider, 8)
-                {
-                    //this.channelVolumes[i] = 0.5f // Set initial volume
-                };
-            }
-            // 8채널 멀티플렉싱 프로바이더 생성
-            mixer = new MultiplexingSampleProvider(volumeSampleProviders, volumeSampleProviders.Length);
-
-            // 모든 입력 채널을 모든 출력 채널에 연결
-            for (int i = 0; i < 8; i++)
-            {
-                mixer.ConnectInputToOutput(i, i); // 단일 입력을 다중 출력에 연결
-            }
-            */
-            
             bufferedWaveProviders = new BufferedWaveProvider[8];  //들어올 mic 파일을 8개로 분할 저장하기 위한 변수
             volumeSampleProviders = new VolumeSampleProvider[8];
             stereoToMono = new StereoToMonoSampleProvider[8];
