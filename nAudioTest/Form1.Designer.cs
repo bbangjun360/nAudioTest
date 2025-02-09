@@ -124,6 +124,10 @@ namespace nAudioTest
             this.rbPreset = new System.Windows.Forms.RadioButton();
             this.rbRandom = new System.Windows.Forms.RadioButton();
             this.rbSerial = new System.Windows.Forms.RadioButton();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gbSetting.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -138,6 +142,9 @@ namespace nAudioTest
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox12.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBox9
@@ -308,7 +315,7 @@ namespace nAudioTest
             this.gbSetting.Controls.Add(this.progressBar1);
             this.gbSetting.Controls.Add(this.comboBox1);
             this.gbSetting.Enabled = false;
-            this.gbSetting.Location = new System.Drawing.Point(785, 770);
+            this.gbSetting.Location = new System.Drawing.Point(6, 346);
             this.gbSetting.Name = "gbSetting";
             this.gbSetting.Size = new System.Drawing.Size(460, 156);
             this.gbSetting.TabIndex = 28;
@@ -477,7 +484,7 @@ namespace nAudioTest
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Location = new System.Drawing.Point(785, 390);
+            this.groupBox2.Location = new System.Drawing.Point(6, 36);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(460, 172);
             this.groupBox2.TabIndex = 29;
@@ -893,7 +900,7 @@ namespace nAudioTest
             // 
             this.pictureBox2.BackgroundImage = global::nAudioTest.Properties.Resources.programLogo1;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(866, 32);
+            this.pictureBox2.Location = new System.Drawing.Point(877, 614);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(327, 322);
             this.pictureBox2.TabIndex = 36;
@@ -913,7 +920,7 @@ namespace nAudioTest
             // 
             this.setup.Appearance = System.Windows.Forms.Appearance.Button;
             this.setup.AutoSize = true;
-            this.setup.Location = new System.Drawing.Point(1199, 932);
+            this.setup.Location = new System.Drawing.Point(385, 508);
             this.setup.Name = "setup";
             this.setup.Size = new System.Drawing.Size(46, 22);
             this.setup.TabIndex = 37;
@@ -949,16 +956,16 @@ namespace nAudioTest
             // 
             this.panel1.Controls.Add(this.rbSource);
             this.panel1.Controls.Add(this.rbMic);
-            this.panel1.Location = new System.Drawing.Point(785, 360);
+            this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(460, 24);
             this.panel1.TabIndex = 40;
             // 
             // groupBox11
             // 
-            this.groupBox11.Location = new System.Drawing.Point(785, 568);
+            this.groupBox11.Location = new System.Drawing.Point(9, 14);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(460, 64);
+            this.groupBox11.Size = new System.Drawing.Size(438, 64);
             this.groupBox11.TabIndex = 48;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Line Input";
@@ -970,7 +977,7 @@ namespace nAudioTest
             this.groupBox12.Controls.Add(this.rbRandom);
             this.groupBox12.Controls.Add(this.rbSerial);
             this.groupBox12.Controls.Add(this.cbStart);
-            this.groupBox12.Location = new System.Drawing.Point(785, 638);
+            this.groupBox12.Location = new System.Drawing.Point(6, 214);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(460, 126);
             this.groupBox12.TabIndex = 49;
@@ -1025,17 +1032,61 @@ namespace nAudioTest
             this.rbSerial.Text = "Serial";
             this.rbSerial.UseVisualStyleBackColor = true;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(769, 18);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(473, 573);
+            this.tabControl1.TabIndex = 47;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Controls.Add(this.setup);
+            this.tabPage1.Controls.Add(this.groupBox12);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.gbSetting);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(465, 544);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox11);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(465, 544);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(465, 544);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1257, 1001);
-            this.Controls.Add(this.groupBox12);
-            this.Controls.Add(this.groupBox11);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.setup);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
@@ -1043,8 +1094,6 @@ namespace nAudioTest
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox10);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.gbSetting);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Source.C";
@@ -1076,8 +1125,11 @@ namespace nAudioTest
             this.panel1.PerformLayout();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1164,6 +1216,10 @@ namespace nAudioTest
         private System.Windows.Forms.RadioButton rbPreset;
         private System.Windows.Forms.RadioButton rbRandom;
         private System.Windows.Forms.RadioButton rbSerial;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
 
