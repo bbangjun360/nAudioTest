@@ -344,10 +344,11 @@ namespace nAudioTest
             }
             for (int i = 0; i < 8; i++)
             {
-                var waveToSampleProvider = new WaveToSampleProvider(bufferedWaveProvider[i]);
+                //var waveToSampleProvider = new WaveToSampleProvider(bufferedWaveProvider[i]);
+                ISampleProvider waveToSampleProvider = bufferedWaveProvider[i].ToSampleProvider();
                 volumeSampleProviders[i] = new VolumeSampleProvider(waveToSampleProvider, 8)
                 {
-                    // Volume = 0.5f // Set initial volume
+                    //this.channelVolumes[i] = 0.5f // Set initial volume
                 };
             }
             // 8채널 멀티플렉싱 프로바이더 생성
@@ -382,7 +383,7 @@ namespace nAudioTest
             this.channelVolumes = new float[channelCount];
             for (int i = 0; i < channelCount; i++)
             {
-                this.channelVolumes[i] = 1.0f; // Initial volume for each channel (1.0 is full volume)
+                this.channelVolumes[i] = 0.0f; // Initial volume for each channel (1.0 is full volume)
             }
         }
 
