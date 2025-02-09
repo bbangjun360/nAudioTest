@@ -314,7 +314,6 @@ namespace nAudioTest
             this.gbSetting.Controls.Add(this.label1);
             this.gbSetting.Controls.Add(this.progressBar1);
             this.gbSetting.Controls.Add(this.comboBox1);
-            this.gbSetting.Enabled = false;
             this.gbSetting.Location = new System.Drawing.Point(6, 346);
             this.gbSetting.Name = "gbSetting";
             this.gbSetting.Size = new System.Drawing.Size(460, 156);
@@ -931,12 +930,10 @@ namespace nAudioTest
             // rbSource
             // 
             this.rbSource.AutoSize = true;
-            this.rbSource.Checked = true;
             this.rbSource.Location = new System.Drawing.Point(3, 3);
             this.rbSource.Name = "rbSource";
             this.rbSource.Size = new System.Drawing.Size(59, 16);
             this.rbSource.TabIndex = 38;
-            this.rbSource.TabStop = true;
             this.rbSource.Text = "Souce";
             this.rbSource.UseVisualStyleBackColor = true;
             this.rbSource.CheckedChanged += new System.EventHandler(this.rbSource_CheckedChanged);
@@ -944,10 +941,12 @@ namespace nAudioTest
             // rbMic
             // 
             this.rbMic.AutoSize = true;
+            this.rbMic.Checked = true;
             this.rbMic.Location = new System.Drawing.Point(68, 3);
             this.rbMic.Name = "rbMic";
             this.rbMic.Size = new System.Drawing.Size(78, 16);
             this.rbMic.TabIndex = 39;
+            this.rbMic.TabStop = true;
             this.rbMic.Text = "Line Input";
             this.rbMic.UseVisualStyleBackColor = true;
             this.rbMic.CheckedChanged += new System.EventHandler(this.rbMic_CheckedChanged_1);
@@ -1096,7 +1095,7 @@ namespace nAudioTest
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
-            this.Text = "Source.C";
+            this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbSetting.ResumeLayout(false);
