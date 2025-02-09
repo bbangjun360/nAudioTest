@@ -54,7 +54,7 @@ namespace nAudioTest
             InitializeComponent();
             waveIn = new WaveInEvent
             {
-                WaveFormat = new WaveFormat(44100, 16, 1) // 44.1kHz, 16-bit, mono
+                WaveFormat = new WaveFormat(44100, 16, 2) // 44.1kHz, 16-bit, Stereo
             };
             
             // 컨트롤들 배열로 묶기
@@ -161,7 +161,7 @@ namespace nAudioTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            waveSource = new WaveInEvent { WaveFormat = new WaveFormat(44100, 1) };
+            waveSource = new WaveInEvent { WaveFormat = new WaveFormat(44100, 16, 2) };
             waveSource.DeviceNumber = 0;
             
             // 마이크 데이터 처리 이벤트 등록
