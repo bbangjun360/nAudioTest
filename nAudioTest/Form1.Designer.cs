@@ -119,15 +119,32 @@ namespace nAudioTest
             this.rbMic = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.volumeSlider5 = new NAudio.Gui.VolumeSlider();
+            this.progressBar6 = new System.Windows.Forms.ProgressBar();
+            this.volumeSlider6 = new NAudio.Gui.VolumeSlider();
+            this.progressBar5 = new System.Windows.Forms.ProgressBar();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.rbPreset = new System.Windows.Forms.RadioButton();
             this.rbRandom = new System.Windows.Forms.RadioButton();
             this.rbSerial = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tpSource = new System.Windows.Forms.TabPage();
+            this.tpLine = new System.Windows.Forms.TabPage();
+            this.tpSetting = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbLineInput = new System.Windows.Forms.ComboBox();
+            this.cb_allRandom = new System.Windows.Forms.CheckBox();
+            this.cb_clockwise = new System.Windows.Forms.CheckBox();
+            this.gb_routineCount = new System.Windows.Forms.GroupBox();
+            this.tb_form1RoutineCount = new System.Windows.Forms.TextBox();
+            this.lb_routineCount = new System.Windows.Forms.Label();
+            this.gb_stimulationTime = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tb_form1StimulationTimeWait = new System.Windows.Forms.TextBox();
+            this.tb_form1StimulationTime = new System.Windows.Forms.TextBox();
+            this.lb_stimulationTime = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.gbSetting.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox10.SuspendLayout();
@@ -141,10 +158,14 @@ namespace nAudioTest
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tpSource.SuspendLayout();
+            this.tpLine.SuspendLayout();
+            this.tpSetting.SuspendLayout();
+            this.gb_routineCount.SuspendLayout();
+            this.gb_stimulationTime.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBox9
@@ -248,7 +269,7 @@ namespace nAudioTest
             // 
             // volumeSlider1
             // 
-            this.volumeSlider1.Location = new System.Drawing.Point(149, 32);
+            this.volumeSlider1.Location = new System.Drawing.Point(358, 32);
             this.volumeSlider1.Name = "volumeSlider1";
             this.volumeSlider1.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider1.TabIndex = 20;
@@ -261,34 +282,34 @@ namespace nAudioTest
             // 
             this.progressBar1.Location = new System.Drawing.Point(12, 25);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(131, 23);
+            this.progressBar1.Size = new System.Drawing.Size(315, 23);
             this.progressBar1.TabIndex = 22;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(272, 33);
+            this.comboBox1.Location = new System.Drawing.Point(15, 33);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 20);
+            this.comboBox1.Size = new System.Drawing.Size(377, 20);
             this.comboBox1.TabIndex = 23;
             // 
             // volumeSlider2
             // 
-            this.volumeSlider2.Location = new System.Drawing.Point(149, 61);
+            this.volumeSlider2.Location = new System.Drawing.Point(358, 61);
             this.volumeSlider2.Name = "volumeSlider2";
             this.volumeSlider2.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider2.TabIndex = 24;
             // 
             // volumeSlider3
             // 
-            this.volumeSlider3.Location = new System.Drawing.Point(149, 90);
+            this.volumeSlider3.Location = new System.Drawing.Point(358, 90);
             this.volumeSlider3.Name = "volumeSlider3";
             this.volumeSlider3.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider3.TabIndex = 25;
             // 
             // volumeSlider4
             // 
-            this.volumeSlider4.Location = new System.Drawing.Point(149, 119);
+            this.volumeSlider4.Location = new System.Drawing.Point(358, 119);
             this.volumeSlider4.Name = "volumeSlider4";
             this.volumeSlider4.Size = new System.Drawing.Size(96, 16);
             this.volumeSlider4.TabIndex = 26;
@@ -296,7 +317,7 @@ namespace nAudioTest
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(270, 17);
+            this.label1.Location = new System.Drawing.Point(13, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 12);
             this.label1.TabIndex = 27;
@@ -311,35 +332,33 @@ namespace nAudioTest
             this.gbSetting.Controls.Add(this.volumeSlider2);
             this.gbSetting.Controls.Add(this.progressBar2);
             this.gbSetting.Controls.Add(this.volumeSlider1);
-            this.gbSetting.Controls.Add(this.label1);
             this.gbSetting.Controls.Add(this.progressBar1);
-            this.gbSetting.Controls.Add(this.comboBox1);
-            this.gbSetting.Location = new System.Drawing.Point(6, 346);
+            this.gbSetting.Location = new System.Drawing.Point(3, 214);
             this.gbSetting.Name = "gbSetting";
             this.gbSetting.Size = new System.Drawing.Size(460, 156);
             this.gbSetting.TabIndex = 28;
             this.gbSetting.TabStop = false;
-            this.gbSetting.Text = "설정";
+            this.gbSetting.Text = "ＤＢ";
             // 
             // progressBar4
             // 
             this.progressBar4.Location = new System.Drawing.Point(12, 112);
             this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(131, 23);
+            this.progressBar4.Size = new System.Drawing.Size(315, 23);
             this.progressBar4.TabIndex = 30;
             // 
             // progressBar3
             // 
             this.progressBar3.Location = new System.Drawing.Point(12, 83);
             this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(131, 23);
+            this.progressBar3.Size = new System.Drawing.Size(315, 23);
             this.progressBar3.TabIndex = 29;
             // 
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(12, 54);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(131, 23);
+            this.progressBar2.Size = new System.Drawing.Size(315, 23);
             this.progressBar2.TabIndex = 28;
             // 
             // cbStart
@@ -347,9 +366,9 @@ namespace nAudioTest
             this.cbStart.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbStart.BackColor = System.Drawing.Color.PaleGreen;
             this.cbStart.Font = new System.Drawing.Font("MS PGothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbStart.Location = new System.Drawing.Point(122, 20);
+            this.cbStart.Location = new System.Drawing.Point(775, 579);
             this.cbStart.Name = "cbStart";
-            this.cbStart.Size = new System.Drawing.Size(332, 95);
+            this.cbStart.Size = new System.Drawing.Size(455, 95);
             this.cbStart.TabIndex = 43;
             this.cbStart.Text = "TEST START";
             this.cbStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -899,9 +918,9 @@ namespace nAudioTest
             // 
             this.pictureBox2.BackgroundImage = global::nAudioTest.Properties.Resources.programLogo1;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(877, 614);
+            this.pictureBox2.Location = new System.Drawing.Point(847, 700);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(327, 322);
+            this.pictureBox2.Size = new System.Drawing.Size(292, 284);
             this.pictureBox2.TabIndex = 36;
             this.pictureBox2.TabStop = false;
             // 
@@ -919,7 +938,7 @@ namespace nAudioTest
             // 
             this.setup.Appearance = System.Windows.Forms.Appearance.Button;
             this.setup.AutoSize = true;
-            this.setup.Location = new System.Drawing.Point(385, 508);
+            this.setup.Location = new System.Drawing.Point(410, 29);
             this.setup.Name = "setup";
             this.setup.Size = new System.Drawing.Size(46, 22);
             this.setup.TabIndex = 37;
@@ -962,12 +981,44 @@ namespace nAudioTest
             // 
             // groupBox11
             // 
+            this.groupBox11.Controls.Add(this.volumeSlider5);
+            this.groupBox11.Controls.Add(this.progressBar6);
+            this.groupBox11.Controls.Add(this.volumeSlider6);
+            this.groupBox11.Controls.Add(this.progressBar5);
             this.groupBox11.Location = new System.Drawing.Point(9, 14);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(438, 64);
+            this.groupBox11.Size = new System.Drawing.Size(438, 104);
             this.groupBox11.TabIndex = 48;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Line Input";
+            // 
+            // volumeSlider5
+            // 
+            this.volumeSlider5.Location = new System.Drawing.Point(327, 66);
+            this.volumeSlider5.Name = "volumeSlider5";
+            this.volumeSlider5.Size = new System.Drawing.Size(96, 15);
+            this.volumeSlider5.TabIndex = 31;
+            // 
+            // progressBar6
+            // 
+            this.progressBar6.Location = new System.Drawing.Point(6, 30);
+            this.progressBar6.Name = "progressBar6";
+            this.progressBar6.Size = new System.Drawing.Size(315, 22);
+            this.progressBar6.TabIndex = 30;
+            // 
+            // volumeSlider6
+            // 
+            this.volumeSlider6.Location = new System.Drawing.Point(327, 37);
+            this.volumeSlider6.Name = "volumeSlider6";
+            this.volumeSlider6.Size = new System.Drawing.Size(96, 15);
+            this.volumeSlider6.TabIndex = 29;
+            // 
+            // progressBar5
+            // 
+            this.progressBar5.Location = new System.Drawing.Point(6, 59);
+            this.progressBar5.Name = "progressBar5";
+            this.progressBar5.Size = new System.Drawing.Size(315, 22);
+            this.progressBar5.TabIndex = 32;
             // 
             // groupBox12
             // 
@@ -975,35 +1026,35 @@ namespace nAudioTest
             this.groupBox12.Controls.Add(this.rbPreset);
             this.groupBox12.Controls.Add(this.rbRandom);
             this.groupBox12.Controls.Add(this.rbSerial);
-            this.groupBox12.Controls.Add(this.cbStart);
-            this.groupBox12.Location = new System.Drawing.Point(6, 214);
+            this.groupBox12.Location = new System.Drawing.Point(775, 436);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(460, 126);
+            this.groupBox12.Size = new System.Drawing.Size(464, 48);
             this.groupBox12.TabIndex = 49;
             this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "PLAY";
+            this.groupBox12.Text = "MODE";
             // 
             // rbManual
             // 
             this.rbManual.AutoSize = true;
+            this.rbManual.Checked = true;
             this.rbManual.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.rbManual.Location = new System.Drawing.Point(6, 98);
+            this.rbManual.Location = new System.Drawing.Point(245, 20);
             this.rbManual.Name = "rbManual";
             this.rbManual.Size = new System.Drawing.Size(83, 20);
             this.rbManual.TabIndex = 47;
             this.rbManual.TabStop = true;
             this.rbManual.Text = "Manual";
             this.rbManual.UseVisualStyleBackColor = true;
+            this.rbManual.CheckedChanged += new System.EventHandler(this.rbManual_CheckedChanged);
             // 
             // rbPreset
             // 
             this.rbPreset.AutoSize = true;
             this.rbPreset.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.rbPreset.Location = new System.Drawing.Point(6, 72);
+            this.rbPreset.Location = new System.Drawing.Point(377, 20);
             this.rbPreset.Name = "rbPreset";
             this.rbPreset.Size = new System.Drawing.Size(78, 20);
             this.rbPreset.TabIndex = 46;
-            this.rbPreset.TabStop = true;
             this.rbPreset.Text = "Preset";
             this.rbPreset.UseVisualStyleBackColor = true;
             // 
@@ -1011,11 +1062,10 @@ namespace nAudioTest
             // 
             this.rbRandom.AutoSize = true;
             this.rbRandom.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.rbRandom.Location = new System.Drawing.Point(6, 46);
+            this.rbRandom.Location = new System.Drawing.Point(113, 20);
             this.rbRandom.Name = "rbRandom";
             this.rbRandom.Size = new System.Drawing.Size(91, 20);
             this.rbRandom.TabIndex = 45;
-            this.rbRandom.TabStop = true;
             this.rbRandom.Text = "Random";
             this.rbRandom.UseVisualStyleBackColor = true;
             // 
@@ -1027,65 +1077,214 @@ namespace nAudioTest
             this.rbSerial.Name = "rbSerial";
             this.rbSerial.Size = new System.Drawing.Size(70, 20);
             this.rbSerial.TabIndex = 44;
-            this.rbSerial.TabStop = true;
             this.rbSerial.Text = "Serial";
             this.rbSerial.UseVisualStyleBackColor = true;
+            this.rbSerial.CheckedChanged += new System.EventHandler(this.rbSerial_CheckedChanged);
             // 
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tpSource);
+            this.tabControl1.Controls.Add(this.tpLine);
+            this.tabControl1.Controls.Add(this.tpSetting);
             this.tabControl1.Location = new System.Drawing.Point(769, 18);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(473, 573);
+            this.tabControl1.Size = new System.Drawing.Size(473, 412);
             this.tabControl1.TabIndex = 47;
+            this.tabControl1.TabStop = false;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // tpSource
             // 
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Controls.Add(this.setup);
-            this.tabPage1.Controls.Add(this.groupBox12);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.gbSetting);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(465, 544);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpSource.Controls.Add(this.panel1);
+            this.tpSource.Controls.Add(this.groupBox2);
+            this.tpSource.Controls.Add(this.gbSetting);
+            this.tpSource.Location = new System.Drawing.Point(4, 25);
+            this.tpSource.Name = "tpSource";
+            this.tpSource.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSource.Size = new System.Drawing.Size(465, 383);
+            this.tpSource.TabIndex = 0;
+            this.tpSource.Text = "Source";
+            this.tpSource.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tpLine
             // 
-            this.tabPage2.Controls.Add(this.groupBox11);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(465, 544);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpLine.Controls.Add(this.groupBox11);
+            this.tpLine.Location = new System.Drawing.Point(4, 25);
+            this.tpLine.Name = "tpLine";
+            this.tpLine.Padding = new System.Windows.Forms.Padding(3);
+            this.tpLine.Size = new System.Drawing.Size(465, 383);
+            this.tpLine.TabIndex = 1;
+            this.tpLine.Text = "Line Input";
+            this.tpLine.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // tpSetting
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(465, 544);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tpSetting.Controls.Add(this.label6);
+            this.tpSetting.Controls.Add(this.cbLineInput);
+            this.tpSetting.Controls.Add(this.label1);
+            this.tpSetting.Controls.Add(this.setup);
+            this.tpSetting.Controls.Add(this.comboBox1);
+            this.tpSetting.Location = new System.Drawing.Point(4, 25);
+            this.tpSetting.Name = "tpSetting";
+            this.tpSetting.Size = new System.Drawing.Size(465, 383);
+            this.tpSetting.TabIndex = 2;
+            this.tpSetting.Text = "Setting";
+            this.tpSetting.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 12);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "입력장치 선택";
+            // 
+            // cbLineInput
+            // 
+            this.cbLineInput.FormattingEnabled = true;
+            this.cbLineInput.Location = new System.Drawing.Point(15, 83);
+            this.cbLineInput.Name = "cbLineInput";
+            this.cbLineInput.Size = new System.Drawing.Size(377, 20);
+            this.cbLineInput.TabIndex = 38;
+            this.cbLineInput.SelectedIndexChanged += new System.EventHandler(this.cbLineInput_SelectedIndexChanged);
+            // 
+            // cb_allRandom
+            // 
+            this.cb_allRandom.AutoSize = true;
+            this.cb_allRandom.Checked = true;
+            this.cb_allRandom.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_allRandom.Font = new System.Drawing.Font("휴먼둥근헤드라인", 8F);
+            this.cb_allRandom.Location = new System.Drawing.Point(1139, 543);
+            this.cb_allRandom.Name = "cb_allRandom";
+            this.cb_allRandom.Size = new System.Drawing.Size(99, 15);
+            this.cb_allRandom.TabIndex = 73;
+            this.cb_allRandom.Text = "All Random";
+            this.cb_allRandom.UseVisualStyleBackColor = true;
+            // 
+            // cb_clockwise
+            // 
+            this.cb_clockwise.AutoSize = true;
+            this.cb_clockwise.Checked = true;
+            this.cb_clockwise.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_clockwise.Font = new System.Drawing.Font("휴먼둥근헤드라인", 8F);
+            this.cb_clockwise.Location = new System.Drawing.Point(1139, 510);
+            this.cb_clockwise.Name = "cb_clockwise";
+            this.cb_clockwise.Size = new System.Drawing.Size(97, 15);
+            this.cb_clockwise.TabIndex = 72;
+            this.cb_clockwise.Text = "Clock Wise";
+            this.cb_clockwise.UseVisualStyleBackColor = true;
+            // 
+            // gb_routineCount
+            // 
+            this.gb_routineCount.Controls.Add(this.tb_form1RoutineCount);
+            this.gb_routineCount.Controls.Add(this.lb_routineCount);
+            this.gb_routineCount.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
+            this.gb_routineCount.Location = new System.Drawing.Point(931, 501);
+            this.gb_routineCount.Name = "gb_routineCount";
+            this.gb_routineCount.Size = new System.Drawing.Size(149, 57);
+            this.gb_routineCount.TabIndex = 71;
+            this.gb_routineCount.TabStop = false;
+            this.gb_routineCount.Text = "Routine Count";
+            // 
+            // tb_form1RoutineCount
+            // 
+            this.tb_form1RoutineCount.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
+            this.tb_form1RoutineCount.Location = new System.Drawing.Point(41, 27);
+            this.tb_form1RoutineCount.Name = "tb_form1RoutineCount";
+            this.tb_form1RoutineCount.Size = new System.Drawing.Size(32, 24);
+            this.tb_form1RoutineCount.TabIndex = 44;
+            this.tb_form1RoutineCount.Text = "2";
+            this.tb_form1RoutineCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_routineCount
+            // 
+            this.lb_routineCount.AutoSize = true;
+            this.lb_routineCount.Font = new System.Drawing.Font("휴먼둥근헤드라인", 20F);
+            this.lb_routineCount.Location = new System.Drawing.Point(76, 19);
+            this.lb_routineCount.Name = "lb_routineCount";
+            this.lb_routineCount.Size = new System.Drawing.Size(0, 28);
+            this.lb_routineCount.TabIndex = 41;
+            // 
+            // gb_stimulationTime
+            // 
+            this.gb_stimulationTime.Controls.Add(this.label7);
+            this.gb_stimulationTime.Controls.Add(this.tb_form1StimulationTimeWait);
+            this.gb_stimulationTime.Controls.Add(this.tb_form1StimulationTime);
+            this.gb_stimulationTime.Controls.Add(this.lb_stimulationTime);
+            this.gb_stimulationTime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
+            this.gb_stimulationTime.Location = new System.Drawing.Point(775, 501);
+            this.gb_stimulationTime.Name = "gb_stimulationTime";
+            this.gb_stimulationTime.Size = new System.Drawing.Size(150, 57);
+            this.gb_stimulationTime.TabIndex = 70;
+            this.gb_stimulationTime.TabStop = false;
+            this.gb_stimulationTime.Text = "Stimulation Time";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
+            this.label7.Location = new System.Drawing.Point(49, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 17);
+            this.label7.TabIndex = 43;
+            this.label7.Text = "/";
+            // 
+            // tb_form1StimulationTimeWait
+            // 
+            this.tb_form1StimulationTimeWait.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
+            this.tb_form1StimulationTimeWait.Location = new System.Drawing.Point(71, 27);
+            this.tb_form1StimulationTimeWait.Name = "tb_form1StimulationTimeWait";
+            this.tb_form1StimulationTimeWait.Size = new System.Drawing.Size(32, 24);
+            this.tb_form1StimulationTimeWait.TabIndex = 42;
+            this.tb_form1StimulationTimeWait.Text = "2";
+            this.tb_form1StimulationTimeWait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tb_form1StimulationTime
+            // 
+            this.tb_form1StimulationTime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
+            this.tb_form1StimulationTime.Location = new System.Drawing.Point(11, 27);
+            this.tb_form1StimulationTime.Name = "tb_form1StimulationTime";
+            this.tb_form1StimulationTime.Size = new System.Drawing.Size(32, 24);
+            this.tb_form1StimulationTime.TabIndex = 41;
+            this.tb_form1StimulationTime.Text = "1";
+            this.tb_form1StimulationTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_stimulationTime
+            // 
+            this.lb_stimulationTime.AutoSize = true;
+            this.lb_stimulationTime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 15F);
+            this.lb_stimulationTime.Location = new System.Drawing.Point(31, 32);
+            this.lb_stimulationTime.Name = "lb_stimulationTime";
+            this.lb_stimulationTime.Size = new System.Drawing.Size(0, 21);
+            this.lb_stimulationTime.TabIndex = 40;
+            this.lb_stimulationTime.Visible = false;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Black;
+            this.panel4.Location = new System.Drawing.Point(773, 492);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(469, 3);
+            this.panel4.TabIndex = 74;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1257, 1001);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.cb_allRandom);
+            this.Controls.Add(this.cb_clockwise);
+            this.Controls.Add(this.gb_routineCount);
+            this.Controls.Add(this.gb_stimulationTime);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.cbStart);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
@@ -1099,7 +1298,6 @@ namespace nAudioTest
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbSetting.ResumeLayout(false);
-            this.gbSetting.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox10.ResumeLayout(false);
@@ -1122,13 +1320,20 @@ namespace nAudioTest
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tpSource.ResumeLayout(false);
+            this.tpLine.ResumeLayout(false);
+            this.tpSetting.ResumeLayout(false);
+            this.tpSetting.PerformLayout();
+            this.gb_routineCount.ResumeLayout(false);
+            this.gb_routineCount.PerformLayout();
+            this.gb_stimulationTime.ResumeLayout(false);
+            this.gb_stimulationTime.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1216,9 +1421,26 @@ namespace nAudioTest
         private System.Windows.Forms.RadioButton rbRandom;
         private System.Windows.Forms.RadioButton rbSerial;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tpSource;
+        private System.Windows.Forms.TabPage tpLine;
+        private System.Windows.Forms.TabPage tpSetting;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbLineInput;
+        private NAudio.Gui.VolumeSlider volumeSlider5;
+        public System.Windows.Forms.ProgressBar progressBar6;
+        private NAudio.Gui.VolumeSlider volumeSlider6;
+        public System.Windows.Forms.ProgressBar progressBar5;
+        private System.Windows.Forms.CheckBox cb_allRandom;
+        private System.Windows.Forms.CheckBox cb_clockwise;
+        public System.Windows.Forms.GroupBox gb_routineCount;
+        private System.Windows.Forms.TextBox tb_form1RoutineCount;
+        public System.Windows.Forms.Label lb_routineCount;
+        public System.Windows.Forms.GroupBox gb_stimulationTime;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tb_form1StimulationTimeWait;
+        private System.Windows.Forms.TextBox tb_form1StimulationTime;
+        public System.Windows.Forms.Label lb_stimulationTime;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 

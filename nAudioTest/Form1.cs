@@ -175,10 +175,14 @@ namespace nAudioTest
             var devices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
             foreach (var device in devices)
             {
-                Console.WriteLine($"Input Device: {device.FriendlyName}");
+                cbLineInput.Items.Add(device.FriendlyName);
             }
 
-            waveSource.DeviceNumber = 5;
+            if (cbLineInput.Items.Count > 0)
+            {
+                cbLineInput.SelectedIndex = 0; // 첫 번째 장치를 기본 선택
+            }
+            waveSource.DeviceNumber = cbLineInput.SelectedIndex;
             
             // 마이크 데이터 처리 이벤트 등록
             waveSource.DataAvailable += OnDataAvailable;
@@ -400,6 +404,80 @@ namespace nAudioTest
                 volumeSampleProviders2[i] = new VolumeSampleProvider(mixer, mixer.WaveFormat.Channels);
             }
 
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(tabControl1.SelectedIndex)
+            {
+                case 0:
+                    checkBox17.Enabled = true;
+                    checkBox18.Enabled = true;
+                    checkBox19.Enabled = true;
+                    checkBox20.Enabled = true;
+                    checkBox21.Enabled = true;
+                    checkBox22.Enabled = true;
+                    checkBox23.Enabled = true;
+                    checkBox24.Enabled = true;
+                    checkBox25.Enabled = true;
+                    checkBox26.Enabled = true;
+                    checkBox27.Enabled = true;
+                    checkBox28.Enabled = true;
+                    checkBox29.Enabled = true; 
+                    checkBox30.Enabled = true;
+                    checkBox31.Enabled = true;
+                    checkBox32.Enabled = true;
+                    break;
+                case 1:
+                    checkBox17.Enabled = false;
+                    checkBox18.Enabled = false;
+                    checkBox19.Enabled = false;
+                    checkBox20.Enabled = false;
+                    checkBox21.Enabled = false;
+                    checkBox22.Enabled = false;
+                    checkBox23.Enabled = false;
+                    checkBox24.Enabled = false;
+                    checkBox25.Enabled = false;
+                    checkBox26.Enabled = false;
+                    checkBox27.Enabled = false;
+                    checkBox28.Enabled = false;
+                    checkBox29.Enabled = false;
+                    checkBox30.Enabled = false;
+                    checkBox31.Enabled = false;
+                    checkBox32.Enabled = false;
+                    break;
+                case 2:
+                    break;
+                    default: throw new ArgumentException();
+            }
+        }
+
+        private void cbLineInput_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            waveSource.DeviceNumber = cbLineInput.SelectedIndex;
+        }
+
+        private void rbSerial_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSerial.Checked)
+            {
+                for(int i = 0; i < 8; i++)
+                {
+                    _checkboxes[0,i].Enabled = false;
+                }
+            }
+
+        }
+
+        private void rbManual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbManual.Checked)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    _checkboxes[0, i].Enabled = true;
+                }
+            }
         }
 
 
