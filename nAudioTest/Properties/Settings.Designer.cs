@@ -70,5 +70,113 @@ namespace nAudioTest.Properties {
                 this["path4"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string save_tb_stimulationTime {
+            get {
+                return ((string)(this["save_tb_stimulationTime"]));
+            }
+            set {
+                this["save_tb_stimulationTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public string save_tb_stimulationTimeWait {
+            get {
+                return ((string)(this["save_tb_stimulationTimeWait"]));
+            }
+            set {
+                this["save_tb_stimulationTimeWait"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public string save_tb_routineTime {
+            get {
+                return ((string)(this["save_tb_routineTime"]));
+            }
+            set {
+                this["save_tb_routineTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int save_selectedmode {
+            get {
+                return ((int)(this["save_selectedmode"]));
+            }
+            set {
+                this["save_selectedmode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string path_test {
+            get {
+                return ((string)(this["path_test"]));
+            }
+            set {
+                this["path_test"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int asio_selected_index {
+            get {
+                return ((int)(this["asio_selected_index"]));
+            }
+            set {
+                this["asio_selected_index"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int input_device_selected_index {
+            get {
+                return ((int)(this["input_device_selected_index"]));
+            }
+            set {
+                this["input_device_selected_index"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool save_clockwise {
+            get {
+                return ((bool)(this["save_clockwise"]));
+            }
+            set {
+                this["save_clockwise"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool save_all_random {
+            get {
+                return ((bool)(this["save_all_random"]));
+            }
+            set {
+                this["save_all_random"] = value;
+            }
+        }
     }
 }
