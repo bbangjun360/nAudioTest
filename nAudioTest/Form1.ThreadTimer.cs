@@ -160,6 +160,8 @@ namespace nAudioTest
         }
         public void TimerResetandStart()
         {
+            rndArrMaker();
+
             tb_StimulationTime.Enabled = false;
             tb_StimulationTimeWait.Enabled = false;
             tb_RoutineCount.Enabled = false;

@@ -41,14 +41,14 @@ namespace nAudioTest
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("1");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("2");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("3");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("4");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("5");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("6");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("7");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("8");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("1");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("2");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("3");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("4");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("5");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("6");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("7");
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("8");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
@@ -184,6 +184,7 @@ namespace nAudioTest
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbOption = new System.Windows.Forms.GroupBox();
+            this.btnNoiseRefresh = new System.Windows.Forms.Button();
             this.gbSetting.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pn_Random.SuspendLayout();
@@ -215,9 +216,9 @@ namespace nAudioTest
             this.checkBox9.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox9.Location = new System.Drawing.Point(5, 126);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(105, 20);
+            this.checkBox9.Size = new System.Drawing.Size(112, 20);
             this.checkBox9.TabIndex = 1;
-            this.checkBox9.Text = "Source.B";
+            this.checkBox9.Text = "SOURCE.B";
             this.checkBox9.UseVisualStyleBackColor = true;
             // 
             // checkBox11
@@ -226,9 +227,9 @@ namespace nAudioTest
             this.checkBox11.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox11.Location = new System.Drawing.Point(5, 126);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(105, 20);
+            this.checkBox11.Size = new System.Drawing.Size(112, 20);
             this.checkBox11.TabIndex = 7;
-            this.checkBox11.Text = "Source.B";
+            this.checkBox11.Text = "SOURCE.B";
             this.checkBox11.UseVisualStyleBackColor = true;
             // 
             // checkBox15
@@ -237,9 +238,9 @@ namespace nAudioTest
             this.checkBox15.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox15.Location = new System.Drawing.Point(5, 126);
             this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(105, 20);
+            this.checkBox15.Size = new System.Drawing.Size(112, 20);
             this.checkBox15.TabIndex = 5;
-            this.checkBox15.Text = "Source.B";
+            this.checkBox15.Text = "SOURCE.B";
             this.checkBox15.UseVisualStyleBackColor = true;
             // 
             // checkBox17
@@ -248,9 +249,9 @@ namespace nAudioTest
             this.checkBox17.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox17.Location = new System.Drawing.Point(5, 155);
             this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(107, 20);
+            this.checkBox17.Size = new System.Drawing.Size(114, 20);
             this.checkBox17.TabIndex = 1;
-            this.checkBox17.Text = "Source.C";
+            this.checkBox17.Text = "SOURCE.C";
             this.checkBox17.UseVisualStyleBackColor = true;
             // 
             // checkBox19
@@ -259,9 +260,9 @@ namespace nAudioTest
             this.checkBox19.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox19.Location = new System.Drawing.Point(5, 155);
             this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(107, 20);
+            this.checkBox19.Size = new System.Drawing.Size(114, 20);
             this.checkBox19.TabIndex = 2;
-            this.checkBox19.Text = "Source.C";
+            this.checkBox19.Text = "SOURCE.C";
             this.checkBox19.UseVisualStyleBackColor = true;
             // 
             // checkBox23
@@ -270,9 +271,9 @@ namespace nAudioTest
             this.checkBox23.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox23.Location = new System.Drawing.Point(5, 155);
             this.checkBox23.Name = "checkBox23";
-            this.checkBox23.Size = new System.Drawing.Size(107, 20);
+            this.checkBox23.Size = new System.Drawing.Size(114, 20);
             this.checkBox23.TabIndex = 5;
-            this.checkBox23.Text = "Source.C";
+            this.checkBox23.Text = "SOURCE.C";
             this.checkBox23.UseVisualStyleBackColor = true;
             // 
             // checkBox25
@@ -281,9 +282,9 @@ namespace nAudioTest
             this.checkBox25.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox25.Location = new System.Drawing.Point(5, 184);
             this.checkBox25.Name = "checkBox25";
-            this.checkBox25.Size = new System.Drawing.Size(106, 20);
+            this.checkBox25.Size = new System.Drawing.Size(113, 20);
             this.checkBox25.TabIndex = 1;
-            this.checkBox25.Text = "Source.D";
+            this.checkBox25.Text = "SOURCE.D";
             this.checkBox25.UseVisualStyleBackColor = true;
             // 
             // checkBox27
@@ -292,9 +293,9 @@ namespace nAudioTest
             this.checkBox27.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox27.Location = new System.Drawing.Point(5, 184);
             this.checkBox27.Name = "checkBox27";
-            this.checkBox27.Size = new System.Drawing.Size(106, 20);
+            this.checkBox27.Size = new System.Drawing.Size(113, 20);
             this.checkBox27.TabIndex = 2;
-            this.checkBox27.Text = "Source.D";
+            this.checkBox27.Text = "SOURCE.D";
             this.checkBox27.UseVisualStyleBackColor = true;
             // 
             // checkBox31
@@ -303,9 +304,9 @@ namespace nAudioTest
             this.checkBox31.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox31.Location = new System.Drawing.Point(5, 184);
             this.checkBox31.Name = "checkBox31";
-            this.checkBox31.Size = new System.Drawing.Size(106, 20);
+            this.checkBox31.Size = new System.Drawing.Size(113, 20);
             this.checkBox31.TabIndex = 5;
-            this.checkBox31.Text = "Source.D";
+            this.checkBox31.Text = "SOURCE.D";
             this.checkBox31.UseVisualStyleBackColor = true;
             // 
             // vsInput1
@@ -390,7 +391,7 @@ namespace nAudioTest
             this.gbSetting.Size = new System.Drawing.Size(453, 156);
             this.gbSetting.TabIndex = 28;
             this.gbSetting.TabStop = false;
-            this.gbSetting.Text = "input dB";
+            this.gbSetting.Text = "INPUT dB";
             // 
             // label11
             // 
@@ -398,9 +399,9 @@ namespace nAudioTest
             this.label11.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label11.Location = new System.Drawing.Point(59, 120);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 12);
+            this.label11.Size = new System.Drawing.Size(76, 12);
             this.label11.TabIndex = 47;
-            this.label11.Text = "Source.D";
+            this.label11.Text = "SOURCE D";
             // 
             // label10
             // 
@@ -408,9 +409,9 @@ namespace nAudioTest
             this.label10.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label10.Location = new System.Drawing.Point(59, 87);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(70, 12);
+            this.label10.Size = new System.Drawing.Size(76, 12);
             this.label10.TabIndex = 47;
-            this.label10.Text = "Source.C";
+            this.label10.Text = "SOURCE C";
             // 
             // label9
             // 
@@ -418,9 +419,9 @@ namespace nAudioTest
             this.label9.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label9.Location = new System.Drawing.Point(59, 58);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 12);
+            this.label9.Size = new System.Drawing.Size(75, 12);
             this.label9.TabIndex = 47;
-            this.label9.Text = "Source.B";
+            this.label9.Text = "SOURCE B";
             // 
             // label8
             // 
@@ -428,9 +429,9 @@ namespace nAudioTest
             this.label8.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label8.Location = new System.Drawing.Point(59, 27);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 12);
+            this.label8.Size = new System.Drawing.Size(77, 12);
             this.label8.TabIndex = 47;
-            this.label8.Text = "Source.A";
+            this.label8.Text = "SOURCE A";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // progressBar4
@@ -475,9 +476,9 @@ namespace nAudioTest
             this.rbPreset3.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.rbPreset3.Location = new System.Drawing.Point(214, 25);
             this.rbPreset3.Name = "rbPreset3";
-            this.rbPreset3.Size = new System.Drawing.Size(97, 16);
+            this.rbPreset3.Size = new System.Drawing.Size(100, 16);
             this.rbPreset3.TabIndex = 41;
-            this.rbPreset3.Text = "preset #3";
+            this.rbPreset3.Text = "PRESET #3";
             this.rbPreset3.UseVisualStyleBackColor = true;
             // 
             // rbPreset2
@@ -487,9 +488,9 @@ namespace nAudioTest
             this.rbPreset2.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.rbPreset2.Location = new System.Drawing.Point(111, 25);
             this.rbPreset2.Name = "rbPreset2";
-            this.rbPreset2.Size = new System.Drawing.Size(97, 16);
+            this.rbPreset2.Size = new System.Drawing.Size(100, 16);
             this.rbPreset2.TabIndex = 40;
-            this.rbPreset2.Text = "preset #2";
+            this.rbPreset2.Text = "PRESET #2";
             this.rbPreset2.UseVisualStyleBackColor = true;
             // 
             // rbPreset1
@@ -499,9 +500,9 @@ namespace nAudioTest
             this.rbPreset1.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.rbPreset1.Location = new System.Drawing.Point(8, 25);
             this.rbPreset1.Name = "rbPreset1";
-            this.rbPreset1.Size = new System.Drawing.Size(97, 16);
+            this.rbPreset1.Size = new System.Drawing.Size(100, 16);
             this.rbPreset1.TabIndex = 39;
-            this.rbPreset1.Text = "preset #1";
+            this.rbPreset1.Text = "PRESET #1";
             this.rbPreset1.UseVisualStyleBackColor = true;
             // 
             // tbPath14
@@ -543,7 +544,7 @@ namespace nAudioTest
             this.btnSel4.Name = "btnSel4";
             this.btnSel4.Size = new System.Drawing.Size(56, 23);
             this.btnSel4.TabIndex = 34;
-            this.btnSel4.Text = "open";
+            this.btnSel4.Text = "OPEN";
             this.btnSel4.UseVisualStyleBackColor = true;
             // 
             // btnSel3
@@ -553,7 +554,7 @@ namespace nAudioTest
             this.btnSel3.Name = "btnSel3";
             this.btnSel3.Size = new System.Drawing.Size(56, 23);
             this.btnSel3.TabIndex = 33;
-            this.btnSel3.Text = "open";
+            this.btnSel3.Text = "OPEN";
             this.btnSel3.UseVisualStyleBackColor = true;
             // 
             // btnSel2
@@ -563,7 +564,7 @@ namespace nAudioTest
             this.btnSel2.Name = "btnSel2";
             this.btnSel2.Size = new System.Drawing.Size(56, 23);
             this.btnSel2.TabIndex = 32;
-            this.btnSel2.Text = "open";
+            this.btnSel2.Text = "OPEN";
             this.btnSel2.UseVisualStyleBackColor = true;
             // 
             // btnSel1
@@ -573,7 +574,7 @@ namespace nAudioTest
             this.btnSel1.Name = "btnSel1";
             this.btnSel1.Size = new System.Drawing.Size(56, 23);
             this.btnSel1.TabIndex = 31;
-            this.btnSel1.Text = "open";
+            this.btnSel1.Text = "OPEN";
             this.btnSel1.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -600,16 +601,16 @@ namespace nAudioTest
             this.groupBox2.Size = new System.Drawing.Size(453, 172);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Source";
+            this.groupBox2.Text = "SOURCE";
             // 
             // btnRefresh
             // 
             this.btnRefresh.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnRefresh.Location = new System.Drawing.Point(373, 22);
+            this.btnRefresh.Location = new System.Drawing.Point(362, 17);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(74, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(85, 28);
             this.btnRefresh.TabIndex = 47;
-            this.btnRefresh.Text = "refresh";
+            this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -619,9 +620,9 @@ namespace nAudioTest
             this.label5.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label5.Location = new System.Drawing.Point(6, 137);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 12);
+            this.label5.Size = new System.Drawing.Size(76, 12);
             this.label5.TabIndex = 46;
-            this.label5.Text = "Source.D";
+            this.label5.Text = "SOURCE D";
             // 
             // label4
             // 
@@ -629,9 +630,9 @@ namespace nAudioTest
             this.label4.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label4.Location = new System.Drawing.Point(6, 110);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 12);
+            this.label4.Size = new System.Drawing.Size(76, 12);
             this.label4.TabIndex = 45;
-            this.label4.Text = "Source.C";
+            this.label4.Text = "SOURCE C";
             // 
             // label3
             // 
@@ -639,9 +640,9 @@ namespace nAudioTest
             this.label3.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label3.Location = new System.Drawing.Point(6, 84);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 12);
+            this.label3.Size = new System.Drawing.Size(75, 12);
             this.label3.TabIndex = 44;
-            this.label3.Text = "Source.B";
+            this.label3.Text = "SOURCE B";
             // 
             // label2
             // 
@@ -649,9 +650,9 @@ namespace nAudioTest
             this.label2.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label2.Location = new System.Drawing.Point(6, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 12);
+            this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 43;
-            this.label2.Text = "Source.A";
+            this.label2.Text = "SOURCE A";
             // 
             // pn_Random
             // 
@@ -671,14 +672,14 @@ namespace nAudioTest
             this.lv_Random.GridLines = true;
             this.lv_Random.HideSelection = false;
             this.lv_Random.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8});
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15,
+            listViewItem16});
             this.lv_Random.Location = new System.Drawing.Point(28, 60);
             this.lv_Random.MultiSelect = false;
             this.lv_Random.Name = "lv_Random";
@@ -696,12 +697,12 @@ namespace nAudioTest
             // lb_Random
             // 
             this.lb_Random.AutoSize = true;
-            this.lb_Random.Font = new System.Drawing.Font("휴먼둥근헤드라인", 15F);
+            this.lb_Random.Font = new System.Drawing.Font("휴먼둥근헤드라인", 13F);
             this.lb_Random.Location = new System.Drawing.Point(3, 9);
             this.lb_Random.Name = "lb_Random";
-            this.lb_Random.Size = new System.Drawing.Size(102, 42);
+            this.lb_Random.Size = new System.Drawing.Size(100, 36);
             this.lb_Random.TabIndex = 55;
-            this.lb_Random.Text = "Random\r\nOrder\r\n";
+            this.lb_Random.Text = "RANDOM\r\nORDER";
             this.lb_Random.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox10
@@ -736,7 +737,7 @@ namespace nAudioTest
             this.groupBox4.Controls.Add(this.checkBox11);
             this.groupBox4.Controls.Add(this.checkBox3);
             this.groupBox4.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
-            this.groupBox4.Location = new System.Drawing.Point(657, 384);
+            this.groupBox4.Location = new System.Drawing.Point(657, 419);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(112, 212);
             this.groupBox4.TabIndex = 32;
@@ -762,7 +763,7 @@ namespace nAudioTest
             this.groupBox8.Controls.Add(this.checkBox15);
             this.groupBox8.Controls.Add(this.checkBox7);
             this.groupBox8.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
-            this.groupBox8.Location = new System.Drawing.Point(10, 384);
+            this.groupBox8.Location = new System.Drawing.Point(10, 419);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(112, 212);
             this.groupBox8.TabIndex = 33;
@@ -788,7 +789,7 @@ namespace nAudioTest
             this.groupBox9.Controls.Add(this.checkBox16);
             this.groupBox9.Controls.Add(this.checkBox8);
             this.groupBox9.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
-            this.groupBox9.Location = new System.Drawing.Point(42, 140);
+            this.groupBox9.Location = new System.Drawing.Point(42, 133);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(112, 212);
             this.groupBox9.TabIndex = 33;
@@ -801,9 +802,9 @@ namespace nAudioTest
             this.checkBox32.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox32.Location = new System.Drawing.Point(5, 184);
             this.checkBox32.Name = "checkBox32";
-            this.checkBox32.Size = new System.Drawing.Size(106, 20);
+            this.checkBox32.Size = new System.Drawing.Size(113, 20);
             this.checkBox32.TabIndex = 4;
-            this.checkBox32.Text = "Source.D";
+            this.checkBox32.Text = "SOURCE.D";
             this.checkBox32.UseVisualStyleBackColor = true;
             // 
             // checkBox24
@@ -812,9 +813,9 @@ namespace nAudioTest
             this.checkBox24.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox24.Location = new System.Drawing.Point(5, 155);
             this.checkBox24.Name = "checkBox24";
-            this.checkBox24.Size = new System.Drawing.Size(107, 20);
+            this.checkBox24.Size = new System.Drawing.Size(114, 20);
             this.checkBox24.TabIndex = 4;
-            this.checkBox24.Text = "Source.C";
+            this.checkBox24.Text = "SOURCE.C";
             this.checkBox24.UseVisualStyleBackColor = true;
             // 
             // checkBox16
@@ -823,9 +824,9 @@ namespace nAudioTest
             this.checkBox16.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox16.Location = new System.Drawing.Point(5, 126);
             this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(105, 20);
+            this.checkBox16.Size = new System.Drawing.Size(112, 20);
             this.checkBox16.TabIndex = 4;
-            this.checkBox16.Text = "Source.B";
+            this.checkBox16.Text = "SOURCE.B";
             this.checkBox16.UseVisualStyleBackColor = true;
             // 
             // checkBox8
@@ -847,7 +848,7 @@ namespace nAudioTest
             this.groupBox5.Controls.Add(this.checkBox12);
             this.groupBox5.Controls.Add(this.checkBox4);
             this.groupBox5.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
-            this.groupBox5.Location = new System.Drawing.Point(624, 628);
+            this.groupBox5.Location = new System.Drawing.Point(601, 704);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(112, 212);
             this.groupBox5.TabIndex = 33;
@@ -860,9 +861,9 @@ namespace nAudioTest
             this.checkBox28.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox28.Location = new System.Drawing.Point(5, 184);
             this.checkBox28.Name = "checkBox28";
-            this.checkBox28.Size = new System.Drawing.Size(106, 20);
+            this.checkBox28.Size = new System.Drawing.Size(113, 20);
             this.checkBox28.TabIndex = 6;
-            this.checkBox28.Text = "Source.D";
+            this.checkBox28.Text = "SOURCE.D";
             this.checkBox28.UseVisualStyleBackColor = true;
             // 
             // checkBox20
@@ -871,9 +872,9 @@ namespace nAudioTest
             this.checkBox20.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox20.Location = new System.Drawing.Point(5, 155);
             this.checkBox20.Name = "checkBox20";
-            this.checkBox20.Size = new System.Drawing.Size(107, 20);
+            this.checkBox20.Size = new System.Drawing.Size(114, 20);
             this.checkBox20.TabIndex = 6;
-            this.checkBox20.Text = "Source.C";
+            this.checkBox20.Text = "SOURCE.C";
             this.checkBox20.UseVisualStyleBackColor = true;
             // 
             // checkBox12
@@ -882,9 +883,9 @@ namespace nAudioTest
             this.checkBox12.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox12.Location = new System.Drawing.Point(5, 126);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(105, 20);
+            this.checkBox12.Size = new System.Drawing.Size(112, 20);
             this.checkBox12.TabIndex = 6;
-            this.checkBox12.Text = "Source.B";
+            this.checkBox12.Text = "SOURCE.B";
             this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // checkBox4
@@ -919,9 +920,9 @@ namespace nAudioTest
             this.checkBox21.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox21.Location = new System.Drawing.Point(5, 155);
             this.checkBox21.Name = "checkBox21";
-            this.checkBox21.Size = new System.Drawing.Size(107, 20);
+            this.checkBox21.Size = new System.Drawing.Size(114, 20);
             this.checkBox21.TabIndex = 8;
-            this.checkBox21.Text = "Source.C";
+            this.checkBox21.Text = "SOURCE.C";
             this.checkBox21.UseVisualStyleBackColor = true;
             // 
             // checkBox13
@@ -930,9 +931,9 @@ namespace nAudioTest
             this.checkBox13.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox13.Location = new System.Drawing.Point(5, 126);
             this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(105, 20);
+            this.checkBox13.Size = new System.Drawing.Size(112, 20);
             this.checkBox13.TabIndex = 8;
-            this.checkBox13.Text = "Source.B";
+            this.checkBox13.Text = "SOURCE.B";
             this.checkBox13.UseVisualStyleBackColor = true;
             // 
             // checkBox29
@@ -941,9 +942,9 @@ namespace nAudioTest
             this.checkBox29.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox29.Location = new System.Drawing.Point(5, 184);
             this.checkBox29.Name = "checkBox29";
-            this.checkBox29.Size = new System.Drawing.Size(106, 20);
+            this.checkBox29.Size = new System.Drawing.Size(113, 20);
             this.checkBox29.TabIndex = 8;
-            this.checkBox29.Text = "Source.D";
+            this.checkBox29.Text = "SOURCE.D";
             this.checkBox29.UseVisualStyleBackColor = true;
             // 
             // checkBox5
@@ -965,7 +966,7 @@ namespace nAudioTest
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.checkBox10);
             this.groupBox3.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
-            this.groupBox3.Location = new System.Drawing.Point(624, 140);
+            this.groupBox3.Location = new System.Drawing.Point(624, 133);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(112, 212);
             this.groupBox3.TabIndex = 31;
@@ -978,9 +979,9 @@ namespace nAudioTest
             this.checkBox26.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox26.Location = new System.Drawing.Point(5, 183);
             this.checkBox26.Name = "checkBox26";
-            this.checkBox26.Size = new System.Drawing.Size(106, 20);
+            this.checkBox26.Size = new System.Drawing.Size(113, 20);
             this.checkBox26.TabIndex = 7;
-            this.checkBox26.Text = "Source.D";
+            this.checkBox26.Text = "SOURCE.D";
             this.checkBox26.UseVisualStyleBackColor = true;
             // 
             // checkBox18
@@ -989,9 +990,9 @@ namespace nAudioTest
             this.checkBox18.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox18.Location = new System.Drawing.Point(5, 155);
             this.checkBox18.Name = "checkBox18";
-            this.checkBox18.Size = new System.Drawing.Size(107, 20);
+            this.checkBox18.Size = new System.Drawing.Size(114, 20);
             this.checkBox18.TabIndex = 7;
-            this.checkBox18.Text = "Source.C";
+            this.checkBox18.Text = "SOURCE.C";
             this.checkBox18.UseVisualStyleBackColor = true;
             // 
             // checkBox2
@@ -1012,9 +1013,9 @@ namespace nAudioTest
             this.checkBox10.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox10.Location = new System.Drawing.Point(5, 126);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(105, 20);
+            this.checkBox10.Size = new System.Drawing.Size(112, 20);
             this.checkBox10.TabIndex = 2;
-            this.checkBox10.Text = "Source.B";
+            this.checkBox10.Text = "SOURCE.B";
             this.checkBox10.UseVisualStyleBackColor = true;
             // 
             // groupBox7
@@ -1024,7 +1025,7 @@ namespace nAudioTest
             this.groupBox7.Controls.Add(this.checkBox30);
             this.groupBox7.Controls.Add(this.checkBox6);
             this.groupBox7.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
-            this.groupBox7.Location = new System.Drawing.Point(42, 628);
+            this.groupBox7.Location = new System.Drawing.Point(62, 704);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(112, 212);
             this.groupBox7.TabIndex = 33;
@@ -1037,9 +1038,9 @@ namespace nAudioTest
             this.checkBox22.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox22.Location = new System.Drawing.Point(5, 155);
             this.checkBox22.Name = "checkBox22";
-            this.checkBox22.Size = new System.Drawing.Size(107, 20);
+            this.checkBox22.Size = new System.Drawing.Size(114, 20);
             this.checkBox22.TabIndex = 3;
-            this.checkBox22.Text = "Source.C";
+            this.checkBox22.Text = "SOURCE.C";
             this.checkBox22.UseVisualStyleBackColor = true;
             // 
             // checkBox14
@@ -1048,9 +1049,9 @@ namespace nAudioTest
             this.checkBox14.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox14.Location = new System.Drawing.Point(5, 126);
             this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(105, 20);
+            this.checkBox14.Size = new System.Drawing.Size(112, 20);
             this.checkBox14.TabIndex = 3;
-            this.checkBox14.Text = "Source.B";
+            this.checkBox14.Text = "SOURCE.B";
             this.checkBox14.UseVisualStyleBackColor = true;
             // 
             // checkBox30
@@ -1059,9 +1060,9 @@ namespace nAudioTest
             this.checkBox30.Font = new System.Drawing.Font("휴먼둥근헤드라인", 11F);
             this.checkBox30.Location = new System.Drawing.Point(5, 184);
             this.checkBox30.Name = "checkBox30";
-            this.checkBox30.Size = new System.Drawing.Size(106, 20);
+            this.checkBox30.Size = new System.Drawing.Size(113, 20);
             this.checkBox30.TabIndex = 3;
-            this.checkBox30.Text = "Source.D";
+            this.checkBox30.Text = "SOURCE.D";
             this.checkBox30.UseVisualStyleBackColor = true;
             // 
             // checkBox6
@@ -1102,9 +1103,9 @@ namespace nAudioTest
             this.btnTestFolderOpen.AutoSize = true;
             this.btnTestFolderOpen.Location = new System.Drawing.Point(116, 55);
             this.btnTestFolderOpen.Name = "btnTestFolderOpen";
-            this.btnTestFolderOpen.Size = new System.Drawing.Size(51, 22);
+            this.btnTestFolderOpen.Size = new System.Drawing.Size(52, 22);
             this.btnTestFolderOpen.TabIndex = 37;
-            this.btnTestFolderOpen.Text = "open";
+            this.btnTestFolderOpen.Text = "OPEN";
             this.btnTestFolderOpen.UseVisualStyleBackColor = true;
             this.btnTestFolderOpen.CheckedChanged += new System.EventHandler(this.btnTestFolderOpen_CheckedChanged);
             // 
@@ -1121,7 +1122,7 @@ namespace nAudioTest
             this.groupBox11.Size = new System.Drawing.Size(450, 104);
             this.groupBox11.TabIndex = 48;
             this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Line Input";
+            this.groupBox11.Text = "LINE INPUT";
             // 
             // label22
             // 
@@ -1129,9 +1130,9 @@ namespace nAudioTest
             this.label22.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label22.Location = new System.Drawing.Point(59, 60);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(69, 12);
+            this.label22.Size = new System.Drawing.Size(75, 12);
             this.label22.TabIndex = 50;
-            this.label22.Text = "Source.B";
+            this.label22.Text = "SOURCE B";
             // 
             // label23
             // 
@@ -1139,9 +1140,9 @@ namespace nAudioTest
             this.label23.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
             this.label23.Location = new System.Drawing.Point(59, 29);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(71, 12);
+            this.label23.Size = new System.Drawing.Size(77, 12);
             this.label23.TabIndex = 51;
-            this.label23.Text = "Source.A";
+            this.label23.Text = "SOURCE A";
             // 
             // progressBar5
             // 
@@ -1192,10 +1193,10 @@ namespace nAudioTest
             this.rbManual.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
             this.rbManual.Location = new System.Drawing.Point(253, 26);
             this.rbManual.Name = "rbManual";
-            this.rbManual.Size = new System.Drawing.Size(86, 19);
+            this.rbManual.Size = new System.Drawing.Size(96, 19);
             this.rbManual.TabIndex = 47;
             this.rbManual.TabStop = true;
-            this.rbManual.Text = "Manual";
+            this.rbManual.Text = "MANUAL";
             this.rbManual.UseVisualStyleBackColor = true;
             this.rbManual.CheckedChanged += new System.EventHandler(this.rbManual_CheckedChanged);
             // 
@@ -1204,11 +1205,11 @@ namespace nAudioTest
             this.rbPreset.AutoSize = true;
             this.rbPreset.Enabled = false;
             this.rbPreset.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
-            this.rbPreset.Location = new System.Drawing.Point(377, 25);
+            this.rbPreset.Location = new System.Drawing.Point(377, 26);
             this.rbPreset.Name = "rbPreset";
-            this.rbPreset.Size = new System.Drawing.Size(80, 19);
+            this.rbPreset.Size = new System.Drawing.Size(85, 19);
             this.rbPreset.TabIndex = 46;
-            this.rbPreset.Text = "Preset";
+            this.rbPreset.Text = "PRESET";
             this.rbPreset.UseVisualStyleBackColor = true;
             this.rbPreset.CheckedChanged += new System.EventHandler(this.rbPreset_CheckedChanged);
             // 
@@ -1216,11 +1217,11 @@ namespace nAudioTest
             // 
             this.rbRandom.AutoSize = true;
             this.rbRandom.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
-            this.rbRandom.Location = new System.Drawing.Point(115, 25);
+            this.rbRandom.Location = new System.Drawing.Point(115, 26);
             this.rbRandom.Name = "rbRandom";
-            this.rbRandom.Size = new System.Drawing.Size(90, 19);
+            this.rbRandom.Size = new System.Drawing.Size(97, 19);
             this.rbRandom.TabIndex = 45;
-            this.rbRandom.Text = "Random";
+            this.rbRandom.Text = "RANDOM";
             this.rbRandom.UseVisualStyleBackColor = true;
             this.rbRandom.CheckedChanged += new System.EventHandler(this.rbRandom_CheckedChanged);
             // 
@@ -1230,9 +1231,9 @@ namespace nAudioTest
             this.rbSerial.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
             this.rbSerial.Location = new System.Drawing.Point(6, 26);
             this.rbSerial.Name = "rbSerial";
-            this.rbSerial.Size = new System.Drawing.Size(74, 19);
+            this.rbSerial.Size = new System.Drawing.Size(82, 19);
             this.rbSerial.TabIndex = 44;
-            this.rbSerial.Text = "Serial";
+            this.rbSerial.Text = "SERIAL";
             this.rbSerial.UseVisualStyleBackColor = true;
             this.rbSerial.CheckedChanged += new System.EventHandler(this.rbSerial_CheckedChanged);
             // 
@@ -1257,10 +1258,10 @@ namespace nAudioTest
             this.tpSource.Controls.Add(this.gbSetting);
             this.tpSource.Location = new System.Drawing.Point(4, 25);
             this.tpSource.Name = "tpSource";
-            this.tpSource.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpSource.Padding = new System.Windows.Forms.Padding(3);
             this.tpSource.Size = new System.Drawing.Size(465, 351);
             this.tpSource.TabIndex = 0;
-            this.tpSource.Text = "Source";
+            this.tpSource.Text = "INTERNAL SOURCE";
             this.tpSource.UseVisualStyleBackColor = true;
             // 
             // tpLine
@@ -1268,10 +1269,10 @@ namespace nAudioTest
             this.tpLine.Controls.Add(this.groupBox11);
             this.tpLine.Location = new System.Drawing.Point(4, 25);
             this.tpLine.Name = "tpLine";
-            this.tpLine.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpLine.Padding = new System.Windows.Forms.Padding(3);
             this.tpLine.Size = new System.Drawing.Size(465, 351);
             this.tpLine.TabIndex = 1;
-            this.tpLine.Text = "Line Input";
+            this.tpLine.Text = "EXTERNAL SOURCE";
             this.tpLine.UseVisualStyleBackColor = true;
             // 
             // tpSetting
@@ -1305,7 +1306,7 @@ namespace nAudioTest
             this.tpSetting.Name = "tpSetting";
             this.tpSetting.Size = new System.Drawing.Size(465, 351);
             this.tpSetting.TabIndex = 2;
-            this.tpSetting.Text = "Setting";
+            this.tpSetting.Text = "SETTING";
             this.tpSetting.UseVisualStyleBackColor = true;
             this.tpSetting.Click += new System.EventHandler(this.tpSetting_Click);
             // 
@@ -1337,72 +1338,72 @@ namespace nAudioTest
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(7, 323);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(65, 12);
+            this.label20.Size = new System.Drawing.Size(67, 12);
             this.label20.TabIndex = 57;
-            this.label20.Text = "SPK.CH8";
+            this.label20.Text = "SPK CH8";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(7, 292);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 12);
+            this.label19.Size = new System.Drawing.Size(67, 12);
             this.label19.TabIndex = 56;
-            this.label19.Text = "SPK.CH7";
+            this.label19.Text = "SPK CH7";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(7, 261);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 12);
+            this.label18.Size = new System.Drawing.Size(67, 12);
             this.label18.TabIndex = 55;
-            this.label18.Text = "SPK.CH6";
+            this.label18.Text = "SPK CH6";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(7, 230);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 12);
+            this.label17.Size = new System.Drawing.Size(67, 12);
             this.label17.TabIndex = 54;
-            this.label17.Text = "SPK.CH5";
+            this.label17.Text = "SPK CH5";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(7, 199);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(65, 12);
+            this.label16.Size = new System.Drawing.Size(67, 12);
             this.label16.TabIndex = 53;
-            this.label16.Text = "SPK.CH4";
+            this.label16.Text = "SPK CH4";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(7, 168);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 12);
+            this.label15.Size = new System.Drawing.Size(67, 12);
             this.label15.TabIndex = 52;
-            this.label15.Text = "SPK.CH3";
+            this.label15.Text = "SPK CH3";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(7, 137);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(65, 12);
+            this.label14.Size = new System.Drawing.Size(67, 12);
             this.label14.TabIndex = 51;
-            this.label14.Text = "SPK.CH2";
+            this.label14.Text = "SPK CH2";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(7, 106);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.Size = new System.Drawing.Size(67, 12);
             this.label13.TabIndex = 50;
-            this.label13.Text = "SPK.CH1";
+            this.label13.Text = "SPK CH1";
             // 
             // vsCH8
             // 
@@ -1512,11 +1513,11 @@ namespace nAudioTest
             this.cb_allRandom.Checked = true;
             this.cb_allRandom.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_allRandom.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cb_allRandom.Location = new System.Drawing.Point(125, 25);
+            this.cb_allRandom.Location = new System.Drawing.Point(133, 25);
             this.cb_allRandom.Name = "cb_allRandom";
-            this.cb_allRandom.Size = new System.Drawing.Size(115, 17);
+            this.cb_allRandom.Size = new System.Drawing.Size(130, 17);
             this.cb_allRandom.TabIndex = 73;
-            this.cb_allRandom.Text = "All Random";
+            this.cb_allRandom.Text = "ALL RANDOM";
             this.cb_allRandom.UseVisualStyleBackColor = true;
             this.cb_allRandom.CheckedChanged += new System.EventHandler(this.cb_allRandom_CheckedChanged);
             // 
@@ -1528,9 +1529,9 @@ namespace nAudioTest
             this.cb_clockwise.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cb_clockwise.Location = new System.Drawing.Point(6, 25);
             this.cb_clockwise.Name = "cb_clockwise";
-            this.cb_clockwise.Size = new System.Drawing.Size(113, 17);
+            this.cb_clockwise.Size = new System.Drawing.Size(121, 17);
             this.cb_clockwise.TabIndex = 72;
-            this.cb_clockwise.Text = "Clock Wise";
+            this.cb_clockwise.Text = "CLOCK WISE";
             this.cb_clockwise.UseVisualStyleBackColor = true;
             // 
             // gb_routineCount
@@ -1538,20 +1539,20 @@ namespace nAudioTest
             this.gb_routineCount.AutoSize = true;
             this.gb_routineCount.Controls.Add(this.tb_RoutineCount);
             this.gb_routineCount.Controls.Add(this.lb_routineCount);
-            this.gb_routineCount.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
+            this.gb_routineCount.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
             this.gb_routineCount.Location = new System.Drawing.Point(775, 576);
             this.gb_routineCount.Name = "gb_routineCount";
             this.gb_routineCount.Size = new System.Drawing.Size(190, 93);
             this.gb_routineCount.TabIndex = 71;
             this.gb_routineCount.TabStop = false;
-            this.gb_routineCount.Text = "Routine Count";
+            this.gb_routineCount.Text = "ROUTINE COUNT";
             // 
             // tb_RoutineCount
             // 
             this.tb_RoutineCount.Font = new System.Drawing.Font("휴먼둥근헤드라인", 18F);
-            this.tb_RoutineCount.Location = new System.Drawing.Point(82, 33);
+            this.tb_RoutineCount.Location = new System.Drawing.Point(65, 33);
             this.tb_RoutineCount.Name = "tb_RoutineCount";
-            this.tb_RoutineCount.Size = new System.Drawing.Size(32, 35);
+            this.tb_RoutineCount.Size = new System.Drawing.Size(62, 35);
             this.tb_RoutineCount.TabIndex = 44;
             this.tb_RoutineCount.Text = "2";
             this.tb_RoutineCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1572,19 +1573,19 @@ namespace nAudioTest
             this.gb_stimulationTime.Controls.Add(this.tb_StimulationTimeWait);
             this.gb_stimulationTime.Controls.Add(this.tb_StimulationTime);
             this.gb_stimulationTime.Controls.Add(this.lb_stimulationTime);
-            this.gb_stimulationTime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
+            this.gb_stimulationTime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
             this.gb_stimulationTime.Location = new System.Drawing.Point(775, 475);
             this.gb_stimulationTime.Name = "gb_stimulationTime";
             this.gb_stimulationTime.Size = new System.Drawing.Size(190, 93);
             this.gb_stimulationTime.TabIndex = 70;
             this.gb_stimulationTime.TabStop = false;
-            this.gb_stimulationTime.Text = "Stimulation Time";
+            this.gb_stimulationTime.Text = "STIMULATION TIME";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("휴먼둥근헤드라인", 20F);
-            this.label7.Location = new System.Drawing.Point(90, 37);
+            this.label7.Location = new System.Drawing.Point(85, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(26, 28);
             this.label7.TabIndex = 43;
@@ -1593,9 +1594,9 @@ namespace nAudioTest
             // tb_StimulationTimeWait
             // 
             this.tb_StimulationTimeWait.Font = new System.Drawing.Font("휴먼둥근헤드라인", 18F);
-            this.tb_StimulationTimeWait.Location = new System.Drawing.Point(119, 33);
+            this.tb_StimulationTimeWait.Location = new System.Drawing.Point(115, 33);
             this.tb_StimulationTimeWait.Name = "tb_StimulationTimeWait";
-            this.tb_StimulationTimeWait.Size = new System.Drawing.Size(32, 35);
+            this.tb_StimulationTimeWait.Size = new System.Drawing.Size(62, 35);
             this.tb_StimulationTimeWait.TabIndex = 42;
             this.tb_StimulationTimeWait.Text = "2";
             this.tb_StimulationTimeWait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1604,9 +1605,9 @@ namespace nAudioTest
             // tb_StimulationTime
             // 
             this.tb_StimulationTime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 18F);
-            this.tb_StimulationTime.Location = new System.Drawing.Point(52, 33);
+            this.tb_StimulationTime.Location = new System.Drawing.Point(17, 33);
             this.tb_StimulationTime.Name = "tb_StimulationTime";
-            this.tb_StimulationTime.Size = new System.Drawing.Size(32, 35);
+            this.tb_StimulationTime.Size = new System.Drawing.Size(64, 35);
             this.tb_StimulationTime.TabIndex = 41;
             this.tb_StimulationTime.Text = "1";
             this.tb_StimulationTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1643,31 +1644,43 @@ namespace nAudioTest
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lb_testtime);
-            this.groupBox1.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
+            this.groupBox1.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
             this.groupBox1.Location = new System.Drawing.Point(971, 475);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(268, 140);
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Test Time";
+            this.groupBox1.Text = "TEST TIME";
             // 
             // gbOption
             // 
             this.gbOption.Controls.Add(this.cb_allRandom);
             this.gbOption.Controls.Add(this.cb_clockwise);
-            this.gbOption.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
+            this.gbOption.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
             this.gbOption.Location = new System.Drawing.Point(971, 621);
             this.gbOption.Name = "gbOption";
             this.gbOption.Size = new System.Drawing.Size(268, 48);
             this.gbOption.TabIndex = 79;
             this.gbOption.TabStop = false;
-            this.gbOption.Text = "Option";
+            this.gbOption.Text = "OPTION";
+            // 
+            // btnNoiseRefresh
+            // 
+            this.btnNoiseRefresh.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNoiseRefresh.Location = new System.Drawing.Point(651, 95);
+            this.btnNoiseRefresh.Name = "btnNoiseRefresh";
+            this.btnNoiseRefresh.Size = new System.Drawing.Size(85, 28);
+            this.btnNoiseRefresh.TabIndex = 48;
+            this.btnNoiseRefresh.Text = "REFRESH";
+            this.btnNoiseRefresh.UseVisualStyleBackColor = true;
+            this.btnNoiseRefresh.Click += new System.EventHandler(this.btnNoiseRefresh_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 979);
+            this.Controls.Add(this.btnNoiseRefresh);
             this.Controls.Add(this.gbOption);
             this.Controls.Add(this.pn_Random);
             this.Controls.Add(this.groupBox1);
@@ -1873,6 +1886,7 @@ namespace nAudioTest
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.ProgressBar progressBar5;
         public System.Windows.Forms.ProgressBar progressBar6;
+        private System.Windows.Forms.Button btnNoiseRefresh;
     }
 }
 

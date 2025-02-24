@@ -178,10 +178,26 @@ namespace nAudioTest
         {
             switch (Properties.Settings.Default.save_selectedmode)
             {
-                case 0: rbSerial.Checked = true; break;
-                case 1: rbRandom.Checked = true; break;
-                case 2: rbManual.Checked = true; break;
-                case 3: rbPreset.Checked = true; break;
+                case 0:
+                    gbOption.Enabled = true;
+                    cb_clockwise.Enabled = true;
+                    cb_allRandom.Enabled = false;
+                    rbSerial.Checked = true; 
+                    break;
+                case 1: 
+                    rbRandom.Checked = true;
+                    gbOption.Enabled = true;
+                    cb_clockwise.Enabled = false;
+                    cb_allRandom.Enabled = true; 
+                    break;
+                case 2: 
+                    rbManual.Checked = true;
+                    gbOption.Enabled = false;
+                    break;
+                case 3: 
+                    rbPreset.Checked = true;
+                    gbOption.Enabled = false; 
+                    break;
             }
             tb_StimulationTime.Text = Properties.Settings.Default.save_tb_stimulationTime;
             tb_StimulationTimeWait.Text = Properties.Settings.Default.save_tb_stimulationTimeWait;
@@ -365,6 +381,25 @@ namespace nAudioTest
 
         private void cbStart_CheckedChanged(object sender, EventArgs e)
         {
+            try
+            {
+                waveSource.DeviceNumber = cbLineInput.SelectedIndex;
+            }
+            catch
+            {
+                MessageBox.Show("라인 입력 장치를 연결해주세요!");
+                return;
+
+            }
+            try
+            {
+                asioOut = new AsioOut(comboBox1.SelectedIndex); // ASIO 출력 장치 선택
+            }
+            catch
+            {
+                MessageBox.Show("출력 장치를 연결해주세요!");
+                return;
+            }
             gbMode.Enabled = false;
             tbSource.Enabled = false;
             gbOption.Enabled = false;
@@ -628,7 +663,10 @@ namespace nAudioTest
         {
             if (rbSerial.Checked)
             {
-                for(int i = 0; i < 8; i++)
+                gbOption.Enabled = true;
+                cb_clockwise.Enabled = true;
+                cb_allRandom.Enabled = false;
+                for (int i = 0; i < 8; i++)
                 {
                     _checkboxes[0,i].Enabled = false;
                 }
@@ -640,6 +678,9 @@ namespace nAudioTest
         {
             if (rbRandom.Checked)
             {
+                gbOption.Enabled = true;
+                cb_clockwise.Enabled = false;
+                cb_allRandom.Enabled = true;
                 for (int i = 0; i < 8; i++)
                 {
                     _checkboxes[0, i].Enabled = false;
@@ -660,6 +701,7 @@ namespace nAudioTest
         {
             if (rbManual.Checked)
             {
+                gbOption.Enabled = false;
                 for (int i = 0; i < 8; i++)
                 {
                     _checkboxes[0, i].Enabled = true;
@@ -670,9 +712,12 @@ namespace nAudioTest
         }
         private void rbPreset_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbRandom.Checked)
+            if (rbPreset.Checked)
             {
-                for(int i = 0; i < 4; i++)
+                gbOption.Enabled = false;
+                cb_clockwise.Checked = false;
+                cb_allRandom.Enabled = false;
+                for (int i = 0; i < 4; i++)
                 {
                     for (int j = 0; j < 8; i++)
                     {
@@ -769,9 +814,9 @@ namespace nAudioTest
                 groupBox8.Visible = false; // ch7
                 groupBox9.Visible = false; // ch8
 
-                groupBox3.Location = new Point(657, 384); // ch2 , 90도
+                groupBox3.Location = new Point(657, 419); // ch2 , 90도
                 groupBox4.Location = new Point(332, 777); // ch3. 180도
-                groupBox5.Location = new Point(10, 384); // ch4, 270도
+                groupBox5.Location = new Point(10, 419); // ch4, 270도
 
             }
             else if(cbChSel.SelectedItem.ToString() == "5")
@@ -781,10 +826,10 @@ namespace nAudioTest
                 groupBox8.Visible = false;
                 groupBox9.Visible = false;
 
-                groupBox3.Location = new Point(657, 384); // ch2 , 90도
-                groupBox4.Location = new Point(624, 628); // ch3. 135도
-                groupBox5.Location = new Point(42, 628); // ch4, 215도
-                groupBox6.Location = new Point(10, 384); // ch5, 270도
+                groupBox3.Location = new Point(657, 419); // ch2 , 90도
+                groupBox4.Location = new Point(601, 704); // ch3. 135도
+                groupBox5.Location = new Point(4262, 704); // ch4, 215도
+                groupBox6.Location = new Point(10, 419); // ch5, 270도
             }       
             else if(cbChSel.SelectedItem.ToString() == "8")
             {
@@ -793,9 +838,9 @@ namespace nAudioTest
                 groupBox8.Visible = true;
                 groupBox9.Visible = true;
 
-                groupBox3.Location = new Point(624, 140); // ch2 , 90도
-                groupBox4.Location = new Point(657, 384); // ch3. 135도
-                groupBox5.Location = new Point(624, 628); // ch4, 215도
+                groupBox3.Location = new Point(624, 133); // ch2 , 90도
+                groupBox4.Location = new Point(657, 419); // ch3. 135도
+                groupBox5.Location = new Point(601, 704); // ch4, 215도
                 groupBox6.Location = new Point(332, 777); // ch5, 270도
             }
         }
@@ -815,6 +860,17 @@ namespace nAudioTest
         private void cb_allRandom_CheckedChanged(object sender, EventArgs e)
         {
             rndArrMaker();
+        }
+
+        private void btnNoiseRefresh_Click(object sender, EventArgs e)
+        {
+            for (int i = 1; i < 4; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    _checkboxes[i, j].Checked = true;
+                }
+            }
         }
         // cbStart_CheckedChanged 이벤트 핸들러는 동일하게 유지하고 마이크 관련 초기화만 추가
     }
