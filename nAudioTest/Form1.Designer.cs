@@ -41,14 +41,14 @@ namespace nAudioTest
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("1");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("2");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("3");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("4");
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("5");
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("6");
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("7");
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("8");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("1");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("2");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("3");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("4");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("5");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("6");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("7");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("8");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
@@ -671,14 +671,14 @@ namespace nAudioTest
             this.lv_Random.GridLines = true;
             this.lv_Random.HideSelection = false;
             this.lv_Random.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15,
-            listViewItem16});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8});
             this.lv_Random.Location = new System.Drawing.Point(28, 60);
             this.lv_Random.MultiSelect = false;
             this.lv_Random.Name = "lv_Random";
@@ -1257,7 +1257,7 @@ namespace nAudioTest
             this.tpSource.Controls.Add(this.gbSetting);
             this.tpSource.Location = new System.Drawing.Point(4, 25);
             this.tpSource.Name = "tpSource";
-            this.tpSource.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSource.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tpSource.Size = new System.Drawing.Size(465, 351);
             this.tpSource.TabIndex = 0;
             this.tpSource.Text = "Source";
@@ -1268,7 +1268,7 @@ namespace nAudioTest
             this.tpLine.Controls.Add(this.groupBox11);
             this.tpLine.Location = new System.Drawing.Point(4, 25);
             this.tpLine.Name = "tpLine";
-            this.tpLine.Padding = new System.Windows.Forms.Padding(3);
+            this.tpLine.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tpLine.Size = new System.Drawing.Size(465, 351);
             this.tpLine.TabIndex = 1;
             this.tpLine.Text = "Line Input";
@@ -1667,7 +1667,7 @@ namespace nAudioTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1366, 1001);
+            this.ClientSize = new System.Drawing.Size(1366, 979);
             this.Controls.Add(this.gbOption);
             this.Controls.Add(this.pn_Random);
             this.Controls.Add(this.groupBox1);
@@ -1687,8 +1687,9 @@ namespace nAudioTest
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = " ";
+            this.Text = "SHiNS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbSetting.ResumeLayout(false);

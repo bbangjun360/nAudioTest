@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nAudioTest", "nAudioTest\nAudioTest.csproj", "{330A5129-32D8-48B6-8E1C-4FB69FD4AAE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHiNS", "nAudioTest\SHiNS.csproj", "{330A5129-32D8-48B6-8E1C-4FB69FD4AAE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

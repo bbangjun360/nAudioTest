@@ -101,19 +101,25 @@ namespace nAudioTest
             volumeslidersOutput = new VolumeSlider[8] { vsCH1, vsCH2, vsCH3, vsCH4, vsCH5, vsCH6, vsCH7, vsCH8 };
             audioFileReaderMixers = new AudioFileReader[8, 4];
             mixedmonofiles = new StereoToMonoSampleProvider[8];
-
+            
             waveSource = new WaveInEvent { WaveFormat = new WaveFormat(44100, 16, 2) };
-            waveSource.DeviceNumber = cbLineInput.SelectedIndex;
             waveSource.DataAvailable += OnDataAvailable;            // 마이크 데이터 처리 이벤트 등록
-            // ASIO 드라이버  확인용
+                                                                    // ASIO 드라이버  확인용
             var asioDriverNames = AsioOut.GetDriverNames();
             comboBox1.Items.AddRange(asioDriverNames.ToArray());
-            comboBox1.SelectedIndex = Properties.Settings.Default.asio_selected_index;
+            try
+            {
+                comboBox1.SelectedIndex = Properties.Settings.Default.asio_selected_index;
+            }
+            catch
+            {
+                MessageBox.Show("ASIO AudioCard 선택을 해주세요.");
+            }
             var inputDevices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
             cbLineInput.Items.Clear();
             cbLineInput.Items.AddRange(inputDevices.ToArray());
             cbLineInput.SelectedIndex = Properties.Settings.Default.input_device_selected_index;
-
+           
             // mp3 파일 불러오는용
             //int nLocalDirIndex = System.Windows.Forms.Application.StartupPath.IndexOf("bin");
             //string strLocalDir = System.Windows.Forms.Application.StartupPath.Substring(0, nLocalDirIndex) + @"bin\music\";
@@ -170,9 +176,6 @@ namespace nAudioTest
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            Console.WriteLine("Base Directory: " + baseDirectory);
-
             switch (Properties.Settings.Default.save_selectedmode)
             {
                 case 0: rbSerial.Checked = true; break;
@@ -410,6 +413,7 @@ namespace nAudioTest
                     }
                     if (tbSource.SelectedTab == this.tpLine)
                     {
+                        waveSource.DeviceNumber = Properties.Settings.Default.input_device_selected_index;
                         //audioMakerForMicInput();
                         waveSource.StartRecording(); // 마이크 입력 시작
                         audioMakerForMicInput();
