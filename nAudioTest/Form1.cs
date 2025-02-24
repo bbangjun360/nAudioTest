@@ -15,6 +15,7 @@ using NAudio.CoreAudioApi;
 using NAudio.Gui;
 using System.Windows.Forms.VisualStyles;
 using System.Runtime;
+using nAudioTest.Properties;
 
 namespace nAudioTest
 {
@@ -46,7 +47,16 @@ namespace nAudioTest
         VolumeSampleProvider[] volumeSampleProviders2;
         AsioOut asioOut;
         MixingSampleProvider[] mixingSampleProviders = new MixingSampleProvider[8];
-        float[] fVolume = new float[4] { 0.1f, 0.1f, 0.1f, 0.1f };
+        float[] fVolume = new float[4] { Properties.Settings.Default.save_input_volume1, Properties.Settings.Default.save_input_volume2, Properties.Settings.Default.save_input_volume3, Properties.Settings.Default.save_input_volume4 };
+        float[] fLineVolume = new float[2] { Properties.Settings.Default.save_line_volume1, Properties.Settings.Default.save_line_volume2 };
+        float[] fSpkVolume = new float[8] { Properties.Settings.Default.save_spk_volume1,
+                                                             Properties.Settings.Default.save_spk_volume2,
+                                                             Properties.Settings.Default.save_spk_volume3,
+                                                             Properties.Settings.Default.save_spk_volume4,
+                                                             Properties.Settings.Default.save_spk_volume5,
+                                                             Properties.Settings.Default.save_spk_volume6,
+                                                             Properties.Settings.Default.save_spk_volume7,
+                                                             Properties.Settings.Default.save_spk_volume8};
         float[,] fMicVolume = new float[8,4] { { 0.0f, 0.0f, 0.0f, 0.0f },
                                                { 0.0f, 0.0f, 0.0f, 0.0f },
                                                { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -55,7 +65,10 @@ namespace nAudioTest
                                                { 0.0f, 0.0f, 0.0f, 0.0f },
                                                { 0.0f, 0.0f, 0.0f, 0.0f },
                                                { 0.0f, 0.0f, 0.0f, 0.0f }};
-
+        public const int SOURCE1 = 0;
+        public const int SOURCE2 = 1;
+        public const int SOURCE3 = 2;
+        public const int SOURCE4 = 3;
         String[] strStimulDir = 
         {
             "Noise.mp3",
@@ -63,13 +76,6 @@ namespace nAudioTest
             "C.mp3",
             "D.mp3"
         };
-
-        System.Threading.Timer TESTTIME_ThreadTimer;
-        System.Threading.Timer StimulationTime_ThreadTimer;
-        System.Threading.Timer StimulationTimeWait_ThreadTimer;
-        delegate void TimerEventFiredDelegate_TESTTIME();
-        delegate void TimerEventFiredDelegate_StimulationTime();
-        delegate void TimerEventFiredDelegate_StimulationTimeWait();
 
         public Form1()
         {
@@ -91,9 +97,9 @@ namespace nAudioTest
                 {checkBox25, checkBox26, checkBox27, checkBox28, checkBox29, checkBox30, checkBox31,checkBox32 } };
             buttons = new Button[4] { btnSel1, btnSel2, btnSel3, btnSel4 };
             textBoxes = new TextBox[4] { tbPath1, tbPath2, tbPath3, tbPath14 };
-            volumesliders = new VolumeSlider[4] {vsInput1, vsInput2, vsInput3, vsInput4 };
-            volumeslidersOutput = new VolumeSlider[8] {vsCH1, vsCH2, vsCH3, vsCH4, vsCH5, vsCH6, vsCH7, vsCH8 };
-            audioFileReaderMixers = new AudioFileReader[8,4];
+            volumesliders = new VolumeSlider[6] { vsInput1, vsInput2, vsInput3, vsInput4, vsInput5, vsInput6 };
+            volumeslidersOutput = new VolumeSlider[8] { vsCH1, vsCH2, vsCH3, vsCH4, vsCH5, vsCH6, vsCH7, vsCH8 };
+            audioFileReaderMixers = new AudioFileReader[8, 4];
             mixedmonofiles = new StereoToMonoSampleProvider[8];
 
             waveSource = new WaveInEvent { WaveFormat = new WaveFormat(44100, 16, 2) };
@@ -119,28 +125,42 @@ namespace nAudioTest
             textBoxes[1].Text = strDir[1].Split('\\')[strDir[1].Split('\\').Length - 1];
             textBoxes[2].Text = strDir[2].Split('\\')[strDir[2].Split('\\').Length - 1];
             textBoxes[3].Text = strDir[3].Split('\\')[strDir[3].Split('\\').Length - 1];
-            lbTestFolderPath.Text = Properties.Settings.Default.path_test;
+
+
+
             for (int i = 0; i < strStimulDir.Length; i++)
             {
                 //strDir[i] = strLocalDir + strStimulDir[i];
                 //textBoxes[i].Text = strDir[i].Split('\\')[strDir[i].Split('\\').Length - 1];
             }
-                // 체크박스 이벤트 핸들러 세팅용
+            // 체크박스 이벤트 핸들러 세팅용
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
                     int localI = i;
                     int localJ = j;
-                     _checkboxes[localI, localJ].CheckedChanged += (sender, e) => { cbEventHandler(sender, e); };
+                    _checkboxes[localI, localJ].CheckedChanged += (sender, e) => { cbEventHandler(sender, e); };
                 }
             }
-            for(int i = 0; i <4; i++)
+            for (int i = 0; i < 6; i++)
             {
-                volumesliders[i].Volume = fVolume[i];
+                if (i < 4)
+                {
+                    volumesliders[i].Volume = fVolume[i];
+                }
+                else
+                {
+                    volumesliders[i].Volume = fLineVolume[i - 4];
+                }
                 volumesliders[i].VolumeChanged += (sender, e) => { vsEventHandler(sender, e); };
             }
-            foreach(Button button in buttons)
+            for (int i = 0; i < 8; i++)
+            { 
+                volumeslidersOutput[i].VolumeChanged += (sender, e) => { vsSpkEventHandler(sender, e); };
+                volumeslidersOutput[i].Volume = fSpkVolume[i];
+            }
+            foreach (Button button in buttons)
             {
                 button.Click += (sender, e) => { btnEventHandler(sender, e); };
             }
@@ -150,47 +170,41 @@ namespace nAudioTest
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Console.WriteLine("Base Directory: " + baseDirectory);
+
             switch (Properties.Settings.Default.save_selectedmode)
             {
-                case 1: rbSerial.Checked = true; break;
-                case 2: rbRandom.Checked = true; break;
-                case 3: rbManual.Checked = true; break;
-                case 4: rbPreset.Checked = true; break;
+                case 0: rbSerial.Checked = true; break;
+                case 1: rbRandom.Checked = true; break;
+                case 2: rbManual.Checked = true; break;
+                case 3: rbPreset.Checked = true; break;
             }
             tb_StimulationTime.Text = Properties.Settings.Default.save_tb_stimulationTime;
             tb_StimulationTimeWait.Text = Properties.Settings.Default.save_tb_stimulationTimeWait;
             tb_RoutineCount.Text = Properties.Settings.Default.save_tb_routineTime;
             cb_clockwise.Checked = Properties.Settings.Default.save_clockwise;
             cb_allRandom.Checked = Properties.Settings.Default.save_all_random;
+            cbChSel.SelectedItem = Properties.Settings.Default.save_ch_sel.ToString();
+
+            if (Properties.Settings.Default.path_test == null)
+            {
+                
+                lbTestFolderPath.Text = AppDomain.CurrentDomain.BaseDirectory + "//test_source";
+                Properties.Settings.Default.path_test = lbTestFolderPath.Text;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                lbTestFolderPath.Text = Properties.Settings.Default.path_test;
+            }
+            if (!rbRandom.Checked)
+            {
+                pn_Random.Visible = false;
+                this.Size = new Size(1273, 1040);
+            }
         }
-        void TESTTIME_timerCallBack(Object state)
-        {
-            BeginInvoke(new TimerEventFiredDelegate_TESTTIME(TESTTIME_timerWork));
-        }
-        void StimulationTime_timerCallBack(Object state)
-        {
-            BeginInvoke(new TimerEventFiredDelegate_TESTTIME(StimulationTime_timerWork));
-        }
-        void StimulationTimeWait_timerCallBack(Object state)
-        {
-            BeginInvoke(new TimerEventFiredDelegate_TESTTIME(StimulationTimeWait_timerWork));
-        }
-        long testtime_time = 0;
-        int stimulationTime_time = 0;
-        int stimulationTimeWait_time = 0;
-        private void TESTTIME_timerWork()
-        {
-            testtime_time += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
-            lb_testtime.Text = (testtime_time / 60).ToString("00") + ":" + (testtime_time % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
-        }
-        private void StimulationTime_timerWork()
-        {                                                                   //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
-          
-        }
-        private void StimulationTimeWait_timerWork()
-        {                                                                   //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
-           
-        }
+       
         private void audioMaker()
         {
             
@@ -198,7 +212,16 @@ namespace nAudioTest
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    audioFileReaderMixers[j, i] = new AudioFileReader(strDir[i]);
+                    try
+                    {
+                        audioFileReaderMixers[j, i] = new AudioFileReader(strDir[i]);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("입력 .mp3 확인해주세요");
+                        TestStop();
+                        return;
+                    }
                     audioFileReaderMixers[j, i].Volume = 0.0f;
                 }
                 Console.WriteLine("audio #" + i + ": " + audioFileReaderMixers[0, i].WaveFormat);
@@ -229,14 +252,14 @@ namespace nAudioTest
             }
             for (int i = 0; i < 8; i++)
             {
-                volumeSampleProviders1[0][i] = 0.5f;
+                volumeSampleProviders1[0][i] = fSpkVolume[i];
             }
         }
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
         {
             asioOut.Dispose();
             asioOut = null;
-            if (!rbMic.Checked)
+            if (tbSource.SelectedTab == this.tpSource)
             {
                 for (int i = 0; i < 8; i++)
                 {
@@ -251,42 +274,45 @@ namespace nAudioTest
         }
         private void cbEventHandler(object sender, EventArgs e)
         {
-            CheckBox cbTemp = (CheckBox)sender;
-            int num = Int32.Parse(cbTemp.Name.Substring(8));
-            int ch = (num - 1)%8;
-            for(int i = 0; i < 4; i++)
+            if (cbStart.Checked)
             {
-                if (_checkboxes[i, ch].Checked)
+                CheckBox cbTemp = (CheckBox)sender;
+                int num = Int32.Parse(cbTemp.Name.Substring(8));
+                int ch = (num - 1) % 8;
+                for (int i = 0; i < 4; i++)
                 {
-                    Console.WriteLine(_checkboxes[i, ch].Name + "-> TRUE");
-                    if(!rbMic.Checked) audioFileReaderMixers[ch, i].Volume = fVolume[i];
-                    if (rbMic.Checked)
+                    if (_checkboxes[i, ch].Checked)
                     {
-                        if (i == 0) stereoToMono[ch].LeftVolume = fVolume[i];
-                        if (i == 1) stereoToMono[ch].RightVolume = fVolume[i];
+                        Console.WriteLine(_checkboxes[i, ch].Name + "-> TRUE");
+                        if (tbSource.SelectedTab == this.tpSource) audioFileReaderMixers[ch, i].Volume = fVolume[i];
+                        if (tbSource.SelectedTab == this.tpLine)
+                        {
+                            if (i == 0) stereoToMono[ch].LeftVolume = fLineVolume[i];
+                            if (i == 1) stereoToMono[ch].RightVolume = fLineVolume[i];
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine(_checkboxes[i, ch].Name + "-> FALSE");
+                        if (tbSource.SelectedTab == this.tpSource) audioFileReaderMixers[ch, i].Volume = 0.0f;
+                        if (tbSource.SelectedTab == this.tpLine)
+                        {
+                            if (i == 0) stereoToMono[ch].LeftVolume = 0.0f;
+                            if (i == 1) stereoToMono[ch].RightVolume = 0.0f;
+                        }
+
                     }
                 }
-                else
+                if (num <= 8)
                 {
-                    Console.WriteLine(_checkboxes[i, ch].Name + "-> FALSE");
-                    if (!rbMic.Checked) audioFileReaderMixers[ch, i].Volume = 0.0f;
-                    if (rbMic.Checked)
+                    if (_checkboxes[0, ch].Checked)
                     {
-                        if (i == 0) stereoToMono[ch].LeftVolume = 0.0f;
-                        if (i == 1) stereoToMono[ch].RightVolume = 0.0f;
+                        _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOn;
                     }
-                       
-                }
-            }
-            if (num <= 8)
-            {
-                if (_checkboxes[0, ch].Checked)
-                {
-                    _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOn;
-                }
-                else
-                {
-                    _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOff;
+                    else
+                    {
+                        _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOff;
+                    }
                 }
             }
         }
@@ -294,14 +320,28 @@ namespace nAudioTest
         {
             VolumeSlider volumeSlider = (VolumeSlider)sender;
             int n = Int32.Parse(volumeSlider.Name.Replace("vsInput", "")) - 1;
-            fVolume[n] = volumesliders[n].Volume;
-            for(int i =0; i < 8; i++)
+            if (tbSource.SelectedTab == this.tpSource)
             {
-                if (_checkboxes[n, i].Checked)
+                fVolume[n] = volumesliders[n].Volume;
+                for (int i = 0; i < 8; i++)
                 {
-                    audioFileReaderMixers[i, n].Volume = fVolume[n];
+                    if (_checkboxes[n, i].Checked)
+                    {
+                        audioFileReaderMixers[i, n].Volume = fVolume[n];
+                    }
                 }
             }
+            else if (tbSource.SelectedTab == this.tpLine)
+            {
+                fLineVolume[n-4] = volumesliders[n].Volume;
+            }
+        }
+        private void vsSpkEventHandler(object sender, EventArgs e)
+        {
+            VolumeSlider volumeSlider = (VolumeSlider)sender;
+            int n = Int32.Parse(volumeSlider.Name.Replace("vsCH", "")) - 1;
+            fSpkVolume[n] = volumeslidersOutput[n].Volume;
+            //olumeSampleProviders1[0][n] = fSpkVolume[n];
         }
 
         private void btnEventHandler(object sender, EventArgs e)
@@ -322,15 +362,14 @@ namespace nAudioTest
 
         private void cbStart_CheckedChanged(object sender, EventArgs e)
         {
+            gbMode.Enabled = false;
+            tbSource.Enabled = false;
+            gbOption.Enabled = false;
             if (cbStart.Checked)
             {
-                lb_testtime.Text = "00:00";
+                TimerResetandStart();
                 cbStart.Text = "TEST STOP";
                 cbStart.BackColor = Color.Red;
-                stimulationTime_time = 0;
-                stimulationTimeWait_time = 0;
-                TESTTIME_ThreadTimer.Change(0, 1000);
-                StimulationTime_ThreadTimer.Change(0, 1000);
                 if (!rbManual.Checked)
                 {
                     for (int i = 0; i < 4; i++)
@@ -353,7 +392,7 @@ namespace nAudioTest
                 }
                 if (audioFileReaderMixers[0, 0] == null)
                 {
-                    if (rbSource.Checked)
+                    if (tbSource.SelectedTab == this.tpSource)
                     {
                         audioMaker();
                         for (int i = 0; i < 4; i++)
@@ -369,7 +408,7 @@ namespace nAudioTest
                         asioOut.Init(volumeSampleProviders1[0]);
                         asioOut.Play();
                     }
-                    if (rbMic.Checked)
+                    if (tbSource.SelectedTab == this.tpLine)
                     {
                         //audioMakerForMicInput();
                         waveSource.StartRecording(); // 마이크 입력 시작
@@ -378,31 +417,81 @@ namespace nAudioTest
                         asioOut.Play();
                     }
                 }
-                //timer1.Start();
-            }
-            else
-            {
-                if (!rbManual.Checked)
+
+                for (int i = 0; i < 4; i++)
                 {
-                    for (int i = 1; i < 4; i++)
+                    for (int j = 0; j< 8; j++)
                     {
-                        for (int j = 0; j < 8; j++)
+                        if (_checkboxes[i, j].Checked)
                         {
-                            _checkboxes[i, j].Enabled = true;
+                            Console.WriteLine(_checkboxes[i, j].Name + "-> TRUE");
+                            if (tbSource.SelectedTab == this.tpSource) audioFileReaderMixers[j, i].Volume = fVolume[i];
+                            if (tbSource.SelectedTab == this.tpLine)
+                            {
+                                if (i == 0) stereoToMono[j].LeftVolume = fLineVolume[i];
+                                if (i == 1) stereoToMono[j].RightVolume = fLineVolume[i];
+                            }
                         }
                     }
                 }
-                cbStart.Text = "PLAY";
-                cbStart.BackColor = Color.PaleGreen;
-                asioOut?.Stop();
-                waveSource?.StopRecording(); // 마이크 입력 중지
-
-                //timer1.Stop();
+                    //timer1.Start();
             }
+            else
+            {
+                TestStop();
+            }
+        }
+        public void TestStop()
+        {
+            gbMode.Enabled = true;
+            tbSource.Enabled = true;
+            gbOption.Enabled = true;
+            if (!rbManual.Checked)
+            {
+                for (int i = 1; i < 4; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        _checkboxes[i, j].Enabled = true;
+                        if(tbSource.SelectedTab == this.tpLine)
+                        {
+                            if(i >= 2)
+                                _checkboxes[i, j].Enabled = false;
+                        }
+                    }
+                }
+            }
+            
+            cbStart.Text = "TEST START";
+            cbStart.BackColor = Color.PaleGreen;
+            asioOut?.Stop();
+            waveSource?.StopRecording(); // 마이크 입력 중지
+            routineCountChk = 0;
+            currentCh = 0;
+            randomvalue = 1;
+            routineCntSum = 0;
+
+            tb_StimulationTime.Enabled = true;
+            tb_StimulationTimeWait.Enabled = true;
+            tb_RoutineCount.Enabled = true;
+            TESTTIME_ThreadTimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
+            StimulationTime_ThreadTimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
+            StimulationTimeWait_ThreadTimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
+            tb_RoutineCount.Text = Properties.Settings.Default.save_tb_routineTime;
+            //timer1.Stop();
+
+                for(int i = 0; i< 8; i++)
+                {
+                    Console.WriteLine(_checkboxes[SOURCE1, i].Name + "-> FALSE");
+                    _checkboxes[SOURCE1, i].BackgroundImage = Properties.Resources.spkOff;
+                    //if (tbSource.SelectedTab == this.tpSource) audioFileReaderMixers[i, SOURCE1].Volume = 0.0f;
+                    //if (tbSource.SelectedTab == this.tpLine) stereoToMono[i].LeftVolume = 0.0f;
+                }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            TestStop();
             Properties.Settings.Default.path1 = strDir[0];
             Properties.Settings.Default.path2 = strDir[1];
             Properties.Settings.Default.path3 = strDir[2];
@@ -412,20 +501,25 @@ namespace nAudioTest
             Properties.Settings.Default.save_tb_routineTime = tb_RoutineCount.Text;
             Properties.Settings.Default.save_clockwise = cb_clockwise.Checked;
             Properties.Settings.Default.save_all_random = cb_allRandom.Checked;
+
+            Properties.Settings.Default.save_input_volume1 = fVolume[0];
+            Properties.Settings.Default.save_input_volume2 = fVolume[1];
+            Properties.Settings.Default.save_input_volume3 = fVolume[2];
+            Properties.Settings.Default.save_input_volume4 = fVolume[3];
+            Properties.Settings.Default.save_line_volume1 = fLineVolume[0];
+            Properties.Settings.Default.save_line_volume2 = fLineVolume[1];
+
+            Properties.Settings.Default.save_spk_volume1 = fSpkVolume[0];
+            Properties.Settings.Default.save_spk_volume2 = fSpkVolume[1];
+            Properties.Settings.Default.save_spk_volume3 = fSpkVolume[2];
+            Properties.Settings.Default.save_spk_volume4 = fSpkVolume[3];
+            Properties.Settings.Default.save_spk_volume5 = fSpkVolume[4];
+            Properties.Settings.Default.save_spk_volume6 = fSpkVolume[5];
+            Properties.Settings.Default.save_spk_volume7 = fSpkVolume[6];
+            Properties.Settings.Default.save_spk_volume8 = fSpkVolume[7];
             Properties.Settings.Default.Save();
-
         }
 
-        private void rbSource_CheckedChanged(object sender, EventArgs e)
-        {
-            groupBox2.Enabled = true;
-        }
-
-        private void rbMic_CheckedChanged_1(object sender, EventArgs e)
-        {
-            groupBox2.Enabled = false;
-
-        }
         private void OnDataAvailable(object sender, WaveInEventArgs e)
         {
             
@@ -475,6 +569,7 @@ namespace nAudioTest
             switch(tbSource.SelectedIndex)
             {
                 case 0:
+                    cbStart.Enabled = true;
                     checkBox17.Enabled = true;
                     checkBox18.Enabled = true;
                     checkBox19.Enabled = true;
@@ -493,6 +588,7 @@ namespace nAudioTest
                     checkBox32.Enabled = true;
                     break;
                 case 1:
+                    cbStart.Enabled = true;
                     checkBox17.Enabled = false;
                     checkBox18.Enabled = false;
                     checkBox19.Enabled = false;
@@ -511,6 +607,7 @@ namespace nAudioTest
                     checkBox32.Enabled = false;
                     break;
                 case 2:
+                    cbStart.Enabled = false;
                     break;
                     default: throw new ArgumentException();
             }
@@ -532,7 +629,8 @@ namespace nAudioTest
                     _checkboxes[0,i].Enabled = false;
                 }
             }
-
+            Properties.Settings.Default.save_selectedmode = 0;
+            Properties.Settings.Default.Save();
         }
         private void rbRandom_CheckedChanged(object sender, EventArgs e)
         {
@@ -542,6 +640,16 @@ namespace nAudioTest
                 {
                     _checkboxes[0, i].Enabled = false;
                 }
+                pn_Random.Visible = true;
+                this.Size = new Size(1382, 1040);
+                rndArrMaker();
+                Properties.Settings.Default.save_selectedmode = 1;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                pn_Random.Visible = false;
+                this.Size = new Size(1273, 1040);
             }
         }
         private void rbManual_CheckedChanged(object sender, EventArgs e)
@@ -552,6 +660,8 @@ namespace nAudioTest
                 {
                     _checkboxes[0, i].Enabled = true;
                 }
+                Properties.Settings.Default.save_selectedmode = 2;
+                Properties.Settings.Default.Save();
             }
         }
         private void rbPreset_CheckedChanged(object sender, EventArgs e)
@@ -565,6 +675,8 @@ namespace nAudioTest
                         _checkboxes[i, j].Enabled = false;
                     }
                 }
+                Properties.Settings.Default.save_selectedmode = 3;
+                Properties.Settings.Default.Save();
             }
         }
         private void label8_Click(object sender, EventArgs e)
@@ -639,7 +751,67 @@ namespace nAudioTest
             
         }
 
+        private void cbChSel_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+            Properties.Settings.Default.save_ch_sel = Convert.ToInt32(cbChSel.SelectedItem);
+            Properties.Settings.Default.Save();
+            Console.WriteLine(Properties.Settings.Default.save_ch_sel);
+
+            if (cbChSel.SelectedItem.ToString() == "4")
+            {
+                groupBox6.Visible = false; // ch5
+                groupBox7.Visible = false; // ch6
+                groupBox8.Visible = false; // ch7
+                groupBox9.Visible = false; // ch8
+
+                groupBox3.Location = new Point(657, 384); // ch2 , 90도
+                groupBox4.Location = new Point(332, 777); // ch3. 180도
+                groupBox5.Location = new Point(10, 384); // ch4, 270도
+
+            }
+            else if(cbChSel.SelectedItem.ToString() == "5")
+            {
+                groupBox6.Visible = true;
+                groupBox7.Visible = false;
+                groupBox8.Visible = false;
+                groupBox9.Visible = false;
+
+                groupBox3.Location = new Point(657, 384); // ch2 , 90도
+                groupBox4.Location = new Point(624, 628); // ch3. 135도
+                groupBox5.Location = new Point(42, 628); // ch4, 215도
+                groupBox6.Location = new Point(10, 384); // ch5, 270도
+            }       
+            else if(cbChSel.SelectedItem.ToString() == "8")
+            {
+                groupBox6.Visible = true;
+                groupBox7.Visible = true;
+                groupBox8.Visible = true;
+                groupBox9.Visible = true;
+
+                groupBox3.Location = new Point(624, 140); // ch2 , 90도
+                groupBox4.Location = new Point(657, 384); // ch3. 135도
+                groupBox5.Location = new Point(624, 628); // ch4, 215도
+                groupBox6.Location = new Point(332, 777); // ch5, 270도
+            }
+        }
+
+        private void tb_StimulationTime_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.save_tb_stimulationTime = tb_StimulationTime.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void tb_StimulationTimeWait_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.save_tb_stimulationTimeWait = tb_StimulationTimeWait.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void cb_allRandom_CheckedChanged(object sender, EventArgs e)
+        {
+            rndArrMaker();
+        }
         // cbStart_CheckedChanged 이벤트 핸들러는 동일하게 유지하고 마이크 관련 초기화만 추가
     }
 

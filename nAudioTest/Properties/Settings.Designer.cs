@@ -178,5 +178,185 @@ namespace nAudioTest.Properties {
                 this["save_all_random"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int save_ch_sel {
+            get {
+                return ((int)(this["save_ch_sel"]));
+            }
+            set {
+                this["save_ch_sel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public float save_input_volume1 {
+            get {
+                return ((float)(this["save_input_volume1"]));
+            }
+            set {
+                this["save_input_volume1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public float save_input_volume2 {
+            get {
+                return ((float)(this["save_input_volume2"]));
+            }
+            set {
+                this["save_input_volume2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public float save_input_volume3 {
+            get {
+                return ((float)(this["save_input_volume3"]));
+            }
+            set {
+                this["save_input_volume3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public float save_input_volume4 {
+            get {
+                return ((float)(this["save_input_volume4"]));
+            }
+            set {
+                this["save_input_volume4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float save_line_volume1 {
+            get {
+                return ((float)(this["save_line_volume1"]));
+            }
+            set {
+                this["save_line_volume1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float save_line_volume2 {
+            get {
+                return ((float)(this["save_line_volume2"]));
+            }
+            set {
+                this["save_line_volume2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume1 {
+            get {
+                return ((float)(this["save_spk_volume1"]));
+            }
+            set {
+                this["save_spk_volume1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume2 {
+            get {
+                return ((float)(this["save_spk_volume2"]));
+            }
+            set {
+                this["save_spk_volume2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume3 {
+            get {
+                return ((float)(this["save_spk_volume3"]));
+            }
+            set {
+                this["save_spk_volume3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume4 {
+            get {
+                return ((float)(this["save_spk_volume4"]));
+            }
+            set {
+                this["save_spk_volume4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume5 {
+            get {
+                return ((float)(this["save_spk_volume5"]));
+            }
+            set {
+                this["save_spk_volume5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume6 {
+            get {
+                return ((float)(this["save_spk_volume6"]));
+            }
+            set {
+                this["save_spk_volume6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume7 {
+            get {
+                return ((float)(this["save_spk_volume7"]));
+            }
+            set {
+                this["save_spk_volume7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float save_spk_volume8 {
+            get {
+                return ((float)(this["save_spk_volume8"]));
+            }
+            set {
+                this["save_spk_volume8"] = value;
+            }
+        }
     }
 }

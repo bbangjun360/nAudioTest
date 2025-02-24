@@ -41,6 +41,14 @@ namespace nAudioTest
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("1");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("2");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("3");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("4");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("5");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("6");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("7");
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("8");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
@@ -85,6 +93,10 @@ namespace nAudioTest
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pn_Random = new System.Windows.Forms.Panel();
+            this.lv_Random = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lb_Random = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -119,14 +131,13 @@ namespace nAudioTest
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnTestFolderOpen = new System.Windows.Forms.CheckBox();
-            this.rbSource = new System.Windows.Forms.RadioButton();
-            this.rbMic = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.volumeSlider5 = new NAudio.Gui.VolumeSlider();
-            this.progressBar6 = new System.Windows.Forms.ProgressBar();
-            this.volumeSlider6 = new NAudio.Gui.VolumeSlider();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
+            this.progressBar6 = new System.Windows.Forms.ProgressBar();
+            this.vsInput6 = new NAudio.Gui.VolumeSlider();
+            this.vsInput5 = new NAudio.Gui.VolumeSlider();
             this.gbMode = new System.Windows.Forms.GroupBox();
             this.rbManual = new System.Windows.Forms.RadioButton();
             this.rbPreset = new System.Windows.Forms.RadioButton();
@@ -136,6 +147,8 @@ namespace nAudioTest
             this.tpSource = new System.Windows.Forms.TabPage();
             this.tpLine = new System.Windows.Forms.TabPage();
             this.tpSetting = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.cbChSel = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -170,8 +183,10 @@ namespace nAudioTest
             this.lb_testtime = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.gbOption = new System.Windows.Forms.GroupBox();
             this.gbSetting.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.pn_Random.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -182,7 +197,6 @@ namespace nAudioTest
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.gbMode.SuspendLayout();
             this.tbSource.SuspendLayout();
@@ -192,6 +206,7 @@ namespace nAudioTest
             this.gb_routineCount.SuspendLayout();
             this.gb_stimulationTime.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gbOption.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBox9
@@ -370,7 +385,7 @@ namespace nAudioTest
             this.gbSetting.Controls.Add(this.vsInput1);
             this.gbSetting.Controls.Add(this.progressBar1);
             this.gbSetting.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
-            this.gbSetting.Location = new System.Drawing.Point(6, 214);
+            this.gbSetting.Location = new System.Drawing.Point(6, 184);
             this.gbSetting.Name = "gbSetting";
             this.gbSetting.Size = new System.Drawing.Size(453, 156);
             this.gbSetting.TabIndex = 28;
@@ -444,9 +459,9 @@ namespace nAudioTest
             this.cbStart.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbStart.BackColor = System.Drawing.Color.PaleGreen;
             this.cbStart.Font = new System.Drawing.Font("휴먼둥근헤드라인", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbStart.Location = new System.Drawing.Point(775, 708);
+            this.cbStart.Location = new System.Drawing.Point(775, 675);
             this.cbStart.Name = "cbStart";
-            this.cbStart.Size = new System.Drawing.Size(470, 66);
+            this.cbStart.Size = new System.Drawing.Size(464, 66);
             this.cbStart.TabIndex = 43;
             this.cbStart.Text = "TEST START";
             this.cbStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -580,7 +595,7 @@ namespace nAudioTest
             this.groupBox2.Controls.Add(this.tbPath3);
             this.groupBox2.Controls.Add(this.tbPath2);
             this.groupBox2.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
-            this.groupBox2.Location = new System.Drawing.Point(6, 36);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(453, 172);
             this.groupBox2.TabIndex = 29;
@@ -637,6 +652,57 @@ namespace nAudioTest
             this.label2.Size = new System.Drawing.Size(71, 12);
             this.label2.TabIndex = 43;
             this.label2.Text = "Source.A";
+            // 
+            // pn_Random
+            // 
+            this.pn_Random.Controls.Add(this.lv_Random);
+            this.pn_Random.Controls.Add(this.lb_Random);
+            this.pn_Random.Location = new System.Drawing.Point(1248, 43);
+            this.pn_Random.Name = "pn_Random";
+            this.pn_Random.Size = new System.Drawing.Size(107, 607);
+            this.pn_Random.TabIndex = 78;
+            // 
+            // lv_Random
+            // 
+            this.lv_Random.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lv_Random.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lv_Random.Font = new System.Drawing.Font("새굴림", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lv_Random.GridLines = true;
+            this.lv_Random.HideSelection = false;
+            this.lv_Random.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15,
+            listViewItem16});
+            this.lv_Random.Location = new System.Drawing.Point(28, 60);
+            this.lv_Random.MultiSelect = false;
+            this.lv_Random.Name = "lv_Random";
+            this.lv_Random.Scrollable = false;
+            this.lv_Random.Size = new System.Drawing.Size(46, 520);
+            this.lv_Random.TabIndex = 67;
+            this.lv_Random.UseCompatibleStateImageBehavior = false;
+            this.lv_Random.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 80;
+            // 
+            // lb_Random
+            // 
+            this.lb_Random.AutoSize = true;
+            this.lb_Random.Font = new System.Drawing.Font("휴먼둥근헤드라인", 15F);
+            this.lb_Random.Location = new System.Drawing.Point(3, 9);
+            this.lb_Random.Name = "lb_Random";
+            this.lb_Random.Size = new System.Drawing.Size(102, 42);
+            this.lb_Random.TabIndex = 55;
+            this.lb_Random.Text = "Random\r\nOrder\r\n";
+            this.lb_Random.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox10
             // 
@@ -1014,9 +1080,9 @@ namespace nAudioTest
             // 
             this.pictureBox2.BackgroundImage = global::nAudioTest.Properties.Resources.programLogo1;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(1125, 869);
+            this.pictureBox2.Location = new System.Drawing.Point(905, 747);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(120, 120);
+            this.pictureBox2.Size = new System.Drawing.Size(225, 225);
             this.pictureBox2.TabIndex = 36;
             this.pictureBox2.TabStop = false;
             // 
@@ -1034,7 +1100,7 @@ namespace nAudioTest
             // 
             this.btnTestFolderOpen.Appearance = System.Windows.Forms.Appearance.Button;
             this.btnTestFolderOpen.AutoSize = true;
-            this.btnTestFolderOpen.Location = new System.Drawing.Point(408, 63);
+            this.btnTestFolderOpen.Location = new System.Drawing.Point(116, 55);
             this.btnTestFolderOpen.Name = "btnTestFolderOpen";
             this.btnTestFolderOpen.Size = new System.Drawing.Size(51, 22);
             this.btnTestFolderOpen.TabIndex = 37;
@@ -1042,80 +1108,68 @@ namespace nAudioTest
             this.btnTestFolderOpen.UseVisualStyleBackColor = true;
             this.btnTestFolderOpen.CheckedChanged += new System.EventHandler(this.btnTestFolderOpen_CheckedChanged);
             // 
-            // rbSource
-            // 
-            this.rbSource.AutoSize = true;
-            this.rbSource.Location = new System.Drawing.Point(3, 3);
-            this.rbSource.Name = "rbSource";
-            this.rbSource.Size = new System.Drawing.Size(67, 16);
-            this.rbSource.TabIndex = 38;
-            this.rbSource.Text = "Souce";
-            this.rbSource.UseVisualStyleBackColor = true;
-            this.rbSource.CheckedChanged += new System.EventHandler(this.rbSource_CheckedChanged);
-            // 
-            // rbMic
-            // 
-            this.rbMic.AccessibleRole = System.Windows.Forms.AccessibleRole.SpinButton;
-            this.rbMic.AutoSize = true;
-            this.rbMic.Checked = true;
-            this.rbMic.Location = new System.Drawing.Point(78, 3);
-            this.rbMic.Name = "rbMic";
-            this.rbMic.Size = new System.Drawing.Size(97, 16);
-            this.rbMic.TabIndex = 39;
-            this.rbMic.TabStop = true;
-            this.rbMic.Text = "Line Input";
-            this.rbMic.UseVisualStyleBackColor = true;
-            this.rbMic.CheckedChanged += new System.EventHandler(this.rbMic_CheckedChanged_1);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.rbSource);
-            this.panel1.Controls.Add(this.rbMic);
-            this.panel1.Location = new System.Drawing.Point(6, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(453, 24);
-            this.panel1.TabIndex = 40;
-            // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.volumeSlider5);
-            this.groupBox11.Controls.Add(this.progressBar6);
-            this.groupBox11.Controls.Add(this.volumeSlider6);
+            this.groupBox11.Controls.Add(this.label22);
+            this.groupBox11.Controls.Add(this.label23);
             this.groupBox11.Controls.Add(this.progressBar5);
+            this.groupBox11.Controls.Add(this.progressBar6);
+            this.groupBox11.Controls.Add(this.vsInput6);
+            this.groupBox11.Controls.Add(this.vsInput5);
             this.groupBox11.Location = new System.Drawing.Point(9, 14);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(438, 104);
+            this.groupBox11.Size = new System.Drawing.Size(450, 104);
             this.groupBox11.TabIndex = 48;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Line Input";
             // 
-            // volumeSlider5
+            // label22
             // 
-            this.volumeSlider5.Location = new System.Drawing.Point(327, 66);
-            this.volumeSlider5.Name = "volumeSlider5";
-            this.volumeSlider5.Size = new System.Drawing.Size(96, 15);
-            this.volumeSlider5.TabIndex = 31;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
+            this.label22.Location = new System.Drawing.Point(59, 60);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(69, 12);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Source.B";
             // 
-            // progressBar6
+            // label23
             // 
-            this.progressBar6.Location = new System.Drawing.Point(6, 30);
-            this.progressBar6.Name = "progressBar6";
-            this.progressBar6.Size = new System.Drawing.Size(315, 22);
-            this.progressBar6.TabIndex = 30;
-            // 
-            // volumeSlider6
-            // 
-            this.volumeSlider6.Location = new System.Drawing.Point(327, 37);
-            this.volumeSlider6.Name = "volumeSlider6";
-            this.volumeSlider6.Size = new System.Drawing.Size(96, 15);
-            this.volumeSlider6.TabIndex = 29;
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F);
+            this.label23.Location = new System.Drawing.Point(59, 29);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(71, 12);
+            this.label23.TabIndex = 51;
+            this.label23.Text = "Source.A";
             // 
             // progressBar5
             // 
-            this.progressBar5.Location = new System.Drawing.Point(6, 59);
+            this.progressBar5.Location = new System.Drawing.Point(6, 75);
             this.progressBar5.Name = "progressBar5";
-            this.progressBar5.Size = new System.Drawing.Size(315, 22);
-            this.progressBar5.TabIndex = 32;
+            this.progressBar5.Size = new System.Drawing.Size(176, 8);
+            this.progressBar5.TabIndex = 49;
+            // 
+            // progressBar6
+            // 
+            this.progressBar6.Location = new System.Drawing.Point(6, 44);
+            this.progressBar6.Name = "progressBar6";
+            this.progressBar6.Size = new System.Drawing.Size(176, 8);
+            this.progressBar6.TabIndex = 48;
+            // 
+            // vsInput6
+            // 
+            this.vsInput6.Location = new System.Drawing.Point(188, 60);
+            this.vsInput6.Name = "vsInput6";
+            this.vsInput6.Size = new System.Drawing.Size(259, 25);
+            this.vsInput6.TabIndex = 31;
+            // 
+            // vsInput5
+            // 
+            this.vsInput5.Location = new System.Drawing.Point(188, 29);
+            this.vsInput5.Name = "vsInput5";
+            this.vsInput5.Size = new System.Drawing.Size(259, 25);
+            this.vsInput5.TabIndex = 29;
             // 
             // gbMode
             // 
@@ -1124,7 +1178,7 @@ namespace nAudioTest
             this.gbMode.Controls.Add(this.rbRandom);
             this.gbMode.Controls.Add(this.rbSerial);
             this.gbMode.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
-            this.gbMode.Location = new System.Drawing.Point(775, 436);
+            this.gbMode.Location = new System.Drawing.Point(775, 404);
             this.gbMode.Name = "gbMode";
             this.gbMode.Size = new System.Drawing.Size(464, 56);
             this.gbMode.TabIndex = 49;
@@ -1148,6 +1202,7 @@ namespace nAudioTest
             // rbPreset
             // 
             this.rbPreset.AutoSize = true;
+            this.rbPreset.Enabled = false;
             this.rbPreset.Font = new System.Drawing.Font("휴먼둥근헤드라인", 10F);
             this.rbPreset.Location = new System.Drawing.Point(377, 25);
             this.rbPreset.Name = "rbPreset";
@@ -1191,20 +1246,19 @@ namespace nAudioTest
             this.tbSource.Location = new System.Drawing.Point(769, 18);
             this.tbSource.Name = "tbSource";
             this.tbSource.SelectedIndex = 0;
-            this.tbSource.Size = new System.Drawing.Size(473, 412);
+            this.tbSource.Size = new System.Drawing.Size(473, 380);
             this.tbSource.TabIndex = 47;
             this.tbSource.TabStop = false;
             this.tbSource.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tpSource
             // 
-            this.tpSource.Controls.Add(this.panel1);
             this.tpSource.Controls.Add(this.groupBox2);
             this.tpSource.Controls.Add(this.gbSetting);
             this.tpSource.Location = new System.Drawing.Point(4, 25);
             this.tpSource.Name = "tpSource";
             this.tpSource.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSource.Size = new System.Drawing.Size(465, 383);
+            this.tpSource.Size = new System.Drawing.Size(465, 351);
             this.tpSource.TabIndex = 0;
             this.tpSource.Text = "Source";
             this.tpSource.UseVisualStyleBackColor = true;
@@ -1215,13 +1269,15 @@ namespace nAudioTest
             this.tpLine.Location = new System.Drawing.Point(4, 25);
             this.tpLine.Name = "tpLine";
             this.tpLine.Padding = new System.Windows.Forms.Padding(3);
-            this.tpLine.Size = new System.Drawing.Size(465, 383);
+            this.tpLine.Size = new System.Drawing.Size(465, 351);
             this.tpLine.TabIndex = 1;
             this.tpLine.Text = "Line Input";
             this.tpLine.UseVisualStyleBackColor = true;
             // 
             // tpSetting
             // 
+            this.tpSetting.Controls.Add(this.label21);
+            this.tpSetting.Controls.Add(this.cbChSel);
             this.tpSetting.Controls.Add(this.label20);
             this.tpSetting.Controls.Add(this.label19);
             this.tpSetting.Controls.Add(this.label18);
@@ -1247,16 +1303,39 @@ namespace nAudioTest
             this.tpSetting.Controls.Add(this.comboBox1);
             this.tpSetting.Location = new System.Drawing.Point(4, 25);
             this.tpSetting.Name = "tpSetting";
-            this.tpSetting.Size = new System.Drawing.Size(465, 383);
+            this.tpSetting.Size = new System.Drawing.Size(465, 351);
             this.tpSetting.TabIndex = 2;
             this.tpSetting.Text = "Setting";
             this.tpSetting.UseVisualStyleBackColor = true;
             this.tpSetting.Click += new System.EventHandler(this.tpSetting_Click);
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(321, 100);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(59, 12);
+            this.label21.TabIndex = 59;
+            this.label21.Text = "채널 선택";
+            // 
+            // cbChSel
+            // 
+            this.cbChSel.FormattingEnabled = true;
+            this.cbChSel.Items.AddRange(new object[] {
+            "4",
+            "5",
+            "8"});
+            this.cbChSel.Location = new System.Drawing.Point(386, 97);
+            this.cbChSel.Name = "cbChSel";
+            this.cbChSel.Size = new System.Drawing.Size(41, 20);
+            this.cbChSel.TabIndex = 58;
+            this.cbChSel.Text = "8";
+            this.cbChSel.SelectedIndexChanged += new System.EventHandler(this.cbChSel_SelectedIndexChanged);
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 340);
+            this.label20.Location = new System.Drawing.Point(7, 323);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(65, 12);
             this.label20.TabIndex = 57;
@@ -1265,7 +1344,7 @@ namespace nAudioTest
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 309);
+            this.label19.Location = new System.Drawing.Point(7, 292);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(65, 12);
             this.label19.TabIndex = 56;
@@ -1274,7 +1353,7 @@ namespace nAudioTest
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 278);
+            this.label18.Location = new System.Drawing.Point(7, 261);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(65, 12);
             this.label18.TabIndex = 55;
@@ -1283,7 +1362,7 @@ namespace nAudioTest
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 247);
+            this.label17.Location = new System.Drawing.Point(7, 230);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 12);
             this.label17.TabIndex = 54;
@@ -1292,7 +1371,7 @@ namespace nAudioTest
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 216);
+            this.label16.Location = new System.Drawing.Point(7, 199);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 12);
             this.label16.TabIndex = 53;
@@ -1301,7 +1380,7 @@ namespace nAudioTest
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 185);
+            this.label15.Location = new System.Drawing.Point(7, 168);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(65, 12);
             this.label15.TabIndex = 52;
@@ -1310,7 +1389,7 @@ namespace nAudioTest
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 154);
+            this.label14.Location = new System.Drawing.Point(7, 137);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(65, 12);
             this.label14.TabIndex = 51;
@@ -1319,7 +1398,7 @@ namespace nAudioTest
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 123);
+            this.label13.Location = new System.Drawing.Point(7, 106);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 12);
             this.label13.TabIndex = 50;
@@ -1328,7 +1407,7 @@ namespace nAudioTest
             // vsCH8
             // 
             this.vsCH8.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH8.Location = new System.Drawing.Point(97, 334);
+            this.vsCH8.Location = new System.Drawing.Point(98, 317);
             this.vsCH8.Name = "vsCH8";
             this.vsCH8.Size = new System.Drawing.Size(177, 25);
             this.vsCH8.TabIndex = 49;
@@ -1336,7 +1415,7 @@ namespace nAudioTest
             // vsCH7
             // 
             this.vsCH7.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH7.Location = new System.Drawing.Point(97, 303);
+            this.vsCH7.Location = new System.Drawing.Point(98, 286);
             this.vsCH7.Name = "vsCH7";
             this.vsCH7.Size = new System.Drawing.Size(177, 25);
             this.vsCH7.TabIndex = 48;
@@ -1344,7 +1423,7 @@ namespace nAudioTest
             // vsCH6
             // 
             this.vsCH6.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH6.Location = new System.Drawing.Point(97, 272);
+            this.vsCH6.Location = new System.Drawing.Point(98, 255);
             this.vsCH6.Name = "vsCH6";
             this.vsCH6.Size = new System.Drawing.Size(177, 25);
             this.vsCH6.TabIndex = 47;
@@ -1352,7 +1431,7 @@ namespace nAudioTest
             // vsCH5
             // 
             this.vsCH5.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH5.Location = new System.Drawing.Point(97, 241);
+            this.vsCH5.Location = new System.Drawing.Point(98, 224);
             this.vsCH5.Name = "vsCH5";
             this.vsCH5.Size = new System.Drawing.Size(177, 25);
             this.vsCH5.TabIndex = 46;
@@ -1360,7 +1439,7 @@ namespace nAudioTest
             // vsCH4
             // 
             this.vsCH4.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH4.Location = new System.Drawing.Point(97, 210);
+            this.vsCH4.Location = new System.Drawing.Point(98, 193);
             this.vsCH4.Name = "vsCH4";
             this.vsCH4.Size = new System.Drawing.Size(177, 25);
             this.vsCH4.TabIndex = 45;
@@ -1368,7 +1447,7 @@ namespace nAudioTest
             // vsCH3
             // 
             this.vsCH3.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH3.Location = new System.Drawing.Point(97, 179);
+            this.vsCH3.Location = new System.Drawing.Point(98, 162);
             this.vsCH3.Name = "vsCH3";
             this.vsCH3.Size = new System.Drawing.Size(177, 25);
             this.vsCH3.TabIndex = 44;
@@ -1376,7 +1455,7 @@ namespace nAudioTest
             // vsCH2
             // 
             this.vsCH2.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH2.Location = new System.Drawing.Point(97, 148);
+            this.vsCH2.Location = new System.Drawing.Point(98, 131);
             this.vsCH2.Name = "vsCH2";
             this.vsCH2.Size = new System.Drawing.Size(177, 25);
             this.vsCH2.TabIndex = 43;
@@ -1384,7 +1463,7 @@ namespace nAudioTest
             // vsCH1
             // 
             this.vsCH1.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vsCH1.Location = new System.Drawing.Point(97, 117);
+            this.vsCH1.Location = new System.Drawing.Point(98, 100);
             this.vsCH1.Name = "vsCH1";
             this.vsCH1.Size = new System.Drawing.Size(177, 25);
             this.vsCH1.TabIndex = 42;
@@ -1392,16 +1471,17 @@ namespace nAudioTest
             // lbTestFolderPath
             // 
             this.lbTestFolderPath.AutoSize = true;
-            this.lbTestFolderPath.Location = new System.Drawing.Point(115, 68);
+            this.lbTestFolderPath.Font = new System.Drawing.Font("휴먼둥근헤드라인", 7F);
+            this.lbTestFolderPath.Location = new System.Drawing.Point(6, 78);
             this.lbTestFolderPath.Name = "lbTestFolderPath";
-            this.lbTestFolderPath.Size = new System.Drawing.Size(70, 12);
+            this.lbTestFolderPath.Size = new System.Drawing.Size(60, 11);
             this.lbTestFolderPath.TabIndex = 41;
             this.lbTestFolderPath.Text = "TEST 폴더";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 68);
+            this.label12.Location = new System.Drawing.Point(6, 60);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(104, 12);
             this.label12.TabIndex = 40;
@@ -1432,12 +1512,13 @@ namespace nAudioTest
             this.cb_allRandom.Checked = true;
             this.cb_allRandom.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_allRandom.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cb_allRandom.Location = new System.Drawing.Point(1090, 685);
+            this.cb_allRandom.Location = new System.Drawing.Point(125, 25);
             this.cb_allRandom.Name = "cb_allRandom";
             this.cb_allRandom.Size = new System.Drawing.Size(115, 17);
             this.cb_allRandom.TabIndex = 73;
             this.cb_allRandom.Text = "All Random";
             this.cb_allRandom.UseVisualStyleBackColor = true;
+            this.cb_allRandom.CheckedChanged += new System.EventHandler(this.cb_allRandom_CheckedChanged);
             // 
             // cb_clockwise
             // 
@@ -1445,7 +1526,7 @@ namespace nAudioTest
             this.cb_clockwise.Checked = true;
             this.cb_clockwise.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_clockwise.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cb_clockwise.Location = new System.Drawing.Point(971, 685);
+            this.cb_clockwise.Location = new System.Drawing.Point(6, 25);
             this.cb_clockwise.Name = "cb_clockwise";
             this.cb_clockwise.Size = new System.Drawing.Size(113, 17);
             this.cb_clockwise.TabIndex = 72;
@@ -1458,7 +1539,7 @@ namespace nAudioTest
             this.gb_routineCount.Controls.Add(this.tb_RoutineCount);
             this.gb_routineCount.Controls.Add(this.lb_routineCount);
             this.gb_routineCount.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
-            this.gb_routineCount.Location = new System.Drawing.Point(775, 609);
+            this.gb_routineCount.Location = new System.Drawing.Point(775, 576);
             this.gb_routineCount.Name = "gb_routineCount";
             this.gb_routineCount.Size = new System.Drawing.Size(190, 93);
             this.gb_routineCount.TabIndex = 71;
@@ -1492,7 +1573,7 @@ namespace nAudioTest
             this.gb_stimulationTime.Controls.Add(this.tb_StimulationTime);
             this.gb_stimulationTime.Controls.Add(this.lb_stimulationTime);
             this.gb_stimulationTime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
-            this.gb_stimulationTime.Location = new System.Drawing.Point(775, 508);
+            this.gb_stimulationTime.Location = new System.Drawing.Point(775, 475);
             this.gb_stimulationTime.Name = "gb_stimulationTime";
             this.gb_stimulationTime.Size = new System.Drawing.Size(190, 93);
             this.gb_stimulationTime.TabIndex = 70;
@@ -1518,6 +1599,7 @@ namespace nAudioTest
             this.tb_StimulationTimeWait.TabIndex = 42;
             this.tb_StimulationTimeWait.Text = "2";
             this.tb_StimulationTimeWait.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_StimulationTimeWait.TextChanged += new System.EventHandler(this.tb_StimulationTimeWait_TextChanged);
             // 
             // tb_StimulationTime
             // 
@@ -1528,6 +1610,7 @@ namespace nAudioTest
             this.tb_StimulationTime.TabIndex = 41;
             this.tb_StimulationTime.Text = "1";
             this.tb_StimulationTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_StimulationTime.TextChanged += new System.EventHandler(this.tb_StimulationTime_TextChanged);
             // 
             // lb_stimulationTime
             // 
@@ -1542,7 +1625,7 @@ namespace nAudioTest
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Black;
-            this.panel4.Location = new System.Drawing.Point(773, 499);
+            this.panel4.Location = new System.Drawing.Point(773, 466);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(469, 3);
             this.panel4.TabIndex = 74;
@@ -1551,7 +1634,7 @@ namespace nAudioTest
             // 
             this.lb_testtime.AutoSize = true;
             this.lb_testtime.Font = new System.Drawing.Font("휴먼둥근헤드라인", 52F);
-            this.lb_testtime.Location = new System.Drawing.Point(7, 50);
+            this.lb_testtime.Location = new System.Drawing.Point(6, 40);
             this.lb_testtime.Name = "lb_testtime";
             this.lb_testtime.Size = new System.Drawing.Size(257, 73);
             this.lb_testtime.TabIndex = 76;
@@ -1561,22 +1644,34 @@ namespace nAudioTest
             // 
             this.groupBox1.Controls.Add(this.lb_testtime);
             this.groupBox1.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
-            this.groupBox1.Location = new System.Drawing.Point(971, 508);
+            this.groupBox1.Location = new System.Drawing.Point(971, 475);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(271, 171);
+            this.groupBox1.Size = new System.Drawing.Size(268, 140);
             this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test Time";
+            // 
+            // gbOption
+            // 
+            this.gbOption.Controls.Add(this.cb_allRandom);
+            this.gbOption.Controls.Add(this.cb_clockwise);
+            this.gbOption.Font = new System.Drawing.Font("휴먼둥근헤드라인", 12F);
+            this.gbOption.Location = new System.Drawing.Point(971, 621);
+            this.gbOption.Name = "gbOption";
+            this.gbOption.Size = new System.Drawing.Size(268, 48);
+            this.gbOption.TabIndex = 79;
+            this.gbOption.TabStop = false;
+            this.gbOption.Text = "Option";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1257, 1001);
+            this.ClientSize = new System.Drawing.Size(1366, 1001);
+            this.Controls.Add(this.gbOption);
+            this.Controls.Add(this.pn_Random);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.cb_allRandom);
-            this.Controls.Add(this.cb_clockwise);
             this.Controls.Add(this.gb_routineCount);
             this.Controls.Add(this.gb_stimulationTime);
             this.Controls.Add(this.tbSource);
@@ -1600,6 +1695,8 @@ namespace nAudioTest
             this.gbSetting.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.pn_Random.ResumeLayout(false);
+            this.pn_Random.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1618,9 +1715,8 @@ namespace nAudioTest
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.gbMode.ResumeLayout(false);
             this.gbMode.PerformLayout();
             this.tbSource.ResumeLayout(false);
@@ -1634,6 +1730,8 @@ namespace nAudioTest
             this.gb_stimulationTime.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gbOption.ResumeLayout(false);
+            this.gbOption.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1712,9 +1810,6 @@ namespace nAudioTest
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox btnTestFolderOpen;
-        private System.Windows.Forms.RadioButton rbSource;
-        private System.Windows.Forms.RadioButton rbMic;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.GroupBox gbMode;
         private System.Windows.Forms.RadioButton rbManual;
@@ -1727,10 +1822,8 @@ namespace nAudioTest
         private System.Windows.Forms.TabPage tpSetting;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbLineInput;
-        private NAudio.Gui.VolumeSlider volumeSlider5;
-        public System.Windows.Forms.ProgressBar progressBar6;
-        private NAudio.Gui.VolumeSlider volumeSlider6;
-        public System.Windows.Forms.ProgressBar progressBar5;
+        private NAudio.Gui.VolumeSlider vsInput6;
+        private NAudio.Gui.VolumeSlider vsInput5;
         private System.Windows.Forms.CheckBox cb_allRandom;
         private System.Windows.Forms.CheckBox cb_clockwise;
         public System.Windows.Forms.GroupBox gb_routineCount;
@@ -1768,6 +1861,17 @@ namespace nAudioTest
         private System.Windows.Forms.Label lb_testtime;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Panel pn_Random;
+        private System.Windows.Forms.ListView lv_Random;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Label lb_Random;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cbChSel;
+        private System.Windows.Forms.GroupBox gbOption;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        public System.Windows.Forms.ProgressBar progressBar5;
+        public System.Windows.Forms.ProgressBar progressBar6;
     }
 }
 
