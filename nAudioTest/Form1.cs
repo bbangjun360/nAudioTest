@@ -205,13 +205,30 @@ namespace nAudioTest
             cb_clockwise.Checked = Properties.Settings.Default.save_clockwise;
             cb_allRandom.Checked = Properties.Settings.Default.save_all_random;
             cbChSel.SelectedItem = Properties.Settings.Default.save_ch_sel.ToString();
-            
-            DirectoryInfo directoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            string dir = directoryInfo.Parent.Parent.FullName;
-            Properties.Settings.Default.path_test = Path.Combine(directoryInfo.Parent.Parent.FullName, "Resources");
-            Console.WriteLine(Properties.Settings.Default.path_test);
-            lbTestFolderPath.Text = Properties.Settings.Default.path_test;
+
+            Properties.Settings.Default.path_test = AppDomain.CurrentDomain.BaseDirectory;
             Properties.Settings.Default.Save();
+            lbTestFolderPath.Text = Properties.Settings.Default.path_test;
+            if(strDir[0] == null)
+            {
+                strDir[0] = Properties.Settings.Default.path_test + "\\init.mp3";
+            }
+            if (strDir[1] == null)
+            {
+                strDir[1] = Properties.Settings.Default.path_test + "\\init.mp3";
+            }
+            if (strDir[2] == null)
+            {
+                strDir[2] = Properties.Settings.Default.path_test + "\\init.mp3";
+            }
+            if (strDir[3] == null)
+            {
+                strDir[3] = Properties.Settings.Default.path_test + "\\init.mp3";
+            }
+            textBoxes[0].Text = strDir[0].Split('\\')[strDir[0].Split('\\').Length - 1];
+            textBoxes[1].Text = strDir[1].Split('\\')[strDir[1].Split('\\').Length - 1];
+            textBoxes[2].Text = strDir[2].Split('\\')[strDir[2].Split('\\').Length - 1];
+            textBoxes[3].Text = strDir[3].Split('\\')[strDir[3].Split('\\').Length - 1];
             /*if (Properties.Settings.Default.path_test == null)
             {
                 lbTestFolderPath.Text = AppDomain.CurrentDomain.BaseDirectory + "//test_source";
