@@ -205,10 +205,15 @@ namespace nAudioTest
             cb_clockwise.Checked = Properties.Settings.Default.save_clockwise;
             cb_allRandom.Checked = Properties.Settings.Default.save_all_random;
             cbChSel.SelectedItem = Properties.Settings.Default.save_ch_sel.ToString();
-
-            if (Properties.Settings.Default.path_test == null)
+            
+            DirectoryInfo directoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            string dir = directoryInfo.Parent.Parent.FullName;
+            Properties.Settings.Default.path_test = Path.Combine(directoryInfo.Parent.Parent.FullName, "Resources");
+            Console.WriteLine(Properties.Settings.Default.path_test);
+            lbTestFolderPath.Text = Properties.Settings.Default.path_test;
+            Properties.Settings.Default.Save();
+            /*if (Properties.Settings.Default.path_test == null)
             {
-                
                 lbTestFolderPath.Text = AppDomain.CurrentDomain.BaseDirectory + "//test_source";
                 Properties.Settings.Default.path_test = lbTestFolderPath.Text;
                 Properties.Settings.Default.Save();
@@ -216,7 +221,7 @@ namespace nAudioTest
             else
             {
                 lbTestFolderPath.Text = Properties.Settings.Default.path_test;
-            }
+            }*/
             if (!rbRandom.Checked)
             {
                 pn_Random.Visible = false;
@@ -828,7 +833,7 @@ namespace nAudioTest
 
                 groupBox3.Location = new Point(657, 419); // ch2 , 90도
                 groupBox4.Location = new Point(601, 704); // ch3. 135도
-                groupBox5.Location = new Point(4262, 704); // ch4, 215도
+                groupBox5.Location = new Point(62, 704); // ch4, 215도
                 groupBox6.Location = new Point(10, 419); // ch5, 270도
             }       
             else if(cbChSel.SelectedItem.ToString() == "8")
@@ -868,7 +873,7 @@ namespace nAudioTest
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    _checkboxes[i, j].Checked = true;
+                    _checkboxes[i, j].Checked = false;
                 }
             }
         }
