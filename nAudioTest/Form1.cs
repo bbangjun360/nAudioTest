@@ -118,7 +118,14 @@ namespace nAudioTest
             var inputDevices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
             cbLineInput.Items.Clear();
             cbLineInput.Items.AddRange(inputDevices.ToArray());
-            cbLineInput.SelectedIndex = Properties.Settings.Default.input_device_selected_index;
+            try
+            {
+                cbLineInput.SelectedIndex = Properties.Settings.Default.input_device_selected_index;
+            }
+            catch
+            {
+                MessageBox.Show("ASIO AudioCard 선택을 해주세요.");
+            }
            
             // mp3 파일 불러오는용
             //int nLocalDirIndex = System.Windows.Forms.Application.StartupPath.IndexOf("bin");
@@ -249,6 +256,7 @@ namespace nAudioTest
                     audioFileReaderMixers[j, i].Volume = 0.0f;
                 }
                 Console.WriteLine("audio #" + i + ": " + audioFileReaderMixers[0, i].WaveFormat);
+                Console.WriteLine("audio dir" + strDir[i]);
             }
             for (int i = 0; i < 8; i++)
             {
@@ -268,7 +276,7 @@ namespace nAudioTest
             }
             volumeSampleProviders1 = null;
             volumeSampleProviders1 = new VolumeSampleProvider[mixer.WaveFormat.Channels];
-            Console.WriteLine("mixer: "+mixer.WaveFormat.ToString());
+            Console.WriteLine("mixer: "+ mixer.WaveFormat.ToString());
             for (int i = 0; i < volumeSampleProviders1.Length; i++)
             {
                 volumeSampleProviders1[i] = null;
@@ -298,11 +306,11 @@ namespace nAudioTest
         }
         private void cbEventHandler(object sender, EventArgs e)
         {
+            CheckBox cbTemp = (CheckBox)sender;
+            int num = Int32.Parse(cbTemp.Name.Substring(8));
+            int ch = (num - 1) % 8;
             if (cbStart.Checked)
             {
-                CheckBox cbTemp = (CheckBox)sender;
-                int num = Int32.Parse(cbTemp.Name.Substring(8));
-                int ch = (num - 1) % 8;
                 for (int i = 0; i < 4; i++)
                 {
                     if (_checkboxes[i, ch].Checked)
@@ -327,6 +335,20 @@ namespace nAudioTest
 
                     }
                 }
+                if (num <= 8)
+                {
+                    if (_checkboxes[0, ch].Checked)
+                    {
+                        _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOn;
+                    }
+                    else
+                    {
+                        _checkboxes[0, ch].BackgroundImage = Properties.Resources.spkOff;
+                    }
+                }
+            }
+            else
+            {
                 if (num <= 8)
                 {
                     if (_checkboxes[0, ch].Checked)
@@ -386,6 +408,7 @@ namespace nAudioTest
 
         private void cbStart_CheckedChanged(object sender, EventArgs e)
         {
+           
             try
             {
                 waveSource.DeviceNumber = cbLineInput.SelectedIndex;
@@ -396,15 +419,7 @@ namespace nAudioTest
                 return;
 
             }
-            try
-            {
-                asioOut = new AsioOut(comboBox1.SelectedIndex); // ASIO 출력 장치 선택
-            }
-            catch
-            {
-                MessageBox.Show("출력 장치를 연결해주세요!");
-                return;
-            }
+            
             gbMode.Enabled = false;
             tbSource.Enabled = false;
             gbOption.Enabled = false;
@@ -430,8 +445,21 @@ namespace nAudioTest
                 // 음원 출력 시작
                 if (asioOut == null)
                 {
-                    asioOut = new AsioOut(comboBox1.SelectedIndex); // ASIO 출력 장치 선택
-                    asioOut.PlaybackStopped += OnPlaybackStopped; // 현재 재생중이면 정지
+                    try
+                    {
+                        asioOut = new AsioOut(comboBox1.SelectedIndex); // ASIO 출력 장치 선택
+                        asioOut.PlaybackStopped += OnPlaybackStopped; // 현재 재생중이면 정지
+
+                    }
+                    catch
+                    {
+                        MessageBox.Show("출력 장치를 연결해주세요!");
+                        TestStop();
+                        return;
+                    }
+                    
+                    //asioOut = new AsioOut(comboBox1.SelectedIndex); // ASIO 출력 장치 선택
+                    //asioOut.PlaybackStopped += OnPlaybackStopped; // 현재 재생중이면 정지
                 }
                 if (audioFileReaderMixers[0, 0] == null)
                 {
@@ -469,7 +497,11 @@ namespace nAudioTest
                         if (_checkboxes[i, j].Checked)
                         {
                             Console.WriteLine(_checkboxes[i, j].Name + "-> TRUE");
-                            if (tbSource.SelectedTab == this.tpSource) audioFileReaderMixers[j, i].Volume = fVolume[i];
+                            if (tbSource.SelectedTab == this.tpSource)
+                            {
+                                audioFileReaderMixers[j, i].Volume = fVolume[i];
+                                if (i == 0) { }
+                            }
                             if (tbSource.SelectedTab == this.tpLine)
                             {
                                 if (i == 0) stereoToMono[j].LeftVolume = fLineVolume[i];
@@ -523,14 +555,16 @@ namespace nAudioTest
             StimulationTimeWait_ThreadTimer.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
             tb_RoutineCount.Text = Properties.Settings.Default.save_tb_routineTime;
             //timer1.Stop();
-
-                for(int i = 0; i< 8; i++)
+            if (!rbManual.Checked)
+            {
+                for (int i = 0; i < 8; i++)
                 {
                     Console.WriteLine(_checkboxes[SOURCE1, i].Name + "-> FALSE");
                     _checkboxes[SOURCE1, i].BackgroundImage = Properties.Resources.spkOff;
                     //if (tbSource.SelectedTab == this.tpSource) audioFileReaderMixers[i, SOURCE1].Volume = 0.0f;
                     //if (tbSource.SelectedTab == this.tpLine) stereoToMono[i].LeftVolume = 0.0f;
                 }
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -673,7 +707,8 @@ namespace nAudioTest
                 cb_allRandom.Enabled = false;
                 for (int i = 0; i < 8; i++)
                 {
-                    _checkboxes[0,i].Enabled = false;
+                    _checkboxes[0, i].Enabled = false;
+                    _checkboxes[0, i].Checked = false;
                 }
             }
             Properties.Settings.Default.save_selectedmode = 0;
@@ -689,6 +724,7 @@ namespace nAudioTest
                 for (int i = 0; i < 8; i++)
                 {
                     _checkboxes[0, i].Enabled = false;
+                    _checkboxes[0, i].Checked = false;
                 }
                 pn_Random.Visible = true;
                 this.Size = new Size(1382, 1040);
@@ -727,6 +763,7 @@ namespace nAudioTest
                     for (int j = 0; j < 8; i++)
                     {
                         _checkboxes[i, j].Enabled = false;
+                        _checkboxes[0, i].Checked = false;
                     }
                 }
                 Properties.Settings.Default.save_selectedmode = 3;
